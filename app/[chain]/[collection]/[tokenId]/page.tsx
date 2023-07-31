@@ -7,13 +7,17 @@ import {
 } from "./utils";
 import { useContractRead } from "wagmi";
 import { useSearchParams } from "next/navigation";
-import MultiLayer2DRenderer, {
-  IResource,
-} from "@lightm-nft/multi-layer-2d-renderer";
+import { IResource } from "@lightm-nft/multi-layer-2d-renderer";
 import { useEffect, useMemo, useState } from "react";
 import { RMRKEquipRenderUtilsABI } from "@/abi";
 import { chains } from "@/app/chains";
 import { IMetadata } from "@/app/metadataInterface";
+import dynamic from "next/dynamic";
+
+const MultiLayer2DRenderer = dynamic(
+  async () => import("@lightm-nft/multi-layer-2d-renderer"),
+  { ssr: false }
+);
 
 export default function TokenDisplay({
   params,
