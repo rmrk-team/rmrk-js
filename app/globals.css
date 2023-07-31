@@ -18,4 +18,8 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  background-image: linear-gradient(
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
 }
