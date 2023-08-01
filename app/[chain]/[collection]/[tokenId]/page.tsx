@@ -4,7 +4,7 @@ import {
   RMRKRenderUtilsAddressMapping,
   chainNameMapping,
   convertIpfs,
-} from "./utils";
+} from "@/lib/utils";
 import { useContractRead } from "wagmi";
 import { useSearchParams } from "next/navigation";
 import { IResource } from "@lightm-nft/multi-layer-2d-renderer";
