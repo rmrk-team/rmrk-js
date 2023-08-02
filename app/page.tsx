@@ -1,26 +1,28 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import { githubLink, lightmLink, rmrkLink } from "./links";
+import { useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { GitHubLogoIcon } from "@radix-ui/react-icons"
+
+import { chainNameMapping } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/Input"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/Select";
-import { chains } from "./chains";
-import { useState } from "react";
-import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { chainNameMapping } from "@/lib/utils";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+} from "@/components/ui/Select"
+
+import { chains } from "./chains"
+import { githubLink, lightmLink, rmrkLink } from "./links"
 
 export default function Home() {
-  const [selectedChain, setSelectedChain] = useState<string>();
-  const [collectionId, setCollectionId] = useState<string>();
-  const [tokenId, setTokenId] = useState<string>();
+  const [selectedChain, setSelectedChain] = useState<string>()
+  const [collectionId, setCollectionId] = useState<string>()
+  const [tokenId, setTokenId] = useState<string>()
 
   return (
     <main className="flex min-h-screen flex-col items-center container py-4">
@@ -48,7 +50,7 @@ export default function Home() {
 
       <div className="flex flex-col gap-4 justify-center items-center flex-auto">
         <h1 className="scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl">
-          <Link className="underline" href={rmrkLink} target="_blank">
+          <Link href={rmrkLink} target="_blank">
             RMRK<sup>↗︎</sup>
           </Link>{" "}
           NFT Renderer
@@ -68,7 +70,7 @@ export default function Home() {
                   <SelectItem key={chain.id} value={chain.network}>
                     {chain.name}
                   </SelectItem>
-                );
+                )
               })}
             </SelectContent>
           </Select>
@@ -96,5 +98,5 @@ export default function Home() {
         </div>
       </div>
     </main>
-  );
+  )
 }
