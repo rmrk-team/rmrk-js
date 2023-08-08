@@ -1,5 +1,3 @@
-"use client"
-
 import { noopStorage } from "@wagmi/core"
 import {
   configureChains,

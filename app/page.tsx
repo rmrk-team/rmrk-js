@@ -5,7 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { GitHubLogoIcon } from "@radix-ui/react-icons"
 
-import { chainNameMapping } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/Input"
 import {
@@ -15,8 +14,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select"
+import { chainNameMapping } from "@/components/NFTRenderer/utils"
 
-import { chains } from "./chains"
+import { chains } from "../components/NFTRenderer/chains"
 import { githubLink, lightmLink, rmrkLink } from "./links"
 
 export default function Home() {
