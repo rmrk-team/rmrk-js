@@ -7,7 +7,7 @@ import { chains } from "@/components/NFTRenderer/src/chains"
 import { chainNameMapping } from "@/components/NFTRenderer/src/utils"
 
 const NFTRenderer = dynamic(
-  async () => (await import("../../../../components/NFTRenderer")).NFTRenderer,
+  async () => (await import("../../../../components/NFTRenderer/src/index")).NFTRenderer,
   { ssr: false }
 )
 
