@@ -3,8 +3,8 @@
 import dynamic from "next/dynamic"
 import { useSearchParams } from "next/navigation"
 
-import { chains } from "@/components/NFTRenderer/chains"
-import { chainNameMapping } from "@/components/NFTRenderer/utils"
+import { chains } from "@/components/NFTRenderer/src/chains"
+import { chainNameMapping } from "@/components/NFTRenderer/src/utils"
 
 const NFTRenderer = dynamic(
   async () => (await import("../../../../components/NFTRenderer")).NFTRenderer,

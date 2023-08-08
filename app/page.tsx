@@ -14,9 +14,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select"
-import { chainNameMapping } from "@/components/NFTRenderer/utils"
+import { chainNameMapping } from "@/components/NFTRenderer/src/utils"
 
-import { chains } from "../components/NFTRenderer/chains"
+import { chains } from "../components/NFTRenderer/src/chains"
 import { githubLink, lightmLink, rmrkLink } from "./links"
 
 export default function Home() {

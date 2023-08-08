@@ -1,11 +1,11 @@
 {
   "name": "@lightm-nft/nft-renderer",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "scripts": {
     "install": "npm run build-css",
-    "build": "tsc --declaration --emitDeclarationOnly --outDir ./dist && npm run build-css && swc ./index.tsx --source-maps=false -C module.type=commonjs -o ./dist/index.js",
-    "build-css": "tailwindcss -i ./index.css -o ./dist/index.css",
+    "build": "tsc --declaration --emitDeclarationOnly --outDir ./dist && npm run build-css && swc ./src --source-maps=false -C module.type=es6 -C jsc.transform.react.runtime=automatic -d ./dist",
+    "build-css": "tailwindcss -i ./src/index.css -o ./dist/index.css",
     "prepare": "npm run build"
   },
   "type": "module",
