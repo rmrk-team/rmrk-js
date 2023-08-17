@@ -9,8 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.1",
+    "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/react": "^1.1.1",
     "@lightm-nft/multi-layer-2d-renderer": "^0.1.0-alpha.4",
     "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-popover": "^1.0.6",
     "@radix-ui/react-select": "^1.2.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/node": "20.4.5",
@@ -21,8 +25,10 @@
     "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "emoji-mart": "^5.5.2",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
+    "graphql": "^16.8.0",
     "next": "^13.3.4",
     "postcss": "8.4.27",
     "react": "18.2.0",
