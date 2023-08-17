@@ -1,3 +1,6 @@
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
 export const chainNameMapping: Record<string, string> = {
   eth: "homestead",
   moonbeam: "moonbeam",
@@ -14,6 +17,16 @@ export const RMRKRenderUtilsAddressMapping: Record<string, `0x${string}`> = {
   "eth-sepolia": "0x8f9d442d4AD80a506fD623C2FF1Fc5173C4A10Aa",
   "moonbase-alpha": "0x29dC0CAd59fe3403aeD0E377C4bc181f12240710",
   "polygon-mumbai": "0xe20A4EEe684eEc517bE688b19F320D0DF7b02293",
+}
+
+export const EmotableRegistryAddress =
+  "0x31107356a47DD65e832676C1FCBECb0B7C075f5B"
+
+export const emotableIndexerAPI =
+  "https://squid.subsquid.io/emotes/v/v1/graphql"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }
 
 export function isIpfs(link: string) {

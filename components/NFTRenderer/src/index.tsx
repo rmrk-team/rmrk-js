@@ -1,17 +1,35 @@
 import { useEffect, useMemo, useState } from "react"
+import { ApolloClient, gql, InMemoryCache } from "@apollo/client"
+import data from "@emoji-mart/data"
+import Picker from "@emoji-mart/react"
 import MultiLayer2DRenderer, {
   IResource,
 } from "@lightm-nft/multi-layer-2d-renderer"
-import { isAddress } from "viem"
-import { useContractRead, usePublicClient } from "wagmi"
+import { isAddress, zeroAddress } from "viem"
+import {
+  useAccount,
+  useContractRead,
+  useContractWrite,
+  usePublicClient,
+} from "wagmi"
 
-import { RMRKEquipRenderUtilsABI } from "./abi"
+import { EmotableRegistryABI, RMRKEquipRenderUtilsABI } from "./abi"
 import { chains } from "./chains"
 import { IMetadata } from "./metadataInterface"
-import { convertIpfs, RMRKRenderUtilsAddressMapping } from "./utils"
-import WagmiProvider from "./wagmiProvider"
+import {
+  convertIpfs,
+  emotableIndexerAPI,
+  EmotableRegistryAddress,
+  RMRKRenderUtilsAddressMapping,
+} from "./utils"
+import WagmiProvider from "./walletProvider"
 
 import "./index.css"
+
+import { useWeb3Modal, Web3Button } from "@web3modal/react"
+
+import { Badge } from "./components/badge"
+import { Popover, PopoverContent, PopoverTrigger } from "./components/popover"
 
 interface INFTRenderer {
   chainId?: number
@@ -34,6 +52,11 @@ export default function NFTRendererWithProvider(props: INFTRenderer) {
 
 export { WagmiProvider }
 
+const graphqlClient = new ApolloClient({
+  uri: emotableIndexerAPI,
+  cache: new InMemoryCache(),
+})
+
 /**
  * @description To use this component, make sure you have a WagmiProvider wrapped it
  */
@@ -49,9 +72,15 @@ export function NFTRenderer({
     chainId,
   })
 
+  const { address: targetEmoter = zeroAddress } = useAccount()
+
+  const { open } = useWeb3Modal()
+
   const isValidAddress = isAddress(collection)
   const [isContract, setIsContract] = useState<boolean>()
   const [isGettingIsContract, setIsGettingIsContract] = useState<boolean>(true)
+
+  const [emotes, setEmotes] = useState<Record<string, number>>({})
 
   const [renderParts, setRenderParts] = useState<IResource[]>([])
 
@@ -60,6 +89,28 @@ export function NFTRenderer({
     abi: RMRKEquipRenderUtilsABI,
     chainId,
   }
+
+  const args = useMemo(() => {
+    const emoteArr = Object.keys(emotes)
+
+    return [
+      Array.from({ length: emoteArr.length }, () => targetEmoter),
+      Array.from({ length: emoteArr.length }, () => collection),
+      Array.from({ length: emoteArr.length }, () => tokenId),
+      emoteArr,
+    ]
+  }, [collection, tokenId, emotes, targetEmoter])
+
+  const {
+    data: haveEmotersUsedEmotes = [],
+    refetch: refetchHaveEmotersUsedEmotes,
+  } = useContractRead({
+    address: EmotableRegistryAddress,
+    abi: EmotableRegistryABI,
+    chainId,
+    functionName: "haveEmotersUsedEmotes",
+    args,
+  })
 
   const {
     data: nftData,
@@ -98,6 +149,13 @@ export function NFTRenderer({
     args: [collection, BigInt(tokenId), mainAsset ? mainAsset.id : BigInt(0)],
   })
 
+  const { writeAsync: addEmote } = useContractWrite({
+    address: EmotableRegistryAddress,
+    abi: EmotableRegistryABI,
+    functionName: "emote",
+    chainId,
+  })
+
   useEffect(() => {
     ;(async () => {
       if (isValidAddress) {
@@ -110,6 +168,46 @@ export function NFTRenderer({
       }
     })()
   }, [collection, isValidAddress, publicClient])
+
+  useEffect(() => {
+    ;(async () => {
+      if (isValidAddress && isContract) {
+        const {
+          data: { countEmotesByTokenId },
+        } = await graphqlClient.query({
+          query: gql`
+            query GetEmotesCountQuery($tokenId: String!) {
+              countEmotesByTokenId(token_id: $tokenId) {
+                emoji
+                emojiCount
+              }
+            }
+          `,
+          variables: {
+            tokenId: `${chainId}-${collection}-${tokenId}`,
+          },
+        })
+
+        const _emotes = (
+          countEmotesByTokenId as { emoji: string; emojiCount: number }[]
+        ).reduce(
+          (
+            prev: Record<string, number>,
+            curr: { emoji: string; emojiCount: number }
+          ) => {
+            const { emoji, emojiCount } = curr
+
+            ;(prev as any)[emoji] = emojiCount
+
+            return prev
+          },
+          {} as Record<string, number>
+        )
+
+        setEmotes(_emotes)
+      }
+    })()
+  }, [chainId, collection, isContract, isValidAddress, tokenId])
 
   useEffect(() => {
     ;(async () => {
@@ -206,6 +304,62 @@ export function NFTRenderer({
               <p>metadataURI: {nftData.tokenMetadataUri}</p>
             ) : null}
           </>
+        ) : null}
+
+        {emotes ? (
+          <Popover>
+            <PopoverTrigger className="absolute bottom-4 right-4">
+              <Badge className="text-2xl hover:scale-110 transition-all">
+                ❤️
+              </Badge>
+            </PopoverTrigger>
+            <PopoverContent className="flex justify-start items-start gap-4 max-w-[95vw] w-[640px] relative">
+              <Picker
+                data={data}
+                onEmojiSelect={async (data: any) => {
+                  if (targetEmoter !== zeroAddress) {
+                    const result = await addEmote({
+                      args: [collection, tokenId, data.native, true],
+                    })
+
+                    await refetchHaveEmotersUsedEmotes()
+                  } else {
+                    open()
+                  }
+                }}
+              />
+              <div className="flex flex-wrap gap-2">
+                {Object.entries(emotes).map(([emote, count], i) => {
+                  const isEmoted =
+                    (haveEmotersUsedEmotes as boolean[])?.[i] ?? false
+
+                  return (
+                    <Badge
+                      key={i}
+                      variant={isEmoted ? "default" : "outline"}
+                      className="cursor-pointer"
+                      onClick={async () => {
+                        if (targetEmoter !== zeroAddress) {
+                          const result = await addEmote({
+                            args: [collection, tokenId, emote, !isEmoted],
+                          })
+
+                          await refetchHaveEmotersUsedEmotes()
+                        } else {
+                          open()
+                        }
+                      }}
+                    >
+                      {emote} {count}
+                    </Badge>
+                  )
+                })}
+              </div>
+              <div className="absolute bottom-2 right-2">
+                <Web3Button />
+              </div>
+            </PopoverContent>
+          </Popover>
         ) : null}
 
         {renderParts.length > 0 ? (

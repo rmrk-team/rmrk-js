@@ -1,7 +1,7 @@
 "use client"
 
-import WagmiProvider from "@/components/NFTRenderer/src/wagmiProvider"
+import WalletProvider from "@/components/NFTRenderer/src/walletProvider"
 
 export default function RendererLayout({ children }: React.PropsWithChildren) {
-  return <WagmiProvider>{children}</WagmiProvider>
+  return <WalletProvider>{children}</WalletProvider>
 }
