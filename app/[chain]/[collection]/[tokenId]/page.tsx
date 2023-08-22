@@ -19,6 +19,7 @@ export default function TokenDisplay({
   const { chain, collection, tokenId } = params
   const searchParams = useSearchParams()
   const advancedMode = searchParams.get("advancedMode") === "true"
+  const emoteMode = searchParams.get("emoteMode") === "true"
 
   const chainId = chains.find(
     (_chain) => _chain.network === chainNameMapping[chain]
@@ -31,6 +32,7 @@ export default function TokenDisplay({
         collection={collection}
         tokenId={tokenId}
         advancedMode={advancedMode}
+        emoteMode={emoteMode}
       />
     </div>
   )

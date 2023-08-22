@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { ApolloClient, gql, InMemoryCache } from "@apollo/client"
 import data from "@emoji-mart/data"
 import Picker from "@emoji-mart/react"
@@ -36,6 +36,7 @@ interface INFTRenderer {
   collection: `0x${string}`
   tokenId: string
   advancedMode?: boolean
+  emoteMode?: boolean
 }
 
 /**
@@ -65,6 +66,7 @@ export function NFTRenderer({
   collection,
   tokenId,
   advancedMode,
+  emoteMode = false,
 }: INFTRenderer) {
   const supportedChain = chains.find((_chain) => _chain.id === chainId)
 
@@ -81,6 +83,7 @@ export function NFTRenderer({
   const [isGettingIsContract, setIsGettingIsContract] = useState<boolean>(true)
 
   const [emotes, setEmotes] = useState<Record<string, number>>({})
+  const [haveEmotersUsedEmotes, setHaveEmotersUsedEmotes] = useState<boolean[]>([])
 
   const [renderParts, setRenderParts] = useState<IResource[]>([])
 
@@ -101,16 +104,16 @@ export function NFTRenderer({
     ]
   }, [collection, tokenId, emotes, targetEmoter])
 
-  const {
-    data: haveEmotersUsedEmotes = [],
-    refetch: refetchHaveEmotersUsedEmotes,
-  } = useContractRead({
-    address: EmotableRegistryAddress,
-    abi: EmotableRegistryABI,
-    chainId,
-    functionName: "haveEmotersUsedEmotes",
-    args,
-  })
+  const getEmotableInfos = useCallback(async () => {
+    const data = await publicClient.readContract({
+      address: EmotableRegistryAddress,
+      abi: EmotableRegistryABI,
+      functionName: "haveEmotersUsedEmotes",
+      args,
+    })
+
+    setHaveEmotersUsedEmotes(data as boolean[])
+  }, [args, publicClient])
 
   const {
     data: nftData,
@@ -250,6 +253,12 @@ export function NFTRenderer({
     })()
   }, [equippableData, mainAsset, nftData, isContract, isValidAddress])
 
+  useEffect(() => {
+    if (emoteMode) {
+      getEmotableInfos()
+    }
+  }, [getEmotableInfos, emoteMode]);
+
   if (chainId === undefined) {
     return (
       <div className="flex flex-col w-full h-full justify-center items-center">
@@ -306,7 +315,7 @@ export function NFTRenderer({
           </>
         ) : null}
 
-        {emotes ? (
+        {emoteMode && emotes ? (
           <Popover>
             <PopoverTrigger className="absolute bottom-4 right-4">
               <Badge className="text-2xl hover:scale-110 transition-all">
@@ -322,7 +331,7 @@ export function NFTRenderer({
                       args: [collection, tokenId, data.native, true],
                     })
 
-                    await refetchHaveEmotersUsedEmotes()
+                    await getEmotableInfos()
                   } else {
                     open()
                   }
@@ -344,7 +353,7 @@ export function NFTRenderer({
                             args: [collection, tokenId, emote, !isEmoted],
                           })
 
-                          await refetchHaveEmotersUsedEmotes()
+                          await getEmotableInfos()
                         } else {
                           open()
                         }
