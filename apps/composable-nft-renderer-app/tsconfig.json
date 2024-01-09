@@ -1,0 +1,61 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "types": [
+      "jest",
+      "node"
+    ],
+    "paths": {
+      "components/*": [
+        "apps/composable-nft-renderer-app/components/*"
+      ],
+      "lib/*": [
+        "apps/composable-nft-renderer-app/lib/*"
+      ],
+      "@lightm/nft-renderer/*": [
+        "libs/nft-renderer/src/*"
+      ],
+      "styled-system/*": [
+        "apps/composable-nft-renderer-app/styled-system/*"
+      ],
+      "@rmrk-team/ipfs-utils": [
+        "libs/ipfs-utils/src/index.ts"
+      ],
+      "@rmrk-team/rmrk-2d-renderer": [
+        "libs/rmrk-2d-renderer/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "styled-system",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "../../apps/composable-nft-renderer-app/.next/types/**/*.ts",
+    "../../dist/apps/composable-nft-renderer-app/.next/types/**/*.ts",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
+}

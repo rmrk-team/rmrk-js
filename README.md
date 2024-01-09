@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://lightm.xyz" target="_blank" rel="noopener noreferrer">
-    <img width="180" height="180" src="/public/lightm.png" alt="Lightm Logo" />
+    <img width="180" height="180" src="/apps/composable-nft-renderer-app/public/lightm.png" alt="Lightm Logo" />
   </a>
 </p>
 

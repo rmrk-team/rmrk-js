@@ -18,6 +18,7 @@
 # misc
 .DS_Store
 *.pem
+.idea
 
 # debug
 npm-debug.log*
@@ -32,4 +33,12 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+apps/composable-nft-renderer-app/next-env.d.ts
+
+# Next.js
+.next
+
+# Panda css
+apps/composable-nft-renderer-app/styled-system
+
+.nx/cache

@@ -1,0 +1,1 @@
+export const INHERIT_RENDER_CONTEXT = 'INHERIT';
