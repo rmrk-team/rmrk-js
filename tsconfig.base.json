@@ -17,14 +17,14 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
+      "@rmrk-team/ipfs-utils": [
+        "libs/ipfs-utils/src/index.ts"
+      ],
       "@rmrk-team/nft-renderer": [
         "nft-renderer/src/index.ts"
       ],
       "@rmrk-team/nft-renderer/server": [
         "nft-renderer/src/server.ts"
-      ],
-      "@rmrk-team/ipfs-utils": [
-        "libs/ipfs-utils/src/index.ts"
       ],
       "@rmrk-team/rmrk-2d-renderer": [
         "libs/rmrk-2d-renderer/src/index.ts"
