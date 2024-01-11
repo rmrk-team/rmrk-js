@@ -8,13 +8,12 @@ import { CollectionItem, Portal, Select } from '@ark-ui/react';
 import { ChevronDownIcon } from 'lucide-react';
 import Page from '../components/app/page';
 import { githubLink, rmrkLink } from 'lib/links';
-import { EVM_NETWORKS } from '@lightm/nft-renderer/lib';
-import { assertIsEvmNetwork, getIsEvmNetwork } from '@lightm/nft-renderer/lib/get-is-evm-network';
 import { InputSelect } from 'components/common/select';
 import { Stack, Container, VStack, HStack, Wrap, Center } from 'styled-system/jsx';
 import { ValueChangeDetails } from '@zag-js/select';
 import { Input } from 'components/park-ui/input';
 import { Button } from 'components/park-ui/button';
+import { assertIsEvmNetwork, EVM_NETWORKS } from '@rmrk-team/rmrk-evm-utils';
 
 const networkOptions = Object.values(EVM_NETWORKS).map((network) => ({
   label: network,

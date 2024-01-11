@@ -54,13 +54,6 @@ export const useGetComposedState = (
 
   const assetIdToUse = assetId || primaryAsset?.id;
 
-  console.log({
-    contractAddress,
-    tokenId,
-    assetIdToUse,
-    chainId,
-  });
-
   const {
     data: equippableDataResponse,
     isLoading: isLoadingEquippableData,
@@ -76,20 +69,8 @@ export const useGetComposedState = (
     enabled: enabled && !!assetIdToUse,
   });
 
-  console.log('supportsMultiAssetInterface', {
-    supportsMultiAssetInterface,
-    assetIdToUse,
-    equippableDataResponse,
-    errorEquippableData,
-  });
-
   const [assetMetadataUri, equippableGroupId, catalogAddress, fixedParts, slotParts] =
     equippableDataResponse || [];
-
-  console.log('fixedParts', {
-    fixedParts,
-    slotParts,
-  });
 
   const {
     isLoading: isLoadingFixedPartsMetadatas,

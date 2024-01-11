@@ -16,19 +16,13 @@ import {
   useGetInterfaceSupport,
 } from '@rmrk-team/rmrk-hooks';
 
-// const styles = css({
-//   backgroundColor: 'gainsboro',
-//   borderRadius: '9999px',
-//   fontSize: '13px',
-//   padding: '10px 15px',
-// });
-
 interface INFTRenderer {
   chainId: number;
   contractAddress: Address;
   tokenId: string;
   advancedMode?: boolean;
   emoteMode?: boolean;
+  loader?: React.ReactNode;
 }
 
 /**
@@ -57,6 +51,7 @@ export function NFTRenderer({
   tokenId,
   advancedMode,
   emoteMode = false,
+  loader,
 }: INFTRenderer) {
   const rendererContainerRef = useRef<null | HTMLDivElement>(null);
   const tokenIdBigint = BigInt(tokenId);
@@ -178,17 +173,6 @@ export function NFTRenderer({
 
   const renderParts = catalogRenderParts || assetRenderPart || tokenRenderPart;
 
-  console.log('tokenUri', {
-    contractAddress,
-    tokenId,
-    isContract,
-    tokenRenderPart,
-    assetRenderPart,
-    catalogRenderParts,
-    chainId,
-    primaryAsset,
-  });
-
   // useEffect(() => {
   //   (async () => {
   //     if (isValidAddress && isContract) {
@@ -274,31 +258,17 @@ export function NFTRenderer({
   if (chainId === undefined) {
     return (
       <div className="flex flex-col w-full h-full justify-center items-center">
-        Unsupported chain currently
+        Unsupported chain
       </div>
     );
   } else {
     const isLoading =
       isGettingIsContract ||
       isLoadingTokenUri ||
-      isLoadingComposableState ||
       isLoadingPrimaryAsset ||
       isLoadingTokenMetadata ||
-      isLoadingComposableState;
-
-    if (isLoading) {
-      return (
-        <div className="flex flex-col w-full h-full justify-center items-center">
-          <img
-            className="animate-bounce"
-            src="/lightm_outlined.png"
-            alt="loading"
-            width={128}
-            height={128}
-          />
-        </div>
-      );
-    }
+      isLoadingComposableState ||
+      isLoadingGetInterfaceSupport;
 
     return (
       <div
@@ -311,99 +281,106 @@ export function NFTRenderer({
           justifyContent: 'center',
         }}
       >
-        {isValidAddress === false ? <p>Invalid address</p> : null}
-        {isValidAddress && isContract === false ? <p>Not a contract</p> : null}
-        {isContract && isErrorTokenUri ? <p>Failed to get NFT data</p> : null}
-
-        {advancedMode ? (
+        {isLoading ? (
+          <div style={{ alignSelf: 'center' }}>{loader}</div>
+        ) : (
           <>
-            <h1>
-              Token {tokenId} on {network} in {contractAddress}
-            </h1>
-            {composableState ? (
-              <div>
-                <>
-                  <p>Is Equippable</p>
-                  <p>metadataURI: {assetMetadataUri}</p>
-                  <p>groupId: {equippableGroupId?.toString()}</p>
-                  <p>catalog: {catalogAddress}</p>
-                </>
-              </div>
-            ) : primaryAsset ? (
-              <p>metadataURI: {primaryAsset.metadataUri}</p>
-            ) : tokenUri ? (
-              <p>metadataURI: {tokenUri}</p>
+            {isValidAddress === false ? <p>Invalid address</p> : null}
+            {isValidAddress && isContract === false ? <p>Not a contract</p> : null}
+            {isContract && isErrorTokenUri ? <p>Failed to get NFT data</p> : null}
+
+            {advancedMode ? (
+              <>
+                <h1>
+                  Token {tokenId} on {network} in {contractAddress}
+                </h1>
+                {composableState ? (
+                  <div>
+                    <>
+                      <p>Is Equippable</p>
+                      <p>metadataURI: {assetMetadataUri}</p>
+                      <p>groupId: {equippableGroupId?.toString()}</p>
+                      <p>catalog: {catalogAddress}</p>
+                    </>
+                  </div>
+                ) : primaryAsset ? (
+                  <p>metadataURI: {primaryAsset.metadataUri}</p>
+                ) : tokenUri ? (
+                  <p>metadataURI: {tokenUri}</p>
+                ) : null}
+              </>
+            ) : null}
+
+            {/*{emoteMode && emotes ? (*/}
+            {/*  <Popover>*/}
+            {/*    <PopoverTrigger className="absolute bottom-4 right-4">*/}
+            {/*      <Badge className="text-2xl hover:scale-110 transition-all">❤️</Badge>*/}
+            {/*    </PopoverTrigger>*/}
+            {/*    <PopoverContent className="flex justify-start items-start gap-4 max-w-[95vw] w-[640px] relative">*/}
+            {/*      <Picker*/}
+            {/*        data={data}*/}
+            {/*        onEmojiSelect={async (data: any) => {*/}
+            {/*          if (targetEmoter !== zeroAddress) {*/}
+            {/*            const result = await addEmote({*/}
+            {/*              args: [collection, tokenId, data.native, true],*/}
+            {/*            });*/}
+
+            {/*            await getEmotableInfos();*/}
+            {/*          } else {*/}
+            {/*            open();*/}
+            {/*          }*/}
+            {/*        }}*/}
+            {/*      />*/}
+            {/*      <div className="flex flex-wrap gap-2">*/}
+            {/*        {Object.entries(emotes).map(([emote, count], i) => {*/}
+            {/*          const isEmoted = (haveEmotersUsedEmotes as boolean[])?.[i] ?? false;*/}
+
+            {/*          return (*/}
+            {/*            <Badge*/}
+            {/*              key={i}*/}
+            {/*              variant={isEmoted ? 'default' : 'outline'}*/}
+            {/*              className="cursor-pointer"*/}
+            {/*              onClick={async () => {*/}
+            {/*                if (targetEmoter !== zeroAddress) {*/}
+            {/*                  const result = await addEmote({*/}
+            {/*                    args: [collection, tokenId, emote, !isEmoted],*/}
+            {/*                  });*/}
+
+            {/*                  await getEmotableInfos();*/}
+            {/*                } else {*/}
+            {/*                  open();*/}
+            {/*                }*/}
+            {/*              }}*/}
+            {/*            >*/}
+            {/*              {emote} {count}*/}
+            {/*            </Badge>*/}
+            {/*          );*/}
+            {/*        })}*/}
+            {/*      </div>*/}
+            {/*      <div className="absolute bottom-2 right-2">*/}
+            {/*        <Web3Button />*/}
+            {/*      </div>*/}
+            {/*    </PopoverContent>*/}
+            {/*  </Popover>*/}
+            {/*) : null}*/}
+
+            {renderParts && renderParts.length > 0 ? (
+              <MultiLayer2DRenderer
+                resources={renderParts}
+                resizeObserveRef={rendererContainerRef}
+                theme={primaryAsset?.metadata?.theme}
+                fillBgWithImageBlur
+                loader={loader}
+                style={{
+                  aspectRatio: '1/1',
+                  objectFit: 'contain',
+                  width: '100%',
+                  height: '100%',
+                }}
+              />
             ) : null}
           </>
-        ) : null}
-
-        {/*{emoteMode && emotes ? (*/}
-        {/*  <Popover>*/}
-        {/*    <PopoverTrigger className="absolute bottom-4 right-4">*/}
-        {/*      <Badge className="text-2xl hover:scale-110 transition-all">❤️</Badge>*/}
-        {/*    </PopoverTrigger>*/}
-        {/*    <PopoverContent className="flex justify-start items-start gap-4 max-w-[95vw] w-[640px] relative">*/}
-        {/*      <Picker*/}
-        {/*        data={data}*/}
-        {/*        onEmojiSelect={async (data: any) => {*/}
-        {/*          if (targetEmoter !== zeroAddress) {*/}
-        {/*            const result = await addEmote({*/}
-        {/*              args: [collection, tokenId, data.native, true],*/}
-        {/*            });*/}
-
-        {/*            await getEmotableInfos();*/}
-        {/*          } else {*/}
-        {/*            open();*/}
-        {/*          }*/}
-        {/*        }}*/}
-        {/*      />*/}
-        {/*      <div className="flex flex-wrap gap-2">*/}
-        {/*        {Object.entries(emotes).map(([emote, count], i) => {*/}
-        {/*          const isEmoted = (haveEmotersUsedEmotes as boolean[])?.[i] ?? false;*/}
-
-        {/*          return (*/}
-        {/*            <Badge*/}
-        {/*              key={i}*/}
-        {/*              variant={isEmoted ? 'default' : 'outline'}*/}
-        {/*              className="cursor-pointer"*/}
-        {/*              onClick={async () => {*/}
-        {/*                if (targetEmoter !== zeroAddress) {*/}
-        {/*                  const result = await addEmote({*/}
-        {/*                    args: [collection, tokenId, emote, !isEmoted],*/}
-        {/*                  });*/}
-
-        {/*                  await getEmotableInfos();*/}
-        {/*                } else {*/}
-        {/*                  open();*/}
-        {/*                }*/}
-        {/*              }}*/}
-        {/*            >*/}
-        {/*              {emote} {count}*/}
-        {/*            </Badge>*/}
-        {/*          );*/}
-        {/*        })}*/}
-        {/*      </div>*/}
-        {/*      <div className="absolute bottom-2 right-2">*/}
-        {/*        <Web3Button />*/}
-        {/*      </div>*/}
-        {/*    </PopoverContent>*/}
-        {/*  </Popover>*/}
-        {/*) : null}*/}
-
-        {renderParts && renderParts.length > 0 ? (
-          <MultiLayer2DRenderer
-            resources={renderParts}
-            resizeObserveRef={rendererContainerRef}
-            theme={primaryAsset?.metadata?.theme}
-            fillBgWithImageBlur
-            style={{
-              aspectRatio: '1/1',
-              objectFit: 'contain',
-              width: '100%',
-              height: '100%',
-            }}
-          />
-        ) : null}
+        )}
       </div>
     );
   }

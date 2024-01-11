@@ -1,10 +1,10 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { getChainIdByNetworkName } from '@lightm/nft-renderer/lib/get-chain-id-by-network-name';
-import { assertIsEvmNetwork } from '@lightm/nft-renderer/lib/get-is-evm-network';
 import NFTRenderer from '@lightm/nft-renderer/components/nft-renderer';
 import { Center, Flex } from 'styled-system/jsx';
+import { assertIsEvmNetwork, getChainIdByNetworkName } from '@rmrk-team/rmrk-evm-utils';
+import { Loader } from 'components/common/loader';
 
 export default function TokenDisplay({
   params,
@@ -28,6 +28,7 @@ export default function TokenDisplay({
           tokenId={tokenId}
           advancedMode={advancedMode}
           emoteMode={emoteMode}
+          loader={<Loader />}
         />
       </Flex>
     </Flex>

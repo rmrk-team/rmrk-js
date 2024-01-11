@@ -118,6 +118,7 @@ interface IMultiLayer2DRenderer {
   resizeObserveRef?: React.RefObject<HTMLDivElement>;
   theme?: Record<string | number | symbol, unknown>;
   fillBgWithImageBlur?: boolean;
+  loader?: React.ReactNode;
 }
 
 export const MultiLayer2DRenderer = ({
@@ -128,6 +129,7 @@ export const MultiLayer2DRenderer = ({
   resizeObserveRef,
   theme,
   fillBgWithImageBlur,
+  loader,
 }: IMultiLayer2DRenderer) => {
   const [pixiResourceLoadedCount, setPixiResourceLoadedCount] = useState(0);
   const [isAllResourcesLoaded, setIsAllResourcesLoaded] = useState(false);
@@ -182,7 +184,7 @@ export const MultiLayer2DRenderer = ({
                 height: '100%',
               }}
             >
-              <Loader2 className="animate-spin" />
+              {loader}
             </Skeleton>
           )
         : null}
