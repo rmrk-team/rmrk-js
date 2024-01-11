@@ -1,13 +1,31 @@
-# rmrk-evm-utils
+# @rmrk-team/rmrk-evm-utils
 
-This library was generated with [Nx](https://nx.dev).
+[![npm version](https://img.shields.io/npm/v/@rmrk-team/rmrk-evm-utils.svg?style=flat)](https://www.npmjs.com/package/@rmrk-team/nft-renderer)
 
+Typescript utilities for [RMRK](https://evm.rmrk.app) EVM NFTs.
 
+## Installation
+
+```bash
+
+```
+
+## Usage
+
+```tsx
+
+```
 
 ## Building
 
-Run `nx build rmrk-evm-utils` to build the library.
+```bash
 
+```
 
+## Publishing
 
+```bash
 
+```
+
+## License

@@ -1,17 +1,31 @@
-<p align="center">
-  <a href="https://lightm.xyz" target="_blank" rel="noopener noreferrer">
-    <img width="180" height="180" src="/apps/composable-nft-renderer-app/public/Lightm.png" alt="Lightm Logo" />
-  </a>
-</p>
+# @rmrk-team/nft-renderer
 
-# @lightm-nft/nft-renderer
+[![npm version](https://img.shields.io/npm/v/@rmrk-team/nft-renderer.svg?style=flat)](https://www.npmjs.com/package/@rmrk-team/nft-renderer)
 
-[![npm version](https://img.shields.io/npm/v/@lightm-nft/nft-renderer.svg?style=flat)](https://www.npmjs.com/package/@lightm-nft/nft-renderer)
+React component for rendering multi-layered composable 2d [RMRK](https://evm.rmrk.app) EVM NFTs.
 
-This component is used for rendering multi-layer 2d textures nft.
+## Installation
 
-## Renderer Page
+```bash
 
-We also have a renderer page you could use to render any supported nft on any supported chain.
+```
 
-Check https://nft-renderer.vercel.app to try it.
+## Usage
+
+```tsx
+
+```
+
+## Building
+
+```bash
+
+```
+
+## Publishing
+
+```bash
+
+```
+
+## License

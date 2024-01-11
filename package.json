@@ -1,6 +1,6 @@
 {
-  "name": "lightm-nft-renderer",
-  "version": "0.1.0",
+  "name": "rmrk-js",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "panda:prepare": "panda codegen --cwd=apps/composable-nft-renderer-app",

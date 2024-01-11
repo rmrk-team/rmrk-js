@@ -1,13 +1,31 @@
-# types
+# @rmrk-team/types
 
-This library was generated with [Nx](https://nx.dev).
+[![npm version](https://img.shields.io/npm/v/@rmrk-team/types.svg?style=flat)](https://www.npmjs.com/package/@rmrk-team/nft-renderer)
 
+Common Typescript types for [RMRK](https://evm.rmrk.app) EVM NFTs.
 
+## Installation
+
+```bash
+
+```
+
+## Usage
+
+```tsx
+
+```
 
 ## Building
 
-Run `nx build types` to build the library.
+```bash
 
+```
 
+## Publishing
 
+```bash
 
+```
+
+## License

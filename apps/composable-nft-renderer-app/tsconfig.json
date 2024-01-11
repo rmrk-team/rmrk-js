@@ -27,7 +27,7 @@
       "lib/*": [
         "apps/composable-nft-renderer-app/lib/*"
       ],
-      "@lightm/nft-renderer/*": [
+      "@rmrk-team/nft-renderer/*": [
         "libs/nft-renderer/src/*"
       ],
       "styled-system/*": [

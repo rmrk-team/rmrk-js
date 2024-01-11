@@ -1,8 +1,8 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import NFTRenderer from '@lightm/nft-renderer/components/nft-renderer';
-import { Center, Flex } from 'styled-system/jsx';
+import { NFTRenderer } from '@rmrk-team/nft-renderer/components/nft-renderer';
+import { Flex } from 'styled-system/jsx';
 import { assertIsEvmNetwork, getChainIdByNetworkName } from '@rmrk-team/rmrk-evm-utils';
 import { Loader } from 'components/common/loader';
 

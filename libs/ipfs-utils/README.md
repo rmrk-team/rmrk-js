@@ -1,13 +1,31 @@
-# ipfs-utils
+# @rmrk-team/ipfs-utils
 
-This library was generated with [Nx](https://nx.dev).
+[![npm version](https://img.shields.io/npm/v/@rmrk-team/rmrk-hooks.svg?style=flat)](https://www.npmjs.com/package/@rmrk-team/ipfs-utils)
 
+Utilities for working with NFT metadata and media stored on ipfs.
 
+## Installation
+
+```bash
+
+```
+
+## Usage
+
+```tsx
+
+```
 
 ## Building
 
-Run `nx build ipfs-utils` to build the library.
+```bash
 
+```
 
+## Publishing
 
+```bash
 
+```
+
+## License

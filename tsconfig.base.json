@@ -17,10 +17,10 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@lightm-nft/nft-renderer": [
+      "@rmrk-team/nft-renderer": [
         "nft-renderer/src/index.ts"
       ],
-      "@lightm-nft/nft-renderer/server": [
+      "@rmrk-team/nft-renderer/server": [
         "nft-renderer/src/server.ts"
       ],
       "@rmrk-team/ipfs-utils": [

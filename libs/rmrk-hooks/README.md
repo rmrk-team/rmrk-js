@@ -1,7 +1,31 @@
-# rmrk-hooks
+# @rmrk-team/rmrk-hooks
 
-This library was generated with [Nx](https://nx.dev).
+[![npm version](https://img.shields.io/npm/v/@rmrk-team/rmrk-hooks.svg?style=flat)](https://www.npmjs.com/package/@rmrk-team/nft-renderer)
 
-## Running unit tests
+React hooks for working with [RMRK](https://evm.rmrk.app) EVM NFTs.
 
-Run `nx test rmrk-hooks` to execute the unit tests via [Vitest](https://vitest.dev/).
+## Installation
+
+```bash
+
+```
+
+## Usage
+
+```tsx
+
+```
+
+## Building
+
+```bash
+
+```
+
+## Publishing
+
+```bash
+
+```
+
+## License
