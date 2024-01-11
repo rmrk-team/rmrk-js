@@ -1,8 +1,8 @@
-import { Metadata } from '../types/metadata';
 import { isBase64Metadata } from './is-base-64-metadata';
 import { getBase64Value } from './get-base-64-value';
 import { fetchIpfsNftData } from './fetch-ipfs-nft-data';
 import { IPFS_PROVIDERS, sanitizeIpfsUrl } from './ipfs';
+import { Metadata } from '@rmrk-team/types';
 
 export const fetchIpfsMetadata = async (
   metadataUri?: string | null,

@@ -27,6 +27,8 @@ yarn-error.log*
 
 # local env files
 .env*.local
+/libs/*/.env
+/apps/*/.env
 
 # vercel
 .vercel
@@ -42,3 +44,4 @@ apps/composable-nft-renderer-app/next-env.d.ts
 apps/composable-nft-renderer-app/styled-system
 
 .nx/cache
+dist

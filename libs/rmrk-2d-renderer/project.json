@@ -12,29 +12,12 @@
       ]
     },
     "build": {
-      "executor": "@nx/rollup:rollup",
+      "executor": "@nx/vite:build",
       "outputs": [
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/libs/rmrk-2d-renderer",
-        "tsConfig": "libs/rmrk-2d-renderer/tsconfig.lib.json",
-        "project": "libs/rmrk-2d-renderer/package.json",
-        "entryFile": "libs/rmrk-2d-renderer/src/index.ts",
-        "external": [
-          "react",
-          "react-dom",
-          "react/jsx-runtime"
-        ],
-        "rollupConfig": "@nx/react/plugins/bundle-rollup",
-        "compiler": "babel",
-        "assets": [
-          {
-            "glob": "libs/rmrk-2d-renderer/README.md",
-            "input": ".",
-            "output": "."
-          }
-        ]
+        "outputPath": "dist/libs/rmrk-2d-renderer"
       }
     },
     "test": {

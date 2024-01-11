@@ -4,19 +4,17 @@ import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
 import { Address, isAddress, zeroAddress } from 'viem';
 import { useAccount, useContractRead, useContractWrite, usePublicClient } from 'wagmi';
-import { RMRKEquipRenderUtils } from '../abi/RMRKEquipRenderUtils';
-import { EVM_RMRK_CONTRACTS } from '../lib/rmrk-contract-addresses';
-import { mapChainIdToNetwork } from '../lib';
-import { Metadata } from '../types/metadata';
 // import { sanitizeIpfsUrl } from '../lib/ipfs';
 import { Providers } from './providers';
-import { useGetAssetData } from '../lib/hooks/use-get-asset-data';
-import { useGetComposedState } from '../lib/hooks/use-get-composed-state';
 import { RenderPart } from '../types/types';
-import { RMRKEquippableImpl } from '../abi/RMRKEquippableImpl';
-import { useGetInterfaceSupport } from '../lib/hooks/use-get-interface-support';
-import { useFetchIpfsMetadata } from '../lib/hooks/use-fetch-ipfs-metadata';
 import { MultiLayer2DRenderer } from '@rmrk-team/rmrk-2d-renderer';
+import { mapChainIdToNetwork, RMRKEquippableImpl } from '@rmrk-team/rmrk-evm-utils';
+import {
+  useFetchIpfsMetadata,
+  useGetAssetData,
+  useGetComposedState,
+  useGetInterfaceSupport,
+} from '@rmrk-team/rmrk-hooks';
 
 // const styles = css({
 //   backgroundColor: 'gainsboro',
@@ -397,6 +395,7 @@ export function NFTRenderer({
             resources={renderParts}
             resizeObserveRef={rendererContainerRef}
             theme={primaryAsset?.metadata?.theme}
+            fillBgWithImageBlur
             style={{
               aspectRatio: '1/1',
               objectFit: 'contain',

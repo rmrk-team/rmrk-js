@@ -1,5 +1,5 @@
 import { IPFS_PROVIDERS, IpfsProviders, sanitizeIpfsUrl } from './ipfs';
-import { Metadata } from '../types/metadata';
+import { Metadata } from '@rmrk-team/types';
 
 export const fetchIpfsNftData = async (
   metadataUri?: string | null,

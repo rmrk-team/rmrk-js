@@ -1,10 +1,10 @@
-import React, { CSSProperties, useEffect } from 'react';
+import React, { CSSProperties, useEffect, useMemo } from 'react';
 import { Container, Sprite, Stage, useApp } from '@pixi/react';
 import { useCallback, useState } from 'react';
 import useImage from 'use-image';
 // import { Skeleton } from './ui/skeleton';
 import { Loader2 } from 'lucide-react';
-import { Resource, Texture } from 'pixi.js';
+import { Application, ICanvas, Resource, Texture } from 'pixi.js';
 import { INHERIT_RENDER_CONTEXT } from './consts';
 import { Skeleton } from '../ui/skeleton';
 import { sanitizeIpfsUrl } from '@rmrk-team/ipfs-utils';
@@ -54,7 +54,7 @@ const useGetResourceDimensions = () => {
   return { isLoading, actualW, actualH, onResourceLoad };
 };
 
-const useGetCanvasSizeResizedToParent = (ref?: React.RefObject<HTMLDivElement>) => {
+const useGetCanvasStateDimensions = (ref?: React.RefObject<HTMLDivElement>) => {
   const { width, height, isLoading: isLoadingParentDimensions } = useObserveElementDimensions(ref);
   const {
     onResourceLoad,
@@ -65,9 +65,43 @@ const useGetCanvasSizeResizedToParent = (ref?: React.RefObject<HTMLDivElement>) 
 
   const isLoading = isLoadingParentDimensions || isLoadingResourceDimensions;
 
-  const aspectRatio = actualW / actualH;
+  const aspectRatio = actualW && actualH ? actualW / actualH : 1;
 
   return { isLoading, height, width: width * aspectRatio, onResourceLoad };
+};
+
+//FIXME: This is sometimes extracted before all sprites are rendered, so not all resources are fully loaded inside of canvas, and we end up with incomplete image
+const useBackdropImage = (
+  enabled = true,
+  allRenderableResources: IResource[],
+  pixiApp?: Application<ICanvas>,
+) => {
+  const [bgImage, setBgImage] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    setBgImage(undefined);
+  }, [JSON.stringify(allRenderableResources)]);
+
+  // Get image from canvas to apply as a backdrop background
+  const extractImage = useCallback(
+    async (pixiApp: Application<ICanvas>) => {
+      const blob = await pixiApp.renderer.extract.image(pixiApp.stage);
+      setBgImage(blob.src);
+    },
+    [setBgImage],
+  );
+
+  // Get image from canvas to apply as a backdrop background
+  useEffect(() => {
+    if (!bgImage && pixiApp && enabled) {
+      // Wait for the canvas to be rendered
+      setTimeout(() => {
+        extractImage(pixiApp);
+      }, 600);
+    }
+  }, [!!pixiApp, enabled, bgImage, extractImage, pixiApp]);
+
+  return bgImage;
 };
 
 export interface IResource {
@@ -82,7 +116,8 @@ interface IMultiLayer2DRenderer {
   className?: string;
   style?: CSSProperties;
   resizeObserveRef?: React.RefObject<HTMLDivElement>;
-  theme?: Record<any, any>;
+  theme?: Record<string | number | symbol, unknown>;
+  fillBgWithImageBlur?: boolean;
 }
 
 export const MultiLayer2DRenderer = ({
@@ -92,89 +127,162 @@ export const MultiLayer2DRenderer = ({
   style,
   resizeObserveRef,
   theme,
+  fillBgWithImageBlur,
 }: IMultiLayer2DRenderer) => {
-  const { onResourceLoad, isLoading, width, height } =
-    useGetCanvasSizeResizedToParent(resizeObserveRef);
+  const [pixiResourceLoadedCount, setPixiResourceLoadedCount] = useState(0);
+  const [isAllResourcesLoaded, setIsAllResourcesLoaded] = useState(false);
+  const [pixiApp, setPixiApp] = useState<Application<ICanvas>>();
 
-  console.log('isLoading', {
-    isLoading,
-    width,
-    height,
-    resizeObserveRef,
-  });
+  const allRenderableResources = useMemo(
+    () => resources.filter((r) => !!r.src),
+    [JSON.stringify(resources)],
+  );
+
+  const bgImage = useBackdropImage(
+    fillBgWithImageBlur && isAllResourcesLoaded,
+    allRenderableResources,
+    pixiApp,
+  );
+
+  useEffect(() => {
+    if (pixiResourceLoadedCount >= allRenderableResources.length) {
+      console.log('All resources loaded', {
+        pixiResourceLoadedCount,
+        allRenderableResourceCount: allRenderableResources.length,
+      });
+      setIsAllResourcesLoaded(true);
+    }
+  }, [allRenderableResources.length, pixiResourceLoadedCount]);
+
+  const { onResourceLoad, isLoading, width, height } =
+    useGetCanvasStateDimensions(resizeObserveRef);
+
+  // const isLoading = true;
+
+  const onImageLoaded = useCallback(
+    (w: number, h: number) => {
+      onResourceLoad(w, h);
+      setPixiResourceLoadedCount((prev) => prev + 1);
+    },
+    [onResourceLoad, setPixiResourceLoadedCount],
+  );
 
   return (
     <>
-      {isLoading
+      {!isAllResourcesLoaded
         ? customLoadingComponent ?? (
-            <Skeleton className="w-96 h-96 bg-gray-300 flex justify-center items-center">
+            <Skeleton
+              className="w-96 h-96 bg-gray-300 flex justify-center items-center"
+              style={{
+                position: 'absolute',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                height: '100%',
+              }}
+            >
               <Loader2 className="animate-spin" />
             </Skeleton>
           )
         : null}
 
-      <Stage
-        width={width}
-        height={height}
-        options={{ backgroundColor: 0xffffff }}
-        className={`object-contain ${isLoading ? 'hidden ' : ''}${className}`}
-        style={style}
+      <div
+        style={{
+          height: '100%',
+          width: '100%',
+          position: 'relative',
+          display: 'flex',
+          justifyContent: 'center',
+          overflow: 'hidden',
+        }}
       >
-        <Container sortableChildren>
-          {resources.map((resource, i) => (
-            <Layer
-              key={`${resource.src}-${i}`}
-              {...resource}
-              containerPosition={[width / 2, height / 2]}
-              onLoad={onResourceLoad}
-              stageWidth={width}
-              stageHeight={height}
-              theme={theme}
-            />
-          ))}
-        </Container>
-        <DevExtensionConfig />
-      </Stage>
+        {bgImage && (
+          <div
+            style={{
+              position: 'absolute',
+              filter: 'blur(1.5rem)',
+              transform: 'scale(1.1)',
+              width: '100%',
+              height: '100%',
+              left: 0,
+              top: 0,
+            }}
+          >
+            <div
+              style={{
+                height: '100%',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <img
+                src={bgImage}
+                alt="background"
+                style={{
+                  height: '100%',
+                  width: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+            </div>
+          </div>
+        )}
+        <Stage
+          onMount={setPixiApp}
+          width={width}
+          height={height}
+          options={{ backgroundAlpha: 0 }}
+          className={`${className}`}
+          style={{
+            ...style,
+            position: 'relative',
+            zIndex: 1,
+            visibility: isAllResourcesLoaded ? 'visible' : 'hidden',
+          }}
+        >
+          <Container sortableChildren>
+            {resources.map((resource, i) => (
+              <Layer
+                key={`${resource.src}-${i}`}
+                {...resource}
+                containerPosition={[width / 2, height / 2]}
+                onLoad={onImageLoaded}
+                stageWidth={width}
+                stageHeight={height}
+                theme={theme}
+              />
+            ))}
+          </Container>
+          <DevExtensionConfig />
+        </Stage>
+      </div>
     </>
   );
 };
 
-interface ILayer extends IResource {
-  containerPosition?: [number, number];
-  onLoad: (w: number, h: number) => void;
-  stageWidth: number;
-  stageHeight: number;
-  theme?: Record<any, any>;
-}
-
-function Layer({
-  src,
-  z,
-  resources,
-  containerPosition,
-  onLoad,
-  stageWidth,
-  stageHeight,
-  theme,
-}: ILayer) {
+const useCreateResourceTexture = (
+  src: string,
+  onLoad: (w: number, h: number) => void,
+  theme?: Record<string | number | symbol, unknown>,
+) => {
   const url = sanitizeIpfsUrl(src);
   const [image] = useImage(url, 'anonymous');
-
-  const [resource, setResource] = useState<Texture<Resource> | undefined>();
 
   useEffect(() => {
     if (image) {
       onLoad(image.width, image.height);
     }
   }, [image, onLoad]);
+  const [resourceTexture, setResourceTexture] = useState<Texture<Resource> | undefined>();
 
   useEffect(() => {
     const downloadImage = async () => {
       const response = await fetch(url);
       const contentType = response.headers.get('content-type');
-      // const blob = await response.blob();
       const code = await response.text();
-      // const objectURL = URL.createObjectURL(blob);
 
       let svgContent;
 
@@ -201,18 +309,43 @@ function Layer({
           new Blob([svgContent], { type: 'image/svg+xml;charset=utf-8' }),
         );
 
-        setResource(Texture.from(svgUrl));
+        setResourceTexture(Texture.from(svgUrl));
       } else if (image) {
-        setResource(Texture.from(image));
+        setResourceTexture(Texture.from(image));
       }
     };
 
-    if (url) {
+    if (url && theme) {
       downloadImage();
     }
-  }, [url, image, stageWidth, stageHeight]);
 
-  console.log('image', image);
+    if (image && !theme) {
+      setResourceTexture(Texture.from(image));
+    }
+  }, [url, image, theme]);
+
+  return resourceTexture;
+};
+
+interface ILayer extends IResource {
+  containerPosition?: [number, number];
+  onLoad: (w: number, h: number) => void;
+  stageWidth: number;
+  stageHeight: number;
+  theme?: Record<string | number | symbol, unknown>;
+}
+
+function Layer({
+  src,
+  z,
+  resources,
+  containerPosition,
+  onLoad,
+  stageWidth,
+  stageHeight,
+  theme,
+}: ILayer) {
+  const resourceTexture = useCreateResourceTexture(src, onLoad, theme);
 
   const zIndex = typeof z === 'number' ? z : z[0];
   const childrenZIndex = Array.isArray(z) ? z[1] : null;
@@ -237,20 +370,18 @@ function Layer({
     : null;
 
   const dependentRenderContext = (
-    <>
-      <Container sortableChildren position={containerPosition} zIndex={zIndex}>
-        {resource && (
-          <Sprite
-            anchor={1 / 2}
-            texture={resource}
-            zIndex={1}
-            width={stageWidth}
-            height={stageHeight}
-          />
-        )}
-        {childrenZIndex === null && children}
-      </Container>
-    </>
+    <Container sortableChildren position={containerPosition} zIndex={zIndex}>
+      {resourceTexture && (
+        <Sprite
+          anchor={1 / 2}
+          texture={resourceTexture}
+          zIndex={1}
+          width={stageWidth}
+          height={stageHeight}
+        />
+      )}
+      {childrenZIndex === null && children}
+    </Container>
   );
 
   // The premise here is `childrenZIndex` is exist.
@@ -266,8 +397,6 @@ function Layer({
         children
       )
     ) : null;
-
-  console.log('resource', resource);
 
   return (
     <>
@@ -286,5 +415,5 @@ function DevExtensionConfig() {
     }
   }, [app]);
 
-  return <></>;
+  return null;
 }

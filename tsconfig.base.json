@@ -29,11 +29,14 @@
       "@rmrk-team/rmrk-2d-renderer": [
         "libs/rmrk-2d-renderer/src/index.ts"
       ],
-      "@rmrk-team/rmrk-nft-renderer": [
-        "libs/rmrk-nft-renderer/src/index.ts"
+      "@rmrk-team/rmrk-evm-utils": [
+        "libs/rmrk-evm-utils/src/index.ts"
       ],
-      "rmrk-hooks": [
+      "@rmrk-team/rmrk-hooks": [
         "libs/rmrk-hooks/src/index.ts"
+      ],
+      "@rmrk-team/types": [
+        "libs/types/src/index.ts"
       ]
     }
   },

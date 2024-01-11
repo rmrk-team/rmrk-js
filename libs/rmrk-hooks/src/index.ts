@@ -1,2 +1,1 @@
-
-export * from './lib/rmrk-hooks';
+export * from './lib/hooks';

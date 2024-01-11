@@ -6,14 +6,27 @@
   "tags": [],
   "targets": {
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": [
         "{options.outputFile}"
+      ]
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": [
+        "{options.outputPath}"
       ],
+      "defaultConfiguration": "production",
       "options": {
-        "lintFilePatterns": [
-          "libs/rmrk-hooks/**/*.{ts,tsx,js,jsx}"
-        ]
+        "outputPath": "dist/libs/rmrk-hooks"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
       }
     },
     "test": {

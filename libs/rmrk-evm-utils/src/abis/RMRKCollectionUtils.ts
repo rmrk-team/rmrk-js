@@ -1,0 +1,136 @@
+export const RMRKCollectionUtils = [
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "collection",
+        "type": "address"
+      }
+    ],
+    "name": "getCollectionData",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "totalSupply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxSupply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "royaltyPercentage",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "royaltyRecipient",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "collectionMetadata",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct RMRKCollectionUtils.CollectionData",
+        "name": "data",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "collection",
+        "type": "address"
+      }
+    ],
+    "name": "getInterfaceSupport",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "supports721",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "supportsMultiAsset",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "supportsNesting",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "supportsEquippable",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "supportsSoulbound",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "supportsRoyalties",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "targetEquippable",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pageStart",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pageSize",
+        "type": "uint256"
+      }
+    ],
+    "name": "getPaginatedMintedIds",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "page",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+] as const;
