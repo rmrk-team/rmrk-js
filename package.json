@@ -23,6 +23,7 @@
     "typecheck": "pnpm run --r --parallel typecheck && tsc --noEmit"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.5.1",
     "@changesets/cli": "^2.27.1",
     "@preconstruct/cli": "^2.8.2",
     "@tanstack/query-core": "^5.17.9",
