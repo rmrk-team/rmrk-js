@@ -1,5 +1,16 @@
 # @rmrk-team/rmrk-hooks
 
+## 0.0.4
+
+### Patch Changes
+
+- Code cleanup. Preparing for usable first release
+- Updated dependencies
+  - @rmrk-team/ipfs-utils@0.0.3
+  - @rmrk-team/rmrk-2d-renderer@0.0.3
+  - @rmrk-team/rmrk-evm-utils@0.0.3
+  - @rmrk-team/types@0.0.3
+
 ## 0.0.3
 
 ### Patch Changes

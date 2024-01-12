@@ -1,5 +1,11 @@
 # @rmrk-team/rmrk-evm-utils
 
+## 0.0.3
+
+### Patch Changes
+
+- Code cleanup. Preparing for usable first release
+
 ## 0.0.2
 
 ### Patch Changes
