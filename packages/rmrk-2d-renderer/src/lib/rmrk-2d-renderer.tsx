@@ -1,16 +1,16 @@
-import type { CSSProperties } from 'react';
-import React, { useEffect, useMemo } from 'react';
 import { Container, Sprite, Stage, useApp } from '@pixi/react';
-import { useCallback, useState } from 'react';
-import useImage from 'use-image';
+import { sanitizeIpfsUrl } from '@rmrk-team/ipfs-utils';
+import DOMPurify from 'isomorphic-dompurify';
 // import { Skeleton } from './ui/skeleton';
 import { Loader2 } from 'lucide-react';
 import { Application, Resource, Texture } from 'pixi.js';
 import type { ICanvas } from 'pixi.js';
-import { INHERIT_RENDER_CONTEXT } from './consts.js';
+import type { CSSProperties } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { useCallback, useState } from 'react';
+import useImage from 'use-image';
 import { Skeleton } from '../ui/skeleton.js';
-import { sanitizeIpfsUrl } from '@rmrk-team/ipfs-utils';
-import DOMPurify from 'isomorphic-dompurify';
+import { INHERIT_RENDER_CONTEXT } from './consts.js';
 
 const useObserveElementDimensions = (ref?: React.RefObject<HTMLDivElement>) => {
   const [width, setWidth] = useState(0);
@@ -57,7 +57,11 @@ const useGetResourceDimensions = () => {
 };
 
 const useGetCanvasStateDimensions = (ref?: React.RefObject<HTMLDivElement>) => {
-  const { width, height, isLoading: isLoadingParentDimensions } = useObserveElementDimensions(ref);
+  const {
+    width,
+    height,
+    isLoading: isLoadingParentDimensions,
+  } = useObserveElementDimensions(ref);
   const {
     onResourceLoad,
     isLoading: isLoadingResourceDimensions,
@@ -294,7 +298,9 @@ const useCreateResourceTexture = (
       onLoad(image.width, image.height);
     }
   }, [image, onLoad]);
-  const [resourceTexture, setResourceTexture] = useState<Texture<Resource> | undefined>();
+  const [resourceTexture, setResourceTexture] = useState<
+    Texture<Resource> | undefined
+  >();
 
   useEffect(() => {
     const downloadImage = async () => {
@@ -312,16 +318,32 @@ const useCreateResourceTexture = (
           ADD_URI_SAFE_ATTR: ['xlink:href'],
         });
 
-        const color_1 = (/data-theme_color_1="([^"]+)"/.exec(svgContent) || '')[1];
-        const color_2 = (/data-theme_color_2="([^"]+)"/.exec(svgContent) || '')[1];
-        const color_3 = (/data-theme_color_3="([^"]+)"/.exec(svgContent) || '')[1];
-        const color_4 = (/data-theme_color_4="([^"]+)"/.exec(svgContent) || '')[1];
+        const color_1 = (/data-theme_color_1="([^"]+)"/.exec(svgContent) ||
+          '')[1];
+        const color_2 = (/data-theme_color_2="([^"]+)"/.exec(svgContent) ||
+          '')[1];
+        const color_3 = (/data-theme_color_3="([^"]+)"/.exec(svgContent) ||
+          '')[1];
+        const color_4 = (/data-theme_color_4="([^"]+)"/.exec(svgContent) ||
+          '')[1];
 
         svgContent = svgContent
-          .replace(new RegExp(`fill="${color_1}"`, 'g'), `fill="${theme.theme_color_1}"`)
-          .replace(new RegExp(`fill="${color_2}"`, 'g'), `fill="${theme.theme_color_2}"`)
-          .replace(new RegExp(`fill="${color_3}"`, 'g'), `fill="${theme.theme_color_3}"`)
-          .replace(new RegExp(`fill="${color_4}"`, 'g'), `fill="${theme.theme_color_4}"`);
+          .replace(
+            new RegExp(`fill="${color_1}"`, 'g'),
+            `fill="${theme.theme_color_1}"`,
+          )
+          .replace(
+            new RegExp(`fill="${color_2}"`, 'g'),
+            `fill="${theme.theme_color_2}"`,
+          )
+          .replace(
+            new RegExp(`fill="${color_3}"`, 'g'),
+            `fill="${theme.theme_color_3}"`,
+          )
+          .replace(
+            new RegExp(`fill="${color_4}"`, 'g'),
+            `fill="${theme.theme_color_4}"`,
+          );
 
         const svgUrl = URL.createObjectURL(
           new Blob([svgContent], { type: 'image/svg+xml;charset=utf-8' }),
@@ -408,7 +430,11 @@ function Layer({
   const specialRenderContext =
     childrenZIndex !== null ? (
       childrenZIndex !== INHERIT_RENDER_CONTEXT ? (
-        <Container sortableChildren position={containerPosition} zIndex={childrenZIndex}>
+        <Container
+          sortableChildren
+          position={containerPosition}
+          zIndex={childrenZIndex}
+        >
           {children}
         </Container>
       ) : (

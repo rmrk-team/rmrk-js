@@ -1,12 +1,12 @@
-import type { Address, Chain } from 'viem';
-import { useContractRead, useReadContract } from 'wagmi';
-import { useGetTokenPrimaryAsset } from './use-get-token-primary-asset.js';
-import { useFetchMetadataAndAddToEntities } from './use-fetch-metadata-and-add-to-entities.js';
 import {
   EVM_RMRK_CONTRACTS,
-  mapChainIdToNetwork,
   RMRKEquipRenderUtils,
+  mapChainIdToNetwork,
 } from '@rmrk-team/rmrk-evm-utils';
+import type { Address, Chain } from 'viem';
+import { useContractRead, useReadContract } from 'wagmi';
+import { useFetchMetadataAndAddToEntities } from './use-fetch-metadata-and-add-to-entities.js';
+import { useGetTokenPrimaryAsset } from './use-get-token-primary-asset.js';
 
 type Arguments = {
   assetId?: bigint;
@@ -70,8 +70,13 @@ export const useGetComposedState = (
     query: { enabled: enabled && !!assetIdToUse },
   });
 
-  const [assetMetadataUri, equippableGroupId, catalogAddress, fixedParts, slotParts] =
-    equippableDataResponse || [];
+  const [
+    assetMetadataUri,
+    equippableGroupId,
+    catalogAddress,
+    fixedParts,
+    slotParts,
+  ] = equippableDataResponse || [];
 
   const {
     isLoading: isLoadingFixedPartsMetadatas,
@@ -91,7 +96,9 @@ export const useGetComposedState = (
     data: slotPartsWithMetadatas,
   } = useFetchMetadataAndAddToEntities(
     {
-      metadataUris: slotParts?.map((p) => p.childAssetMetadata || p.partMetadata),
+      metadataUris: slotParts?.map(
+        (p) => p.childAssetMetadata || p.partMetadata,
+      ),
     },
     { enabled: enabled && enabledMetadataFetch },
     slotParts?.map((p) => ({ z: p.z })),

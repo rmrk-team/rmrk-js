@@ -1,9 +1,9 @@
-import React from 'react';
-import Image from 'next/image';
-import { lightmLink } from '../../lib/links';
-import { Center, Flex, HStack } from 'styled-system/jsx';
 import { Link } from 'components/park-ui/link';
 import { Text } from 'components/park-ui/text';
+import Image from 'next/image';
+import React from 'react';
+import { Center, Flex, HStack } from 'styled-system/jsx';
+import { lightmLink } from '../../lib/links';
 
 export const Footer = () => {
   return (

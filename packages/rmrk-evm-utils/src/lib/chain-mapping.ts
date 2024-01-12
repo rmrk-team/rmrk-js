@@ -1,5 +1,8 @@
+import type { Chain } from 'wagmi';
 import {
+  astar,
   base,
+  baseSepolia,
   hardhat,
   mainnet,
   moonbaseAlpha,
@@ -7,10 +10,7 @@ import {
   polygon,
   polygonMumbai,
   sepolia,
-  astar,
-  baseSepolia,
 } from 'wagmi/chains';
-import type { Chain } from 'wagmi';
 
 export const EVM_NETWORKS = {
   moonbeam: 'moonbeam',

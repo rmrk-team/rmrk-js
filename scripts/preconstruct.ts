@@ -1,8 +1,8 @@
 // Symlinks package sources to dist for local development
 
-import { glob } from 'glob';
 import * as fs from 'fs';
 import * as path from 'path';
+import { glob } from 'glob';
 
 const runScript = async () => {
   console.log('Setting up packages for development.');
@@ -18,7 +18,9 @@ const runScript = async () => {
   for (const packagePath of packagePaths) {
     type Package = {
       bin?: Record<string, string> | undefined;
-      exports?: Record<string, { types: string; default: string } | string> | undefined;
+      exports?:
+        | Record<string, { types: string; default: string } | string>
+        | undefined;
       name?: string | undefined;
       private?: boolean | undefined;
     };
@@ -46,7 +48,9 @@ const runScript = async () => {
 
     const promises = [];
     for (const file of files) {
-      promises.push(fs.promises.rm(path.join(dist, file), { recursive: true, force: true }));
+      promises.push(
+        fs.promises.rm(path.join(dist, file), { recursive: true, force: true }),
+      );
     }
     await Promise.all(promises);
 
@@ -63,7 +67,9 @@ const runScript = async () => {
       ][]) {
         const srcDir = path.resolve(
           dir,
-          path.dirname(value).replace(`dist/${type === 'default' ? 'esm' : type}`, 'src'),
+          path
+            .dirname(value)
+            .replace(`dist/${type === 'default' ? 'esm' : type}`, 'src'),
         );
         let srcFileName: string;
         if (key === '.') srcFileName = 'index.ts';

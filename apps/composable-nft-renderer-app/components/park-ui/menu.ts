@@ -1,9 +1,9 @@
 'use client';
 
 import { Menu as ArkMenu } from '@ark-ui/react/menu';
-import { styled, type HTMLStyledProps } from 'styled-system/jsx';
-import { menu } from 'styled-system/recipes';
 import { createStyleContext } from 'lib/panda/create-style-context';
+import { type HTMLStyledProps, styled } from 'styled-system/jsx';
+import { menu } from 'styled-system/recipes';
 
 const { withProvider, withContext } = createStyleContext(menu);
 
@@ -11,10 +11,16 @@ const Menu = withProvider(ArkMenu.Root);
 const MenuArrow = withContext(styled(ArkMenu.Arrow), 'arrow');
 const MenuArrowTip = withContext(styled(ArkMenu.ArrowTip), 'arrowTip');
 const MenuContent = withContext(styled(ArkMenu.Content), 'content');
-const MenuContextTrigger = withContext(styled(ArkMenu.ContextTrigger), 'contextTrigger');
+const MenuContextTrigger = withContext(
+  styled(ArkMenu.ContextTrigger),
+  'contextTrigger',
+);
 const MenuItem = withContext(styled(ArkMenu.Item), 'item');
 const MenuItemGroup = withContext(styled(ArkMenu.ItemGroup), 'itemGroup');
-const MenuItemGroupLabel = withContext(styled(ArkMenu.ItemGroupLabel), 'itemGroupLabel');
+const MenuItemGroupLabel = withContext(
+  styled(ArkMenu.ItemGroupLabel),
+  'itemGroupLabel',
+);
 const MenuOptionItem = withContext(styled(ArkMenu.OptionItem), 'optionItem');
 const MenuPositioner = withContext(styled(ArkMenu.Positioner), 'positioner');
 const MenuSeparator = withContext(styled(ArkMenu.Separator), 'separator');
@@ -66,14 +72,22 @@ export {
 
 export interface MenuProps extends HTMLStyledProps<typeof Menu> {}
 export interface MenuArrowProps extends HTMLStyledProps<typeof MenuArrow> {}
-export interface MenuArrowTipProps extends HTMLStyledProps<typeof MenuArrowTip> {}
+export interface MenuArrowTipProps
+  extends HTMLStyledProps<typeof MenuArrowTip> {}
 export interface MenuContentProps extends HTMLStyledProps<typeof MenuContent> {}
-export interface MenuContextTriggerProps extends HTMLStyledProps<typeof MenuContextTrigger> {}
+export interface MenuContextTriggerProps
+  extends HTMLStyledProps<typeof MenuContextTrigger> {}
 export interface MenuItemProps extends HTMLStyledProps<typeof MenuItem> {}
-export interface MenuItemGroupProps extends HTMLStyledProps<typeof MenuItemGroup> {}
-export interface MenuItemGroupLabelProps extends HTMLStyledProps<typeof MenuItemGroupLabel> {}
-export interface MenuOptionItemProps extends HTMLStyledProps<typeof MenuOptionItem> {}
-export interface MenuPositionerProps extends HTMLStyledProps<typeof MenuPositioner> {}
-export interface MenuSeparatorProps extends HTMLStyledProps<typeof MenuSeparator> {}
+export interface MenuItemGroupProps
+  extends HTMLStyledProps<typeof MenuItemGroup> {}
+export interface MenuItemGroupLabelProps
+  extends HTMLStyledProps<typeof MenuItemGroupLabel> {}
+export interface MenuOptionItemProps
+  extends HTMLStyledProps<typeof MenuOptionItem> {}
+export interface MenuPositionerProps
+  extends HTMLStyledProps<typeof MenuPositioner> {}
+export interface MenuSeparatorProps
+  extends HTMLStyledProps<typeof MenuSeparator> {}
 export interface MenuTriggerProps extends HTMLStyledProps<typeof MenuTrigger> {}
-export interface MenuTriggerItemProps extends HTMLStyledProps<typeof MenuTriggerItem> {}
+export interface MenuTriggerItemProps
+  extends HTMLStyledProps<typeof MenuTriggerItem> {}

@@ -1,20 +1,20 @@
-import { createConfig, http } from 'wagmi';
-import type { Chain } from 'wagmi/chains';
-import {
-  mainnet,
-  moonbaseAlpha,
-  moonbeam,
-  sepolia,
-  polygonMumbai,
-  polygon,
-  baseSepolia,
-  astar,
-  base,
-  hardhat,
-} from 'wagmi/chains';
 // import { WALLET_CONNECT_PROJECT_ID } from './consts.js';
 // import { getDefaultWallets } from '@rainbow-me/rainbowkit';
 import type { Transport } from 'viem';
+import { http, createConfig } from 'wagmi';
+import type { Chain } from 'wagmi/chains';
+import {
+  astar,
+  base,
+  baseSepolia,
+  hardhat,
+  mainnet,
+  moonbaseAlpha,
+  moonbeam,
+  polygon,
+  polygonMumbai,
+  sepolia,
+} from 'wagmi/chains';
 
 const productionChains = [moonbeam, mainnet, polygon, base, astar] as const;
 const testnetChains = [

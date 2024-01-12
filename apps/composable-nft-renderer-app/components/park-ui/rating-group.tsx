@@ -1,45 +1,65 @@
 import {
   RatingGroup as ArkRatingGroup,
   type RatingGroupProps as ArkRatingGroupProps,
-} from '@ark-ui/react/rating-group'
-import { forwardRef, type ReactNode } from 'react'
-import { css, cx } from 'styled-system/css'
-import { ratingGroup, type RatingGroupVariantProps } from 'styled-system/recipes'
-import type { HTMLStyledProps } from 'styled-system/types'
+} from '@ark-ui/react/rating-group';
+import { type ReactNode, forwardRef } from 'react';
+import { css, cx } from 'styled-system/css';
+import {
+  type RatingGroupVariantProps,
+  ratingGroup,
+} from 'styled-system/recipes';
+import type { HTMLStyledProps } from 'styled-system/types';
 
 export interface RatingGroupProps
   extends ArkRatingGroupProps,
     RatingGroupVariantProps,
-    Omit<HTMLStyledProps<'div'>, 'defaultValue' | 'content' | 'color' | 'dir' | 'translate'> {
-  children?: ReactNode
+    Omit<
+      HTMLStyledProps<'div'>,
+      'defaultValue' | 'content' | 'color' | 'dir' | 'translate'
+    > {
+  children?: ReactNode;
 }
 
-export const RatingGroup = forwardRef<HTMLDivElement, RatingGroupProps>((props, ref) => {
-  const [variantProps, localProps] = ratingGroup.splitVariantProps(props)
-  const { children, ...rootProps } = localProps
-  const styles = ratingGroup(variantProps)
+export const RatingGroup = forwardRef<HTMLDivElement, RatingGroupProps>(
+  (props, ref) => {
+    const [variantProps, localProps] = ratingGroup.splitVariantProps(props);
+    const { children, ...rootProps } = localProps;
+    const styles = ratingGroup(variantProps);
 
-  return (
-    <ArkRatingGroup.Root ref={ref} className={cx(styles.root, css(rootProps))} {...rootProps}>
-      {children && <ArkRatingGroup.Label className={styles.label}>{children}</ArkRatingGroup.Label>}
-      <ArkRatingGroup.Control className={styles.control}>
-        {({ items }) =>
-          items.map((index) => (
-            <ArkRatingGroup.Item className={styles.item} key={index} index={index}>
-              {({ isHalf }) => <Icon isHalf={isHalf} />}
-            </ArkRatingGroup.Item>
-          ))
-        }
-      </ArkRatingGroup.Control>
-    </ArkRatingGroup.Root>
-  )
-})
+    return (
+      <ArkRatingGroup.Root
+        ref={ref}
+        className={cx(styles.root, css(rootProps))}
+        {...rootProps}
+      >
+        {children && (
+          <ArkRatingGroup.Label className={styles.label}>
+            {children}
+          </ArkRatingGroup.Label>
+        )}
+        <ArkRatingGroup.Control className={styles.control}>
+          {({ items }) =>
+            items.map((index) => (
+              <ArkRatingGroup.Item
+                className={styles.item}
+                key={index}
+                index={index}
+              >
+                {({ isHalf }) => <Icon isHalf={isHalf} />}
+              </ArkRatingGroup.Item>
+            ))
+          }
+        </ArkRatingGroup.Control>
+      </ArkRatingGroup.Root>
+    );
+  },
+);
 
-RatingGroup.displayName = 'RatingGroup'
+RatingGroup.displayName = 'RatingGroup';
 
 type IconProps = {
-  isHalf: boolean
-}
+  isHalf: boolean;
+};
 
 const Icon = (props: IconProps) => (
   <svg
@@ -64,4 +84,4 @@ const Icon = (props: IconProps) => (
       points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
     />
   </svg>
-)
+);

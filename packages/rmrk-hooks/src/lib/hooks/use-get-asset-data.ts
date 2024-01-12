@@ -1,8 +1,8 @@
 import type { Address, Chain } from 'viem';
-import { useGetInterfaceSupport } from './use-get-interface-support.js';
-import { useGetTokenPrimaryAsset } from './use-get-token-primary-asset.js';
-import { useGetTokenAssetById } from './use-get-token-asset-by-id.js';
 import { useFetchMetadataAndAddToEntity } from './use-fetch-metadata-and-add-to-entity.js';
+import { useGetInterfaceSupport } from './use-get-interface-support.js';
+import { useGetTokenAssetById } from './use-get-token-asset-by-id.js';
+import { useGetTokenPrimaryAsset } from './use-get-token-primary-asset.js';
 
 type Arguments = {
   assetId?: bigint;
@@ -30,12 +30,16 @@ export const useGetAssetData = (args: Arguments, options?: Options) => {
   const { enabled = true, enabledMetadataFetch = true } = options || {};
 
   const requiresInterfaceCheck =
-    supportsEquippableInterface === undefined || supportsMultiAssetInterface === undefined;
+    supportsEquippableInterface === undefined ||
+    supportsMultiAssetInterface === undefined;
 
   const {
     isLoading: isLoadingGetInterfaceSupport,
     interfaceSupport: { supportsEquippable, supportsMultiAsset },
-  } = useGetInterfaceSupport({ contractAddress, chainId }, { enabled: requiresInterfaceCheck });
+  } = useGetInterfaceSupport(
+    { contractAddress, chainId },
+    { enabled: requiresInterfaceCheck },
+  );
 
   const {
     primaryAsset,

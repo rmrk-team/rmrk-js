@@ -1,7 +1,7 @@
 import { defineConfig, defineGlobalStyles } from '@pandacss/dev';
-import { selectRecipe } from 'lib/panda/recipes/select.recipe';
-import { inputRecipe } from 'lib/panda/recipes/input.recipe';
 import { formLabel } from 'lib/panda/recipes/form-label.recipe';
+import { inputRecipe } from 'lib/panda/recipes/input.recipe';
+import { selectRecipe } from 'lib/panda/recipes/select.recipe';
 
 const globalCss = defineGlobalStyles({
   'html, body': {
@@ -17,7 +17,11 @@ export default defineConfig({
   // Whether to use css reset
   preflight: true,
 
-  presets: ['@pandacss/preset-base', '@pandacss/preset-panda', '@park-ui/panda-preset'],
+  presets: [
+    '@pandacss/preset-base',
+    '@pandacss/preset-panda',
+    '@park-ui/panda-preset',
+  ],
 
   // Where to look for your css declarations
   include: [

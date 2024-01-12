@@ -1,8 +1,8 @@
-import { isBase64Metadata } from './is-base-64-metadata.js';
-import { getBase64Value } from './get-base-64-value.js';
-import { fetchIpfsNftData } from './fetch-ipfs-nft-data.js';
-import { IPFS_PROVIDERS, sanitizeIpfsUrl } from './ipfs.js';
 import type { Metadata } from '@rmrk-team/types';
+import { fetchIpfsNftData } from './fetch-ipfs-nft-data.js';
+import { getBase64Value } from './get-base-64-value.js';
+import { IPFS_PROVIDERS, sanitizeIpfsUrl } from './ipfs.js';
+import { isBase64Metadata } from './is-base-64-metadata.js';
 
 export const fetchIpfsMetadata = async (
   metadataUri?: string | null,
@@ -17,9 +17,12 @@ export const fetchIpfsMetadata = async (
     if (response) {
       const { data: metadata, provider } = response;
 
-      const { animation_url, image, external_url, ...restMetadata } = metadata || {};
-      const primaryMedia = animation_url || (metadata as Metadata)?.mediaUri || image;
-      const thumbnail = (metadata as Metadata)?.thumbnailUri || (animation_url ? image : '');
+      const { animation_url, image, external_url, ...restMetadata } =
+        metadata || {};
+      const primaryMedia =
+        animation_url || (metadata as Metadata)?.mediaUri || image;
+      const thumbnail =
+        (metadata as Metadata)?.thumbnailUri || (animation_url ? image : '');
 
       if (provider) {
         return {

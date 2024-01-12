@@ -1,8 +1,11 @@
+import {
+  RMRKEquippableImpl,
+  mapChainIdToNetwork,
+} from '@rmrk-team/rmrk-evm-utils';
+import type { RMRKAssetExtended } from '@rmrk-team/types';
 import type { Address, Chain } from 'viem';
 import { useReadContract } from 'wagmi';
-import { mapChainIdToNetwork, RMRKEquippableImpl } from '@rmrk-team/rmrk-evm-utils';
 import { useGetInterfaceSupport } from './use-get-interface-support.js';
-import type { RMRKAssetExtended } from '@rmrk-team/types';
 
 type Arguments = {
   tokenId: bigint;
@@ -39,19 +42,25 @@ export const useGetTokenAssetById = (
   const { enabled = true, enabledMetadataFetch = true } = options || {};
 
   const requiresInterfaceCheck =
-    supportsEquippableInterface === undefined || supportsMultiAssetInterface === undefined;
+    supportsEquippableInterface === undefined ||
+    supportsMultiAssetInterface === undefined;
 
   const network = mapChainIdToNetwork(chainId);
 
   const {
     isLoading: isLoadingGetInterfaceSupport,
-    interfaceSupport: { supportsEquippable, supportsMultiAsset, supportsNesting },
+    interfaceSupport: {
+      supportsEquippable,
+      supportsMultiAsset,
+      supportsNesting,
+    },
   } = useGetInterfaceSupport(
     { contractAddress, chainId },
     { enabled: enabled && requiresInterfaceCheck },
   );
 
-  const enabledSimplePrimaryAsset = enabled && supportsMultiAsset && !supportsEquippable;
+  const enabledSimplePrimaryAsset =
+    enabled && supportsMultiAsset && !supportsEquippable;
   const enabledAssetWithEquippableData = enabled && supportsEquippable;
 
   const {
@@ -82,15 +91,16 @@ export const useGetTokenAssetById = (
     query: { enabled: enabledAssetWithEquippableData },
   });
 
-  const assetWithEquippableData: RMRKAssetExtended | undefined = assetAndEquippableDataForToken
-    ? {
-        id: assetId,
-        metadataUri: assetAndEquippableDataForToken[0],
-        equippableGroupId: assetAndEquippableDataForToken[1],
-        catalogAddress: assetAndEquippableDataForToken[2],
-        partIds: [...assetAndEquippableDataForToken[3]],
-      }
-    : undefined;
+  const assetWithEquippableData: RMRKAssetExtended | undefined =
+    assetAndEquippableDataForToken
+      ? {
+          id: assetId,
+          metadataUri: assetAndEquippableDataForToken[0],
+          equippableGroupId: assetAndEquippableDataForToken[1],
+          catalogAddress: assetAndEquippableDataForToken[2],
+          partIds: [...assetAndEquippableDataForToken[3]],
+        }
+      : undefined;
 
   const assetSimple: RMRKAssetExtended | undefined = assetMetadataUri
     ? {

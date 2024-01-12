@@ -16,11 +16,12 @@ export enum IPFS_PROVIDERS {
   pinata = 'pinata',
   pinataUnrestricted = 'pinataUnrestricted',
   nftStorage = 'nftStorage',
-  'rmrkIpfsCache' = 'rmrkIpfsCache',
+  rmrkIpfsCache = 'rmrkIpfsCache',
 }
 
-export const resolveIpfsProvider = (provider: keyof IpfsProviders = IPFS_PROVIDERS.cloudflare) =>
-  ipfsProviders[provider];
+export const resolveIpfsProvider = (
+  provider: keyof IpfsProviders = IPFS_PROVIDERS.cloudflare,
+) => ipfsProviders[provider];
 
 export const containsCID = (ipfsUrl?: string | null) => {
   if (typeof ipfsUrl !== 'string') {
@@ -49,7 +50,10 @@ export const containsCID = (ipfsUrl?: string | null) => {
   };
 };
 
-export const convertToDesiredGateway = (ipfsUrl?: string | null, gatewayPrefixovider?: string) => {
+export const convertToDesiredGateway = (
+  ipfsUrl?: string | null,
+  gatewayPrefixovider?: string,
+) => {
   const results = containsCID(ipfsUrl);
   if (!ipfsUrl || results.containsCid !== true || !results.cid) {
     throw new Error('url does not contain CID');
@@ -75,11 +79,16 @@ export const convertToDesiredGateway = (ipfsUrl?: string | null, gatewayPrefixov
     return `${gatewayPrefixovider}/ipfs/${results.cid}${splitUrl[1]}`;
   }
 
-  console.log(`Unsupported URL pattern: ${ipfsUrl}. Attempting a default fallback.`);
+  console.log(
+    `Unsupported URL pattern: ${ipfsUrl}. Attempting a default fallback.`,
+  );
   return `${gatewayPrefixovider}/ipfs/${results.cid}${splitUrl[1]}`;
 };
 
-export const sanitizeIpfsUrl = (ipfsUrl?: string | null, provider?: keyof IpfsProviders) => {
+export const sanitizeIpfsUrl = (
+  ipfsUrl?: string | null,
+  provider?: keyof IpfsProviders,
+) => {
   if (!ipfsUrl || typeof ipfsUrl !== 'string') return '';
 
   if (ipfsUrl.startsWith('http') && !containsCID(ipfsUrl).containsCid) {

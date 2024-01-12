@@ -1,8 +1,11 @@
-import { useFetchIpfsMetadatas } from './use-fetch-ipfs-metadatas.js';
 import { IPFS_PROVIDERS } from '@rmrk-team/ipfs-utils';
 import type { Metadata } from '@rmrk-team/types';
+import { useFetchIpfsMetadatas } from './use-fetch-ipfs-metadatas.js';
 
-type Arguments = { metadataUris: string[] | undefined; ipfsGateway?: IPFS_PROVIDERS };
+type Arguments = {
+  metadataUris: string[] | undefined;
+  ipfsGateway?: IPFS_PROVIDERS;
+};
 
 type Options = { enabled?: boolean };
 
@@ -18,8 +21,16 @@ export const useFetchMetadataAndAddToEntities = <T>(
   args: Arguments,
   options?: Options,
   entities?: T[],
-): { isLoading: boolean; isError: boolean; data: EntityWithMetadata<T>[] | undefined } => {
-  const { isLoading, isError, data: metadatas } = useFetchIpfsMetadatas(args, options);
+): {
+  isLoading: boolean;
+  isError: boolean;
+  data: EntityWithMetadata<T>[] | undefined;
+} => {
+  const {
+    isLoading,
+    isError,
+    data: metadatas,
+  } = useFetchIpfsMetadatas(args, options);
   const entitiesWithMetadata = entities?.map((e, i) => ({
     ...e,
     metadata: metadatas?.[i] || undefined,

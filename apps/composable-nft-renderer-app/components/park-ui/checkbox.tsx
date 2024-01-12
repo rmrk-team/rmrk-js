@@ -1,40 +1,53 @@
 import {
   Checkbox as ArkCheckbox,
   type CheckboxProps as ArkCheckboxProps,
-} from '@ark-ui/react/checkbox'
-import { forwardRef, type ReactNode } from 'react'
-import { css, cx } from 'styled-system/css'
-import { checkbox, type CheckboxVariantProps } from 'styled-system/recipes'
-import type { HTMLStyledProps } from 'styled-system/types'
+} from '@ark-ui/react/checkbox';
+import { type ReactNode, forwardRef } from 'react';
+import { css, cx } from 'styled-system/css';
+import { type CheckboxVariantProps, checkbox } from 'styled-system/recipes';
+import type { HTMLStyledProps } from 'styled-system/types';
 
 export interface CheckboxProps
   extends ArkCheckboxProps,
     CheckboxVariantProps,
-    Omit<HTMLStyledProps<'label'>, 'defaultChecked' | 'dir' | 'translate' | 'content' | 'color'> {
-  children?: ReactNode
+    Omit<
+      HTMLStyledProps<'label'>,
+      'defaultChecked' | 'dir' | 'translate' | 'content' | 'color'
+    > {
+  children?: ReactNode;
 }
 
-export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>((props, ref) => {
-  const [variantProps, localProps] = checkbox.splitVariantProps(props)
-  const { children, ...rootProps } = localProps
-  const styles = checkbox(variantProps)
+export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
+  (props, ref) => {
+    const [variantProps, localProps] = checkbox.splitVariantProps(props);
+    const { children, ...rootProps } = localProps;
+    const styles = checkbox(variantProps);
 
-  return (
-    <ArkCheckbox.Root ref={ref} className={cx(styles.root, css(rootProps))} {...rootProps}>
-      {(state) => (
-        <>
-          <ArkCheckbox.Control className={styles.control}>
-            {state.isChecked && <CheckIcon />}
-            {state.isIndeterminate && <MinusIcon />}
-          </ArkCheckbox.Control>
-          {children && <ArkCheckbox.Label className={styles.label}>{children}</ArkCheckbox.Label>}
-        </>
-      )}
-    </ArkCheckbox.Root>
-  )
-})
+    return (
+      <ArkCheckbox.Root
+        ref={ref}
+        className={cx(styles.root, css(rootProps))}
+        {...rootProps}
+      >
+        {(state) => (
+          <>
+            <ArkCheckbox.Control className={styles.control}>
+              {state.isChecked && <CheckIcon />}
+              {state.isIndeterminate && <MinusIcon />}
+            </ArkCheckbox.Control>
+            {children && (
+              <ArkCheckbox.Label className={styles.label}>
+                {children}
+              </ArkCheckbox.Label>
+            )}
+          </>
+        )}
+      </ArkCheckbox.Root>
+    );
+  },
+);
 
-Checkbox.displayName = 'Checkbox'
+Checkbox.displayName = 'Checkbox';
 
 const CheckIcon = () => (
   <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +59,7 @@ const CheckIcon = () => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 const MinusIcon = () => (
   <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,4 +71,4 @@ const MinusIcon = () => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);

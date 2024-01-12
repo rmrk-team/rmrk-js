@@ -1,23 +1,29 @@
-'use client'
+'use client';
 
-import { Toast as ArkToast } from '@ark-ui/react/toast'
-import { styled, type HTMLStyledProps } from 'styled-system/jsx'
-import { toast } from 'styled-system/recipes'
-import { createStyleContext } from 'lib/panda/create-style-context'
+import { Toast as ArkToast } from '@ark-ui/react/toast';
+import { createStyleContext } from 'lib/panda/create-style-context';
+import { type HTMLStyledProps, styled } from 'styled-system/jsx';
+import { toast } from 'styled-system/recipes';
 
-const { withProvider, withContext } = createStyleContext(toast)
+const { withProvider, withContext } = createStyleContext(toast);
 
-const Toast = withProvider(styled(ArkToast.Root), 'root')
-const ToastCloseTrigger = withContext(styled(ArkToast.CloseTrigger), 'closeTrigger')
-const ToastDescription = withContext(styled(ArkToast.Description), 'description')
-const ToastGroup = withContext(styled(ArkToast.Group), 'group')
-const ToastTitle = withContext(styled(ArkToast.Title), 'title')
+const Toast = withProvider(styled(ArkToast.Root), 'root');
+const ToastCloseTrigger = withContext(
+  styled(ArkToast.CloseTrigger),
+  'closeTrigger',
+);
+const ToastDescription = withContext(
+  styled(ArkToast.Description),
+  'description',
+);
+const ToastGroup = withContext(styled(ArkToast.Group), 'group');
+const ToastTitle = withContext(styled(ArkToast.Title), 'title');
 
-const Root = Toast
-const CloseTrigger = ToastCloseTrigger
-const Description = ToastDescription
-const Group = ToastGroup
-const Title = ToastTitle
+const Root = Toast;
+const CloseTrigger = ToastCloseTrigger;
+const Description = ToastDescription;
+const Group = ToastGroup;
+const Title = ToastTitle;
 
 export {
   CloseTrigger,
@@ -30,10 +36,12 @@ export {
   ToastDescription,
   ToastGroup,
   ToastTitle,
-}
+};
 
 export interface ToastProps extends HTMLStyledProps<typeof Toast> {}
-export interface ToastCloseTriggerProps extends HTMLStyledProps<typeof ToastCloseTrigger> {}
-export interface ToastDescriptionProps extends HTMLStyledProps<typeof ToastDescription> {}
+export interface ToastCloseTriggerProps
+  extends HTMLStyledProps<typeof ToastCloseTrigger> {}
+export interface ToastDescriptionProps
+  extends HTMLStyledProps<typeof ToastDescription> {}
 export interface ToastGroupProps extends HTMLStyledProps<typeof ToastGroup> {}
 export interface ToastTitleProps extends HTMLStyledProps<typeof ToastTitle> {}

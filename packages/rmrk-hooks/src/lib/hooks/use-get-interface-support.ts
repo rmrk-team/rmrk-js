@@ -1,11 +1,11 @@
-import type { Chain } from 'viem';
-import { useReadContract } from 'wagmi';
-import type { Address } from 'viem';
 import {
   EVM_RMRK_CONTRACTS,
-  mapChainIdToNetwork,
   RMRKCollectionUtils,
+  mapChainIdToNetwork,
 } from '@rmrk-team/rmrk-evm-utils';
+import type { Chain } from 'viem';
+import type { Address } from 'viem';
+import { useReadContract } from 'wagmi';
 
 type Arguments = {
   contractAddress: Address;

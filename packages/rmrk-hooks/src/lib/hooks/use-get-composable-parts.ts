@@ -1,13 +1,13 @@
+import {
+  EVM_RMRK_CONTRACTS,
+  RMRKEquipRenderUtils,
+  RMRKEquippableImpl,
+  mapChainIdToNetwork,
+} from '@rmrk-team/rmrk-evm-utils';
 import type { Address } from 'viem';
 import type { Chain } from 'viem';
 import { useReadContract } from 'wagmi';
 import { useGetInterfaceSupport } from './use-get-interface-support.js';
-import {
-  EVM_RMRK_CONTRACTS,
-  mapChainIdToNetwork,
-  RMRKEquippableImpl,
-  RMRKEquipRenderUtils,
-} from '@rmrk-team/rmrk-evm-utils';
 
 type Arguments = {
   tokenId: bigint;
@@ -29,7 +29,10 @@ export const useGetComposableParts = (
   const {
     isLoading,
     interfaceSupport: { supportsEquippable },
-  } = useGetInterfaceSupport({ contractAddress: address, chainId }, { enabled });
+  } = useGetInterfaceSupport(
+    { contractAddress: address, chainId },
+    { enabled },
+  );
 
   const { data: topAsset, isLoading: isGettingTopAsset } = useReadContract({
     address: EVM_RMRK_CONTRACTS[network].RMRKEquipRenderUtils,
@@ -46,7 +49,10 @@ export const useGetComposableParts = (
     error: errorTopEquippableAssetData,
     refetch: refetchTopEquippableAssetData,
   } = useReadContract({
-    address: enabled && !assetId ? EVM_RMRK_CONTRACTS[network].RMRKEquipRenderUtils : undefined,
+    address:
+      enabled && !assetId
+        ? EVM_RMRK_CONTRACTS[network].RMRKEquipRenderUtils
+        : undefined,
     abi: RMRKEquipRenderUtils,
     chainId,
     functionName: 'getTopAssetAndEquippableDataForToken',
@@ -86,5 +92,7 @@ export const useGetComposableParts = (
     partIds,
     catalogAddress,
   } = assetEquippableData || [];
-  const catalogPartIds = partIds ? partIds.map((partId) => partId.toString()) : undefined;
+  const catalogPartIds = partIds
+    ? partIds.map((partId) => partId.toString())
+    : undefined;
 };

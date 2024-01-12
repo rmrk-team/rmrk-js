@@ -8,7 +8,10 @@ export const OpenseaDateDisplayType = {
   date: 'Date',
 };
 
-export const OpenseaDisplayType = { ...OpenseaNumericDisplayType, ...OpenseaDateDisplayType };
+export const OpenseaDisplayType = {
+  ...OpenseaNumericDisplayType,
+  ...OpenseaDateDisplayType,
+};
 
 export type MetadataAttribute = {
   display_type?: keyof typeof OpenseaDisplayType | 'string' | '';

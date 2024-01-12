@@ -12,6 +12,7 @@
     "start": "pnpm --filter composable-nft-renderer-app start",
     "postinstall": "pnpm preconstruct",
     "preconstruct": "ts-node scripts/preconstruct.ts",
+    "format": "biome format . --write",
     "lint": "biome check .",
     "lint:fix": "pnpm lint --apply",
     "test": "vitest",

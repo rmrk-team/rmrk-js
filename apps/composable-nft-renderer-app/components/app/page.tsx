@@ -1,6 +1,6 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
-import { Footer } from './footer';
 import { Container, Flex } from 'styled-system/jsx';
+import { Footer } from './footer';
 
 const Page: FunctionComponent<PropsWithChildren> = ({ children }) => {
   return (

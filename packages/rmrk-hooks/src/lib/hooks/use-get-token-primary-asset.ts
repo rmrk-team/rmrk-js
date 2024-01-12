@@ -1,12 +1,12 @@
+import {
+  EVM_RMRK_CONTRACTS,
+  RMRKEquipRenderUtils,
+  mapChainIdToNetwork,
+} from '@rmrk-team/rmrk-evm-utils';
+import type { RMRKAssetExtended } from '@rmrk-team/types';
 import type { Address, Chain } from 'viem';
 import { useReadContract } from 'wagmi';
 import { useGetInterfaceSupport } from './use-get-interface-support.js';
-import type { RMRKAssetExtended } from '@rmrk-team/types';
-import {
-  EVM_RMRK_CONTRACTS,
-  mapChainIdToNetwork,
-  RMRKEquipRenderUtils,
-} from '@rmrk-team/rmrk-evm-utils';
 
 type Arguments = {
   tokenId: bigint;
@@ -41,7 +41,8 @@ export const useGetTokenPrimaryAsset = (
   const { enabled = true, enabledMetadataFetch = true } = options || {};
 
   const requiresInterfaceCheck =
-    supportsEquippableInterface === undefined || supportsMultiAssetInterface === undefined;
+    supportsEquippableInterface === undefined ||
+    supportsMultiAssetInterface === undefined;
 
   const network = mapChainIdToNetwork(chainId);
 
@@ -53,7 +54,8 @@ export const useGetTokenPrimaryAsset = (
     { enabled: enabled && requiresInterfaceCheck },
   );
 
-  const enabledSimplePrimaryAsset = enabled && supportsMultiAsset && !supportsEquippable;
+  const enabledSimplePrimaryAsset =
+    enabled && supportsMultiAsset && !supportsEquippable;
   const enabledAssetWithEquippableData = enabled && supportsEquippable;
 
   const {
@@ -94,7 +96,8 @@ export const useGetTokenPrimaryAsset = (
           id: topAssetAndEquippableDataForToken.id,
           partIds: [...topAssetAndEquippableDataForToken.partIds],
           metadataUri: topAssetAndEquippableDataForToken.metadata,
-          equippableGroupId: topAssetAndEquippableDataForToken.equippableGroupId,
+          equippableGroupId:
+            topAssetAndEquippableDataForToken.equippableGroupId,
           catalogAddress: topAssetAndEquippableDataForToken.catalogAddress,
         }
       : undefined;

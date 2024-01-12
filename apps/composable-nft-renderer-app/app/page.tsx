@@ -1,17 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
 // import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import { CollectionItem } from '@ark-ui/react';
-import Page from '../components/app/page';
-import { rmrkLink } from 'lib/links';
-import { InputSelect } from 'components/common/select';
-import { Stack, Container, VStack, HStack, Center } from 'styled-system/jsx';
+import { EVM_NETWORKS, assertIsEvmNetwork } from '@rmrk-team/rmrk-evm-utils';
 import { ValueChangeDetails } from '@zag-js/select';
-import { Input } from 'components/park-ui/input';
+import { InputSelect } from 'components/common/select';
 import { Button } from 'components/park-ui/button';
-import { assertIsEvmNetwork, EVM_NETWORKS } from '@rmrk-team/rmrk-evm-utils';
+import { Input } from 'components/park-ui/input';
+import { rmrkLink } from 'lib/links';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { Center, Container, HStack, Stack, VStack } from 'styled-system/jsx';
+import Page from '../components/app/page';
 
 const networkOptions = Object.values(EVM_NETWORKS).map((network) => ({
   label: network,
@@ -19,7 +19,9 @@ const networkOptions = Object.values(EVM_NETWORKS).map((network) => ({
 }));
 
 export default function Home() {
-  const [selectedNetwork, setSelectedNetwork] = useState<EVM_NETWORKS | undefined>();
+  const [selectedNetwork, setSelectedNetwork] = useState<
+    EVM_NETWORKS | undefined
+  >();
   const [collectionId, setCollectionId] = useState<string>('');
   const [tokenId, setTokenId] = useState<string>('');
 

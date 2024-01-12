@@ -1,25 +1,31 @@
-'use client'
+'use client';
 
-import { HoverCard as ArkHoverCard } from '@ark-ui/react/hover-card'
-import { styled, type HTMLStyledProps } from 'styled-system/jsx'
-import { hoverCard } from 'styled-system/recipes'
-import { createStyleContext } from 'lib/panda/create-style-context'
+import { HoverCard as ArkHoverCard } from '@ark-ui/react/hover-card';
+import { createStyleContext } from 'lib/panda/create-style-context';
+import { type HTMLStyledProps, styled } from 'styled-system/jsx';
+import { hoverCard } from 'styled-system/recipes';
 
-const { withProvider, withContext } = createStyleContext(hoverCard)
+const { withProvider, withContext } = createStyleContext(hoverCard);
 
-const HoverCard = withProvider(ArkHoverCard.Root)
-const HoverCardArrow = withContext(styled(ArkHoverCard.Arrow), 'arrow')
-const HoverCardArrowTip = withContext(styled(ArkHoverCard.ArrowTip), 'arrowTip')
-const HoverCardContent = withContext(styled(ArkHoverCard.Content), 'content')
-const HoverCardPositioner = withContext(styled(ArkHoverCard.Positioner), 'positioner')
-const HoverCardTrigger = withContext(styled(ArkHoverCard.Trigger), 'trigger')
+const HoverCard = withProvider(ArkHoverCard.Root);
+const HoverCardArrow = withContext(styled(ArkHoverCard.Arrow), 'arrow');
+const HoverCardArrowTip = withContext(
+  styled(ArkHoverCard.ArrowTip),
+  'arrowTip',
+);
+const HoverCardContent = withContext(styled(ArkHoverCard.Content), 'content');
+const HoverCardPositioner = withContext(
+  styled(ArkHoverCard.Positioner),
+  'positioner',
+);
+const HoverCardTrigger = withContext(styled(ArkHoverCard.Trigger), 'trigger');
 
-const Root = HoverCard
-const Arrow = HoverCardArrow
-const ArrowTip = HoverCardArrowTip
-const Content = HoverCardContent
-const Positioner = HoverCardPositioner
-const Trigger = HoverCardTrigger
+const Root = HoverCard;
+const Arrow = HoverCardArrow;
+const ArrowTip = HoverCardArrowTip;
+const Content = HoverCardContent;
+const Positioner = HoverCardPositioner;
+const Trigger = HoverCardTrigger;
 
 export {
   Arrow,
@@ -34,11 +40,16 @@ export {
   Positioner,
   Root,
   Trigger,
-}
+};
 
 export interface HoverCardProps extends HTMLStyledProps<typeof HoverCard> {}
-export interface HoverCardArrowProps extends HTMLStyledProps<typeof HoverCardArrow> {}
-export interface HoverCardArrowTipProps extends HTMLStyledProps<typeof HoverCardArrowTip> {}
-export interface HoverCardContentProps extends HTMLStyledProps<typeof HoverCardContent> {}
-export interface HoverCardPositionerProps extends HTMLStyledProps<typeof HoverCardPositioner> {}
-export interface HoverCardTriggerProps extends HTMLStyledProps<typeof HoverCardTrigger> {}
+export interface HoverCardArrowProps
+  extends HTMLStyledProps<typeof HoverCardArrow> {}
+export interface HoverCardArrowTipProps
+  extends HTMLStyledProps<typeof HoverCardArrowTip> {}
+export interface HoverCardContentProps
+  extends HTMLStyledProps<typeof HoverCardContent> {}
+export interface HoverCardPositionerProps
+  extends HTMLStyledProps<typeof HoverCardPositioner> {}
+export interface HoverCardTriggerProps
+  extends HTMLStyledProps<typeof HoverCardTrigger> {}

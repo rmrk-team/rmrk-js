@@ -1,22 +1,22 @@
 import { CollectionItem, Portal } from '@ark-ui/react';
-import { ChevronsUpDownIcon } from 'lucide-react';
-import React, { ChangeEvent } from 'react';
 import {
   Select,
-  SelectLabel,
-  SelectControl,
-  SelectTrigger,
-  SelectIndicator,
-  SelectValueText,
-  SelectPositioner,
   SelectContent,
+  SelectControl,
+  SelectIndicator,
+  SelectItem,
   SelectItemGroup,
   SelectItemGroupLabel,
-  SelectItem,
-  SelectItemText,
   SelectItemIndicator,
+  SelectItemText,
+  SelectLabel,
+  SelectPositioner,
   SelectProps,
+  SelectTrigger,
+  SelectValueText,
 } from 'components/park-ui/select';
+import { ChevronsUpDownIcon } from 'lucide-react';
+import React, { ChangeEvent } from 'react';
 
 type Option = { label: string; value: string; disabled?: boolean };
 
@@ -52,7 +52,11 @@ export const InputSelect = ({
         <SelectPositioner>
           <SelectContent>
             <SelectItemGroup id={id}>
-              {groupLabel && <SelectItemGroupLabel htmlFor={id}>{groupLabel}</SelectItemGroupLabel>}
+              {groupLabel && (
+                <SelectItemGroupLabel htmlFor={id}>
+                  {groupLabel}
+                </SelectItemGroupLabel>
+              )}
 
               {items.map((item) => (
                 <SelectItem key={item.value} item={item}>

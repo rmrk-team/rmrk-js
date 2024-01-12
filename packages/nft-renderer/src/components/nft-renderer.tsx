@@ -1,18 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { isAddress } from 'viem';
-import type { Address } from 'viem';
-import { useReadContract, usePublicClient } from 'wagmi';
-// import { sanitizeIpfsUrl } from '../lib/ipfs';
-import { Providers } from './providers.js';
 import { MultiLayer2DRenderer } from '@rmrk-team/rmrk-2d-renderer';
-import { mapChainIdToNetwork, RMRKEquippableImpl } from '@rmrk-team/rmrk-evm-utils';
+import {
+  RMRKEquippableImpl,
+  mapChainIdToNetwork,
+} from '@rmrk-team/rmrk-evm-utils';
 import {
   useFetchIpfsMetadata,
   useGetAssetData,
   useGetComposedState,
   useGetInterfaceSupport,
 } from '@rmrk-team/rmrk-hooks';
+import React, { useEffect, useRef, useState } from 'react';
+import { isAddress } from 'viem';
+import type { Address } from 'viem';
+import { usePublicClient, useReadContract } from 'wagmi';
 import type { RenderPart } from '../types/types.js';
+// import { sanitizeIpfsUrl } from '../lib/ipfs';
+import { Providers } from './providers.js';
 
 interface INFTRenderer {
   chainId: number;
@@ -95,7 +98,10 @@ export function NFTRenderer({
   const {
     isLoading: isLoadingGetInterfaceSupport,
     interfaceSupport: { supports721, supportsEquippable, supportsMultiAsset },
-  } = useGetInterfaceSupport({ contractAddress, chainId }, { enabled: isContract });
+  } = useGetInterfaceSupport(
+    { contractAddress, chainId },
+    { enabled: isContract },
+  );
 
   const {
     data: tokenUri,
@@ -149,13 +155,27 @@ export function NFTRenderer({
   const catalogRenderParts: RenderPart[] | undefined =
     fixedPartsWithMetadatas && slotPartsWithMetadatas
       ? [
-          ...fixedPartsWithMetadatas.map((p) => ({ z: p.z, src: p.metadata?.mediaUri || '' })),
-          ...slotPartsWithMetadatas.map((p) => ({ z: p.z, src: p.metadata?.mediaUri || '' })),
+          ...fixedPartsWithMetadatas.map((p) => ({
+            z: p.z,
+            src: p.metadata?.mediaUri || '',
+          })),
+          ...slotPartsWithMetadatas.map((p) => ({
+            z: p.z,
+            src: p.metadata?.mediaUri || '',
+          })),
         ]
       : undefined;
 
   const assetRenderPart: RenderPart[] | undefined = primaryAsset
-    ? [{ z: 1, src: primaryAsset?.metadata?.mediaUri || primaryAsset?.metadata?.image || '' }]
+    ? [
+        {
+          z: 1,
+          src:
+            primaryAsset?.metadata?.mediaUri ||
+            primaryAsset?.metadata?.image ||
+            '',
+        },
+      ]
     : undefined;
 
   const tokenRenderPart: RenderPart[] | undefined = primaryAsset
@@ -165,7 +185,10 @@ export function NFTRenderer({
   const renderParts = catalogRenderParts || assetRenderPart || tokenRenderPart;
 
   const isError =
-    isErrorTokenUri || isErrorTokenMetadata || isErrorPrimaryAsset || isErrorComposableState;
+    isErrorTokenUri ||
+    isErrorTokenMetadata ||
+    isErrorPrimaryAsset ||
+    isErrorComposableState;
 
   const error = errorComposableState || errorPrimaryAsset;
 
@@ -212,8 +235,12 @@ export function NFTRenderer({
         ) : (
           <>
             {isValidAddress === false ? <p>Invalid address</p> : null}
-            {isValidAddress && isContract === false ? <p>Not a contract</p> : null}
-            {isContract && isErrorTokenUri ? <p>Failed to get NFT data</p> : null}
+            {isValidAddress && isContract === false ? (
+              <p>Not a contract</p>
+            ) : null}
+            {isContract && isErrorTokenUri ? (
+              <p>Failed to get NFT data</p>
+            ) : null}
 
             {advancedMode ? (
               <>

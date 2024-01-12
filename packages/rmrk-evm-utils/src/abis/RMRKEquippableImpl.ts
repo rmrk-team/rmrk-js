@@ -13,7 +13,11 @@ export const RMRKEquippableImpl = [
   },
   { inputs: [], name: 'ERC721AddressZeroIsNotaValidOwner', type: 'error' },
   { inputs: [], name: 'ERC721ApprovalToCurrentOwner', type: 'error' },
-  { inputs: [], name: 'ERC721ApproveCallerIsNotOwnerNorApprovedForAll', type: 'error' },
+  {
+    inputs: [],
+    name: 'ERC721ApproveCallerIsNotOwnerNorApprovedForAll',
+    type: 'error',
+  },
   { inputs: [], name: 'ERC721ApproveToCaller', type: 'error' },
   { inputs: [], name: 'ERC721InvalidTokenId', type: 'error' },
   { inputs: [], name: 'ERC721MintToTheZeroAddress', type: 'error' },
@@ -23,7 +27,11 @@ export const RMRKEquippableImpl = [
   { inputs: [], name: 'ERC721TransferToNonReceiverImplementer', type: 'error' },
   { inputs: [], name: 'ERC721TransferToTheZeroAddress', type: 'error' },
   { inputs: [], name: 'RMRKApprovalForAssetsToCurrentOwner', type: 'error' },
-  { inputs: [], name: 'RMRKApproveForAssetsCallerIsNotOwnerNorApprovedForAll', type: 'error' },
+  {
+    inputs: [],
+    name: 'RMRKApproveForAssetsCallerIsNotOwnerNorApprovedForAll',
+    type: 'error',
+  },
   { inputs: [], name: 'RMRKAssetAlreadyExists', type: 'error' },
   { inputs: [], name: 'RMRKBadPriorityListLength', type: 'error' },
   { inputs: [], name: 'RMRKCatalogRequiredForParts', type: 'error' },
@@ -49,7 +57,11 @@ export const RMRKEquippableImpl = [
   { inputs: [], name: 'RMRKMustUnequipFirst', type: 'error' },
   { inputs: [], name: 'RMRKNestableTooDeep', type: 'error' },
   { inputs: [], name: 'RMRKNestableTransferToDescendant', type: 'error' },
-  { inputs: [], name: 'RMRKNestableTransferToNonRMRKNestableImplementer', type: 'error' },
+  {
+    inputs: [],
+    name: 'RMRKNestableTransferToNonRMRKNestableImplementer',
+    type: 'error',
+  },
   { inputs: [], name: 'RMRKNestableTransferToSelf', type: 'error' },
   { inputs: [], name: 'RMRKNewContributorIsZeroAddress', type: 'error' },
   { inputs: [], name: 'RMRKNewOwnerIsZeroAddress', type: 'error' },
@@ -63,7 +75,11 @@ export const RMRKEquippableImpl = [
   { inputs: [], name: 'RMRKRoyaltiesTooHigh', type: 'error' },
   { inputs: [], name: 'RMRKSlotAlreadyUsed', type: 'error' },
   { inputs: [], name: 'RMRKTargetAssetCannotReceiveSlot', type: 'error' },
-  { inputs: [], name: 'RMRKTokenCannotBeEquippedWithAssetIntoSlot', type: 'error' },
+  {
+    inputs: [],
+    name: 'RMRKTokenCannotBeEquippedWithAssetIntoSlot',
+    type: 'error',
+  },
   { inputs: [], name: 'RMRKTokenDoesNotHaveAsset', type: 'error' },
   { inputs: [], name: 'RMRKUnexpectedAssetId', type: 'error' },
   { inputs: [], name: 'RMRKUnexpectedChildId', type: 'error' },
@@ -72,16 +88,38 @@ export const RMRKEquippableImpl = [
   { inputs: [], name: 'RentrantCall', type: 'error' },
   {
     anonymous: false,
-    inputs: [{ indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' }],
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
+    ],
     name: 'AllChildrenRejected',
     type: 'event',
   },
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'address', name: 'owner', type: 'address' },
-      { indexed: true, internalType: 'address', name: 'approved', type: 'address' },
-      { indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'owner',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'approved',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
     ],
     name: 'Approval',
     type: 'event',
@@ -89,8 +127,18 @@ export const RMRKEquippableImpl = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'address', name: 'owner', type: 'address' },
-      { indexed: true, internalType: 'address', name: 'operator', type: 'address' },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'owner',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'operator',
+        type: 'address',
+      },
       { indexed: false, internalType: 'bool', name: 'approved', type: 'bool' },
     ],
     name: 'ApprovalForAll',
@@ -99,8 +147,18 @@ export const RMRKEquippableImpl = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'address', name: 'owner', type: 'address' },
-      { indexed: true, internalType: 'address', name: 'operator', type: 'address' },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'owner',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'operator',
+        type: 'address',
+      },
       { indexed: false, internalType: 'bool', name: 'approved', type: 'bool' },
     ],
     name: 'ApprovalForAllForAssets',
@@ -109,9 +167,24 @@ export const RMRKEquippableImpl = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'address', name: 'owner', type: 'address' },
-      { indexed: true, internalType: 'address', name: 'approved', type: 'address' },
-      { indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'owner',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'approved',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
     ],
     name: 'ApprovalForAssets',
     type: 'event',
@@ -119,9 +192,24 @@ export const RMRKEquippableImpl = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' },
-      { indexed: true, internalType: 'uint64', name: 'assetId', type: 'uint64' },
-      { indexed: true, internalType: 'uint64', name: 'replacesId', type: 'uint64' },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        internalType: 'uint64',
+        name: 'assetId',
+        type: 'uint64',
+      },
+      {
+        indexed: true,
+        internalType: 'uint64',
+        name: 'replacesId',
+        type: 'uint64',
+      },
     ],
     name: 'AssetAccepted',
     type: 'event',
@@ -129,41 +217,100 @@ export const RMRKEquippableImpl = [
   {
     anonymous: false,
     inputs: [
-      { indexed: false, internalType: 'uint256[]', name: 'tokenIds', type: 'uint256[]' },
-      { indexed: true, internalType: 'uint64', name: 'assetId', type: 'uint64' },
-      { indexed: true, internalType: 'uint64', name: 'replacesId', type: 'uint64' },
+      {
+        indexed: false,
+        internalType: 'uint256[]',
+        name: 'tokenIds',
+        type: 'uint256[]',
+      },
+      {
+        indexed: true,
+        internalType: 'uint64',
+        name: 'assetId',
+        type: 'uint64',
+      },
+      {
+        indexed: true,
+        internalType: 'uint64',
+        name: 'replacesId',
+        type: 'uint64',
+      },
     ],
     name: 'AssetAddedToTokens',
     type: 'event',
   },
   {
     anonymous: false,
-    inputs: [{ indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' }],
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
+    ],
     name: 'AssetPrioritySet',
     type: 'event',
   },
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' },
-      { indexed: true, internalType: 'uint64', name: 'assetId', type: 'uint64' },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        internalType: 'uint64',
+        name: 'assetId',
+        type: 'uint64',
+      },
     ],
     name: 'AssetRejected',
     type: 'event',
   },
   {
     anonymous: false,
-    inputs: [{ indexed: true, internalType: 'uint64', name: 'assetId', type: 'uint64' }],
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint64',
+        name: 'assetId',
+        type: 'uint64',
+      },
+    ],
     name: 'AssetSet',
     type: 'event',
   },
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' },
-      { indexed: false, internalType: 'uint256', name: 'childIndex', type: 'uint256' },
-      { indexed: true, internalType: 'address', name: 'childAddress', type: 'address' },
-      { indexed: true, internalType: 'uint256', name: 'childId', type: 'uint256' },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'childIndex',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'childAddress',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'childId',
+        type: 'uint256',
+      },
     ],
     name: 'ChildAccepted',
     type: 'event',
@@ -171,12 +318,42 @@ export const RMRKEquippableImpl = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' },
-      { indexed: true, internalType: 'uint64', name: 'assetId', type: 'uint64' },
-      { indexed: true, internalType: 'uint64', name: 'slotPartId', type: 'uint64' },
-      { indexed: false, internalType: 'uint256', name: 'childId', type: 'uint256' },
-      { indexed: false, internalType: 'address', name: 'childAddress', type: 'address' },
-      { indexed: false, internalType: 'uint64', name: 'childAssetId', type: 'uint64' },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        internalType: 'uint64',
+        name: 'assetId',
+        type: 'uint64',
+      },
+      {
+        indexed: true,
+        internalType: 'uint64',
+        name: 'slotPartId',
+        type: 'uint64',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'childId',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'childAddress',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint64',
+        name: 'childAssetId',
+        type: 'uint64',
+      },
     ],
     name: 'ChildAssetEquipped',
     type: 'event',
@@ -184,12 +361,42 @@ export const RMRKEquippableImpl = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' },
-      { indexed: true, internalType: 'uint64', name: 'assetId', type: 'uint64' },
-      { indexed: true, internalType: 'uint64', name: 'slotPartId', type: 'uint64' },
-      { indexed: false, internalType: 'uint256', name: 'childId', type: 'uint256' },
-      { indexed: false, internalType: 'address', name: 'childAddress', type: 'address' },
-      { indexed: false, internalType: 'uint64', name: 'childAssetId', type: 'uint64' },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        internalType: 'uint64',
+        name: 'assetId',
+        type: 'uint64',
+      },
+      {
+        indexed: true,
+        internalType: 'uint64',
+        name: 'slotPartId',
+        type: 'uint64',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'childId',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'childAddress',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint64',
+        name: 'childAssetId',
+        type: 'uint64',
+      },
     ],
     name: 'ChildAssetUnequipped',
     type: 'event',
@@ -197,10 +404,30 @@ export const RMRKEquippableImpl = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' },
-      { indexed: false, internalType: 'uint256', name: 'childIndex', type: 'uint256' },
-      { indexed: true, internalType: 'address', name: 'childAddress', type: 'address' },
-      { indexed: true, internalType: 'uint256', name: 'childId', type: 'uint256' },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'childIndex',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'childAddress',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'childId',
+        type: 'uint256',
+      },
     ],
     name: 'ChildProposed',
     type: 'event',
@@ -208,11 +435,36 @@ export const RMRKEquippableImpl = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' },
-      { indexed: false, internalType: 'uint256', name: 'childIndex', type: 'uint256' },
-      { indexed: true, internalType: 'address', name: 'childAddress', type: 'address' },
-      { indexed: true, internalType: 'uint256', name: 'childId', type: 'uint256' },
-      { indexed: false, internalType: 'bool', name: 'fromPending', type: 'bool' },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'childIndex',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'childAddress',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'childId',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'bool',
+        name: 'fromPending',
+        type: 'bool',
+      },
       { indexed: false, internalType: 'bool', name: 'toZero', type: 'bool' },
     ],
     name: 'ChildTransferred',
@@ -221,8 +473,18 @@ export const RMRKEquippableImpl = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'address', name: 'contributor', type: 'address' },
-      { indexed: false, internalType: 'bool', name: 'isContributor', type: 'bool' },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'contributor',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'bool',
+        name: 'isContributor',
+        type: 'bool',
+      },
     ],
     name: 'ContributorUpdate',
     type: 'event',
@@ -232,9 +494,24 @@ export const RMRKEquippableImpl = [
     inputs: [
       { indexed: true, internalType: 'address', name: 'from', type: 'address' },
       { indexed: true, internalType: 'address', name: 'to', type: 'address' },
-      { indexed: false, internalType: 'uint256', name: 'fromTokenId', type: 'uint256' },
-      { indexed: false, internalType: 'uint256', name: 'toTokenId', type: 'uint256' },
-      { indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'fromTokenId',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'toTokenId',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
     ],
     name: 'NestTransfer',
     type: 'event',
@@ -242,8 +519,18 @@ export const RMRKEquippableImpl = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'address', name: 'previousOwner', type: 'address' },
-      { indexed: true, internalType: 'address', name: 'newOwner', type: 'address' },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'previousOwner',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'newOwner',
+        type: 'address',
+      },
     ],
     name: 'OwnershipTransferred',
     type: 'event',
@@ -253,7 +540,12 @@ export const RMRKEquippableImpl = [
     inputs: [
       { indexed: true, internalType: 'address', name: 'from', type: 'address' },
       { indexed: true, internalType: 'address', name: 'to', type: 'address' },
-      { indexed: true, internalType: 'uint256', name: 'tokenId', type: 'uint256' },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
     ],
     name: 'Transfer',
     type: 'event',
@@ -261,9 +553,24 @@ export const RMRKEquippableImpl = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: 'uint64', name: 'equippableGroupId', type: 'uint64' },
-      { indexed: true, internalType: 'uint64', name: 'slotPartId', type: 'uint64' },
-      { indexed: false, internalType: 'address', name: 'parentAddress', type: 'address' },
+      {
+        indexed: true,
+        internalType: 'uint64',
+        name: 'equippableGroupId',
+        type: 'uint64',
+      },
+      {
+        indexed: true,
+        internalType: 'uint64',
+        name: 'slotPartId',
+        type: 'uint64',
+      },
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'parentAddress',
+        type: 'address',
+      },
     ],
     name: 'ValidParentEquippableGroupIdSet',
     type: 'event',
@@ -543,7 +850,11 @@ export const RMRKEquippableImpl = [
   {
     inputs: [
       { internalType: 'uint256', name: 'tokenId', type: 'uint256' },
-      { internalType: 'address', name: 'targetCatalogAddress', type: 'address' },
+      {
+        internalType: 'address',
+        name: 'targetCatalogAddress',
+        type: 'address',
+      },
       { internalType: 'uint64', name: 'slotPartId', type: 'uint64' },
     ],
     name: 'getEquipment',
@@ -553,7 +864,11 @@ export const RMRKEquippableImpl = [
           { internalType: 'uint64', name: 'assetId', type: 'uint64' },
           { internalType: 'uint64', name: 'childAssetId', type: 'uint64' },
           { internalType: 'uint256', name: 'childId', type: 'uint256' },
-          { internalType: 'address', name: 'childEquippableAddress', type: 'address' },
+          {
+            internalType: 'address',
+            name: 'childEquippableAddress',
+            type: 'address',
+          },
         ],
         internalType: 'struct IERC6220.Equipment',
         name: '',
@@ -929,7 +1244,9 @@ export const RMRKEquippableImpl = [
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'address', name: 'newRoyaltyRecipient', type: 'address' }],
+    inputs: [
+      { internalType: 'address', name: 'newRoyaltyRecipient', type: 'address' },
+    ],
     name: 'updateRoyaltyRecipient',
     outputs: [],
     stateMutability: 'nonpayable',

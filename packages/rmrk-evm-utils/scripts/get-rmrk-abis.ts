@@ -1,6 +1,6 @@
-import 'dotenv/config';
-import { Abi } from 'abitype/zod';
 import * as fs from 'fs';
+import { Abi } from 'abitype/zod';
+import 'dotenv/config';
 import { Address } from 'viem';
 import { EVM_RMRK_CONTRACTS, NETWORK_CONTACTS_PROPS } from '../src/lib';
 import { EVM_NETWORKS } from '../src/lib/chain-mapping';
@@ -32,10 +32,14 @@ const getRmrkAbi = async (contractName: string, contractAddress: Address) => {
 };
 
 const getRmrkAbis = async () => {
-  for (const contractName of Object.keys(EVM_RMRK_CONTRACTS[EVM_NETWORKS.base])) {
+  for (const contractName of Object.keys(
+    EVM_RMRK_CONTRACTS[EVM_NETWORKS.base],
+  )) {
     await getRmrkAbi(
       contractName,
-      EVM_RMRK_CONTRACTS[EVM_NETWORKS.base][contractName as keyof typeof NETWORK_CONTACTS_PROPS],
+      EVM_RMRK_CONTRACTS[EVM_NETWORKS.base][
+        contractName as keyof typeof NETWORK_CONTACTS_PROPS
+      ],
     );
   }
 };
