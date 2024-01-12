@@ -7,25 +7,31 @@ Utilities for working with NFT metadata and media stored on ipfs.
 ## Installation
 
 ```bash
-
+pnpm install @rmrk-team/ipfs-utils
 ```
 
 ## Usage
 
-```tsx
+```ts
+import { sanitizeIpfsUrl, DEFAULT_IPFS_GATEWAY_URLS, DEFAULT_IPFS_GATEWAY_KEYS, containsCID } from '@rmrk-team/ipfs-utils';
 
+const ipfsUri = 'ipfs://QmVfpP2WQmmRaGk3VPehKxteTvsG465rJDokY3JiyweHBn';
+const sanitizedIpfsUrl = sanitizeIpfsUrl(ipfsUri, DEFAULT_IPFS_GATEWAY_URLS[DEFAULT_IPFS_GATEWAY_KEYS.pinata]);
+console.log(sanitizedIpfsUrl); // https://gateway.pinata.cloud/ipfs/QmVfpP2WQmmRaGk3VPehKxteTvsG465rJDokY3JiyweHBn
+
+const { containsCid } = containsCID(sanitizedIpfsUrl);
+console.log(containsCid); // true
 ```
 
-## Building
+```ts
+const nftCollectionMetadata = await fetchIpfsMetadata('ipfs://QmVfpP2WQmmRaGk3VPehKxteTvsG465rJDokY3JiyweHBn');
 
-```bash
-
+console.log('nftCollectionMetadata', {
+    name: nftCollectionMetadata.name,
+    image: nftCollectionMetadata.image,
+    description: nftCollectionMetadata.description,
+});
 ```
 
-## Publishing
-
-```bash
-
-```
 
 ## License

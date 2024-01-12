@@ -16,11 +16,12 @@ import { usePublicClient, useReadContract } from 'wagmi';
 import type { RenderPart } from '../types/types.js';
 // import { sanitizeIpfsUrl } from '../lib/ipfs';
 import { Providers } from './providers.js';
+import type { Chain } from "wagmi/chains";
 
 interface INFTRenderer {
-  chainId: number;
+  chainId: Chain['id'];
   contractAddress: Address;
-  tokenId: string;
+  tokenId: bigint;
   advancedMode?: boolean;
   loader?: React.ReactNode;
 }
@@ -55,32 +56,9 @@ export function NFTRenderer({
     chainId,
   });
 
-  // const { address: targetEmoter = zeroAddress } = useAccount();
-
   const isValidAddress = isAddress(contractAddress);
   const [isContract, setIsContract] = useState<boolean>();
   const [isGettingIsContract, setIsGettingIsContract] = useState<boolean>(true);
-
-  // const [emotes, setEmotes] = useState<Record<string, number>>({});
-  // const [haveEmotersUsedEmotes, setHaveEmotersUsedEmotes] = useState<boolean[]>([]);
-
-  // const args = useMemo(() => {
-  //   const emoteArr = Object.keys(emotes);
-  //
-  //   return [
-  //     Array.from({ length: emoteArr.length }, () => targetEmoter),
-  //     Array.from({ length: emoteArr.length }, () => contractAddress),
-  //     Array.from({ length: emoteArr.length }, () => tokenId),
-  //     emoteArr,
-  //   ];
-  // }, [contractAddress, tokenId, emotes, targetEmoter]);
-
-  // const { writeAsync: addEmote } = useContractWrite({
-  //   address: EmotableRegistryAddress,
-  //   abi: EmotableRegistryABI,
-  //   functionName: 'emote',
-  //   chainId,
-  // });
 
   useEffect(() => {
     (async () => {
@@ -241,7 +219,7 @@ export function NFTRenderer({
           {advancedMode ? (
             <>
               <h1>
-                Token {tokenId} on {network} in {contractAddress}
+                Token {tokenId.toString()} on {network} in {contractAddress}
               </h1>
               {composableState ? (
                 <div>

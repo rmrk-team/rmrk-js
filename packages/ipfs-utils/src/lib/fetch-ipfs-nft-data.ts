@@ -1,12 +1,12 @@
 import type { Metadata } from '@rmrk-team/types';
-import { IPFS_PROVIDERS, sanitizeIpfsUrl } from './ipfs.js';
-import type { IpfsProviders } from './ipfs.js';
+import { DEFAULT_IPFS_GATEWAY_KEYS, sanitizeIpfsUrl } from './ipfs.js';
+import type { IpfsGateways } from './ipfs.js';
 
 export const fetchIpfsNftData = async (
   metadataUri?: string | null,
-  ipfsGateway?: IPFS_PROVIDERS,
-): Promise<{ data: Metadata; provider?: keyof IpfsProviders } | null> => {
-  const gatewayUrl = ipfsGateway || IPFS_PROVIDERS.rmrkIpfsCache;
+  ipfsGateway?: DEFAULT_IPFS_GATEWAY_KEYS,
+): Promise<{ data: Metadata; provider?: keyof IpfsGateways } | null> => {
+  const gatewayUrl = ipfsGateway || DEFAULT_IPFS_GATEWAY_KEYS.pinata;
   const ipfsUrlWithGateway = sanitizeIpfsUrl(metadataUri, gatewayUrl);
 
   if (!ipfsUrlWithGateway) {

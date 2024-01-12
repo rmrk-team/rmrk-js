@@ -1,27 +1,21 @@
 import { cid } from 'is-ipfs';
 
-export type IpfsProviders = Record<IPFS_PROVIDERS, string>;
-export const ipfsProviders: IpfsProviders = {
+export type IpfsGateways = Record<DEFAULT_IPFS_GATEWAY_KEYS, string>;
+export const DEFAULT_IPFS_GATEWAY_URLS: IpfsGateways = {
   cloudflare: 'https://cloudflare-ipfs.com',
   ipfs: 'https://ipfs.io',
-  pinata: 'https://rmrk.mypinata.cloud',
-  pinataUnrestricted: 'http://ipfs.rmrk.link',
+  pinata: 'https://gateway.pinata.cloud',
   nftStorage: 'https://nftstorage.link',
-  rmrkIpfsCache: 'https://ipfs2.rmrk.link',
 };
 
-export enum IPFS_PROVIDERS {
-  cloudflare = 'cloudflare',
-  ipfs = 'ipfs',
-  pinata = 'pinata',
-  pinataUnrestricted = 'pinataUnrestricted',
-  nftStorage = 'nftStorage',
-  rmrkIpfsCache = 'rmrkIpfsCache',
+export const DEFAULT_IPFS_GATEWAY_KEYS = {
+  cloudflare: 'cloudflare',
+  ipfs: 'ipfs',
+  pinata: 'pinata',
+  nftStorage: 'nftStorage',
 }
 
-export const resolveIpfsProvider = (
-  provider: keyof IpfsProviders = IPFS_PROVIDERS.cloudflare,
-) => ipfsProviders[provider];
+export type DEFAULT_IPFS_GATEWAY_KEYS = (typeof DEFAULT_IPFS_GATEWAY_KEYS)[keyof typeof DEFAULT_IPFS_GATEWAY_KEYS];
 
 export const containsCID = (ipfsUrl?: string | null) => {
   if (typeof ipfsUrl !== 'string') {
@@ -87,7 +81,7 @@ export const convertToDesiredGateway = (
 
 export const sanitizeIpfsUrl = (
   ipfsUrl?: string | null,
-  provider?: keyof IpfsProviders,
+  gatewayUrl = DEFAULT_IPFS_GATEWAY_URLS[DEFAULT_IPFS_GATEWAY_KEYS.pinata],
 ) => {
   if (!ipfsUrl || typeof ipfsUrl !== 'string') return '';
 
@@ -96,7 +90,7 @@ export const sanitizeIpfsUrl = (
   }
 
   if (containsCID(ipfsUrl).containsCid) {
-    return convertToDesiredGateway(ipfsUrl, resolveIpfsProvider(provider));
+    return convertToDesiredGateway(ipfsUrl, gatewayUrl);
   }
 
   return '';

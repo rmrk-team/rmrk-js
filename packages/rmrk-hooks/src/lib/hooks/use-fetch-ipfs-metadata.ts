@@ -1,19 +1,19 @@
-import { IPFS_PROVIDERS, fetchIpfsMetadata } from '@rmrk-team/ipfs-utils';
+import { fetchIpfsMetadata, DEFAULT_IPFS_GATEWAY_URLS, DEFAULT_IPFS_GATEWAY_KEYS } from '@rmrk-team/ipfs-utils';
 import { useQuery } from '@tanstack/react-query';
 
-type Props = { metadataUri: string | undefined; ipfsGateway?: IPFS_PROVIDERS };
+type Props = { metadataUri: string | undefined; ipfsGatewayUrl?: string };
 
 type Options = { enabled?: boolean };
 
 export const useFetchIpfsMetadata = (
-  { metadataUri, ipfsGateway }: Props,
+  { metadataUri, ipfsGatewayUrl }: Props,
   options?: Options,
 ) => {
   const { enabled = true } = options || {};
   return useQuery({
     queryKey: ['fetchIpfsMetadata', metadataUri],
     queryFn: () => {
-      return fetchIpfsMetadata(metadataUri, ipfsGateway);
+      return fetchIpfsMetadata(metadataUri, ipfsGatewayUrl || DEFAULT_IPFS_GATEWAY_URLS[DEFAULT_IPFS_GATEWAY_KEYS.cloudflare]);
     },
     enabled,
   });

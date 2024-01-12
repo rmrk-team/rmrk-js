@@ -1,10 +1,9 @@
-import { IPFS_PROVIDERS } from '@rmrk-team/ipfs-utils';
 import type { Metadata } from '@rmrk-team/types';
 import { useFetchIpfsMetadata } from './use-fetch-ipfs-metadata.js';
 
 type Arguments = {
   metadataUri: string | undefined;
-  ipfsGateway?: IPFS_PROVIDERS;
+  ipfsGatewayUrl?: string;
 };
 
 type Options = { enabled?: boolean };

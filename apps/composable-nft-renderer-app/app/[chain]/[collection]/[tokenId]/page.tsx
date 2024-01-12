@@ -28,7 +28,7 @@ export default function TokenDisplay({
         <NFTRenderer
           chainId={chainId}
           contractAddress={collection}
-          tokenId={tokenId}
+          tokenId={BigInt(tokenId)}
           advancedMode={advancedMode}
           // emoteMode={emoteMode}
           loader={<Loader />}

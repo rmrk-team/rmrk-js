@@ -10,26 +10,28 @@
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
+    "@ark-ui/anatomy": "^1.2.0",
     "@ark-ui/react": "^1.2.1",
     "@rainbow-me/rainbowkit": "^2.0.0-beta.0",
     "@rmrk-team/nft-renderer": "workspace:*",
     "@rmrk-team/rmrk-evm-utils": "workspace:*",
     "@tanstack/react-query": "^5.4.3",
+    "lucide-react": "^0.303.0",
     "next": "13.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "lucide-react": "^0.303.0",
     "viem": "^2.0.6",
     "wagmi": "^2.1.2"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.24.1",
+    "@park-ui/panda-preset": "^0.28.0",
     "@types/node": "18.16.9",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
-    "@pandacss/dev": "^0.24.1",
-    "@park-ui/panda-preset": "^0.28.0",
     "@typescript-eslint/eslint-plugin": "5.58.0",
     "@typescript-eslint/parser": "5.58.0",
+    "@zag-js/select": "^0.32.0",
     "abitype": "^0.10.3",
     "eslint": "8.53.0",
     "eslint-config-next": "14.0.1",
@@ -39,7 +41,6 @@
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "prettier": "^3.0.3",
-    "typescript": "5.4.0-dev.20240111",
-    "@zag-js/select": "^0.32.0"
+    "typescript": "5.4.0-dev.20240111"
   }
 }
