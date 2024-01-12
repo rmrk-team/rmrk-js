@@ -1,46 +1,42 @@
 {
-  "compileOnSave": false,
+  // This tsconfig file contains the shared config for the build (tsconfig.build.json) and type checking (tsconfig.json) config.
+  "include": [],
   "compilerOptions": {
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "es2020",
-    "module": "esnext",
+    // Incremental builds
+    // NOTE: Enabling incremental builds speeds up `tsc`. Keep in mind though that it does not reliably bust the cache when the `tsconfig.json` file changes.
+    "incremental": true,
+
+    // Type checking
+    "strict": true,
+    // "exactOptionalPropertyTypes": true, // Enabled once supported in viem
+    "noFallthroughCasesInSwitch": true, // Not enabled by default in `strict` mode.
+    "noImplicitOverride": true, // Not enabled by default in `strict` mode.
+    "noImplicitReturns": true, // Not enabled by default in `strict` mode.
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": false, // Not enabled by default in `strict` mode.
+    "noUnusedParameters": false, // Not enabled by default in `strict` mode.
+    "useDefineForClassFields": true, // Not enabled by default in `strict` mode unless we bump `target` to ES2022.
+    "useUnknownInCatchVariables": true,
+
+    // JavaScript support
+    "allowJs": false,
+    "checkJs": false,
+
+    // Interop constraints
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
+
+    // Language and environment
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "target": "ES2021", // Setting this to `ES2021` enables native support for `Node v16+`: https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping.
     "lib": [
-      "es2017",
-      "dom",
-      "es2019",
-      "es2020",
-      "esnext"
+      "ES2022", // By using ES2022 we get access to the `.cause` property on `Error` instances.
+      "DOM" // We are adding `DOM` here to get the `fetch`, etc. types. This should be removed once these types are available via DefinitelyTyped.
     ],
+
+    // Skip type checking for node modules
     "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "rootDir": ".",
-    "baseUrl": ".",
-    "paths": {
-      "@rmrk-team/ipfs-utils": [
-        "libs/ipfs-utils/src/index.ts"
-      ],
-      "@rmrk-team/nft-renderer": [
-        "nft-renderer/src/index.ts"
-      ],
-      "@rmrk-team/nft-renderer/server": [
-        "nft-renderer/src/server.ts"
-      ],
-      "@rmrk-team/rmrk-2d-renderer": [
-        "libs/rmrk-2d-renderer/src/index.ts"
-      ],
-      "@rmrk-team/rmrk-evm-utils": [
-        "libs/rmrk-evm-utils/src/index.ts"
-      ],
-      "@rmrk-team/rmrk-hooks": [
-        "libs/rmrk-hooks/src/index.ts"
-      ],
-      "@rmrk-team/types": [
-        "libs/types/src/index.ts"
-      ]
-    }
-  },
-  "exclude": [
-    "node_modules"
-  ]
+    "noErrorTruncation": true
+  }
 }

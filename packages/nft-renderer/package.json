@@ -1,0 +1,57 @@
+{
+  "name": "@rmrk-team/nft-renderer",
+  "version": "0.0.1",
+  "private": false,
+  "scripts": {
+    "build": "pnpm run clean && pnpm run build:esm+types",
+    "build:esm+types": "tsc --project tsconfig.build.json --outDir ./dist/esm --declaration --declarationMap --declarationDir ./dist/types",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo actions chains connectors query",
+    "test:build": "publint --strict",
+    "typecheck": "tsc --noEmit"
+  },
+  "files": [
+    "dist/**",
+    "!dist/**/*.tsbuildinfo",
+    "src/**/*.ts",
+    "!src/**/*.test.ts",
+    "!src/**/*.test-d.ts"
+  ],
+  "type": "module",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "typings": "./dist/types/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/esm/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@rmrk-team/rmrk-2d-renderer": "workspace:*",
+    "@rmrk-team/rmrk-evm-utils": "workspace:*",
+    "@rmrk-team/rmrk-hooks": "workspace:*",
+    "@rainbow-me/rainbowkit": "^2.0.0-beta.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.16.9",
+    "@types/react": "18.2.33",
+    "@types/react-dom": "18.2.14",
+    "@vitejs/plugin-react": "^4.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.4.0-dev.20240111",
+    "vite": "^4.4.9",
+    "viem": "^2.0.6",
+    "wagmi": "^2.1.2"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": ">=5.0.0",
+    "react": ">=18",
+    "typescript": ">=5.3.3",
+    "viem": ">=1.21.3",
+    "wagmi": ">=1.4.12"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "@rmrk-team/rmrk-2d-renderer",
+  "version": "0.0.1",
+  "private": false,
+  "scripts": {
+    "build": "pnpm run clean && pnpm run build:esm+types",
+    "build:esm+types": "tsc --project tsconfig.build.json --outDir ./dist/esm --declaration --declarationMap --declarationDir ./dist/types",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo actions chains connectors query",
+    "test:build": "publint --strict",
+    "typecheck": "tsc --noEmit"
+  },
+  "files": [
+    "dist/**",
+    "!dist/**/*.tsbuildinfo",
+    "src/**/*.ts",
+    "!src/**/*.test.ts",
+    "!src/**/*.test-d.ts",
+    "typings/rmrk-2d-renderer/index.d.ts"
+  ],
+  "type": "module",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "typings": "./dist/types/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/esm/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@pixi/react": "^7.1.1",
+    "@rmrk-team/ipfs-utils": "workspace:*",
+    "isomorphic-dompurify": "^2.2.0",
+    "lucide-react": "^0.303.0",
+    "pixi.js": "^7.2.4",
+    "use-image": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "18.16.9",
+    "@types/react": "18.2.33",
+    "@types/react-dom": "18.2.14",
+    "@vitejs/plugin-react": "^4.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.4.0-dev.20240111",
+    "vite": "^4.4.9"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "typescript": ">=5.3.3"
+  }
+}

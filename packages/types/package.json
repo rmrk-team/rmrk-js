@@ -1,0 +1,31 @@
+{
+  "name": "@rmrk-team/types",
+  "version": "0.0.1",
+  "private": false,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "files": [
+    "dist/**",
+    "!dist/**/*.tsbuildinfo",
+    "src/**/*.ts",
+    "!src/**/*.test.ts",
+    "!src/**/*.test-d.ts"
+  ],
+  "type": "module",
+  "main": "dist/rmrk-team-types.cjs.js",
+  "module": "dist/rmrk-team-types.esm.js",
+  "types": "./dist/types/index.d.ts",
+  "typings": "./dist/types/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/esm/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.3.3"
+  }
+}

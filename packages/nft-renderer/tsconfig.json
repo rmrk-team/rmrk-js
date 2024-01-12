@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "noUnusedLocals": false, // Not enabled by default in `strict` mode.
+    "noUnusedParameters": false, // Not enabled by default in `strict` mode.
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "test/**/*.ts"],
+  "exclude": []
+}

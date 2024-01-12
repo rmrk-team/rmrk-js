@@ -1,15 +1,13 @@
 'use client';
 
-import React, { ChangeEvent, useState } from 'react';
-import Image from 'next/image';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { GitHubLogoIcon } from '@radix-ui/react-icons';
-import { CollectionItem, Portal, Select } from '@ark-ui/react';
-import { ChevronDownIcon } from 'lucide-react';
+// import { GitHubLogoIcon } from '@radix-ui/react-icons';
+import { CollectionItem } from '@ark-ui/react';
 import Page from '../components/app/page';
-import { githubLink, rmrkLink } from 'lib/links';
+import { rmrkLink } from 'lib/links';
 import { InputSelect } from 'components/common/select';
-import { Stack, Container, VStack, HStack, Wrap, Center } from 'styled-system/jsx';
+import { Stack, Container, VStack, HStack, Center } from 'styled-system/jsx';
 import { ValueChangeDetails } from '@zag-js/select';
 import { Input } from 'components/park-ui/input';
 import { Button } from 'components/park-ui/button';
@@ -42,9 +40,9 @@ export default function Home() {
               </Link>{' '}
               NFT Renderer
             </h1>
-            <Link href={githubLink} target="_blank">
-              <GitHubLogoIcon width={32} height={32} />
-            </Link>
+            {/*<Link href={githubLink} target="_blank">*/}
+            {/*  <GitHubLogoIcon width={32} height={32} />*/}
+            {/*</Link>*/}
           </HStack>
         </Center>
 
