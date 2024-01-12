@@ -1,5 +1,5 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
-import { Container, Flex } from 'styled-system/jsx';
+import { Flex } from 'styled-system/jsx';
 import { Footer } from './footer';
 
 const Page: FunctionComponent<PropsWithChildren> = ({ children }) => {

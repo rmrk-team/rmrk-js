@@ -1,7 +1,4 @@
 import { defineConfig, defineGlobalStyles } from '@pandacss/dev';
-import { formLabel } from 'lib/panda/recipes/form-label.recipe';
-import { inputRecipe } from 'lib/panda/recipes/input.recipe';
-import { selectRecipe } from 'lib/panda/recipes/select.recipe';
 
 const globalCss = defineGlobalStyles({
   'html, body': {

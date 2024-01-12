@@ -101,7 +101,7 @@ importers:
         version: 0.32.0
       abitype:
         specifier: ^0.10.3
-        version: 0.10.3(typescript@5.4.0-dev.20240111)
+        version: 0.10.3(typescript@5.4.0-dev.20240111)(zod@3.22.4)
       eslint:
         specifier: 8.53.0
         version: 8.53.0
@@ -242,6 +242,9 @@ importers:
       '@types/node':
         specifier: 18.16.9
         version: 18.16.9
+      abitype:
+        specifier: ^0.10.3
+        version: 0.10.3(typescript@5.4.0-dev.20240111)(zod@3.22.4)
       install:
         specifier: ^0.13.0
         version: 0.13.0
@@ -311,7 +314,7 @@ importers:
         version: 4.2.1(vite@4.5.1)
       abitype:
         specifier: ^0.10.3
-        version: 0.10.3(typescript@5.4.0-dev.20240111)
+        version: 0.10.3(typescript@5.4.0-dev.20240111)(zod@3.22.4)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -6503,7 +6506,7 @@ packages:
     dependencies:
       typescript: 5.4.0-dev.20240111
 
-  /abitype@0.10.3(typescript@5.4.0-dev.20240111):
+  /abitype@0.10.3(typescript@5.4.0-dev.20240111)(zod@3.22.4):
     resolution: {integrity: sha512-tRN+7XIa7J9xugdbRzFv/95ka5ivR/sRe01eiWvM0HWWjHuigSZEACgKa0sj4wGuekTDtghCx+5Izk/cOi78pQ==}
     peerDependencies:
       typescript: '>=5.0.4'
@@ -6515,6 +6518,7 @@ packages:
         optional: true
     dependencies:
       typescript: 5.4.0-dev.20240111
+      zod: 3.22.4
     dev: true
 
   /abitype@0.8.7(typescript@5.4.0-dev.20240111)(zod@3.22.4):

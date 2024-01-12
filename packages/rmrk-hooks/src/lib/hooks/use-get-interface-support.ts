@@ -32,8 +32,7 @@ export const useGetInterfaceSupport = (args: Arguments, options?: Options) => {
     functionName: 'getInterfaceSupport',
     chainId,
     args: [contractAddress],
-    // query: { enabled: enabled && !!contractAddress, staleTime: Infinity, cacheTime: ONE_DAY },
-    query: { enabled: enabled && !!contractAddress },
+    query: { enabled: enabled && !!contractAddress, staleTime: Infinity, gcTime: ONE_DAY },
   });
 
   const [

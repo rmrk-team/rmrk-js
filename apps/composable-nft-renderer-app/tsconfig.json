@@ -1,71 +1,38 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
+    "module": "esnext",
+    "target": "ES2019",
     "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "module": "ESNext",
+    "jsx": "preserve",
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "preserve",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowJs": true,
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "strict": false,
     "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "paths": {
-      "components/*": [
-        "./components/*"
-      ],
-      "lib/*": [
-        "./lib/*"
-      ],
-      "styled-system/*": [
-        "./styled-system/*"
-      ],
-      "@rmrk-team/ipfs-utils": [
-        "../../libs/ipfs-utils/src/index.ts"
-      ],
-      "@rmrk-team/rmrk-2d-renderer": [
-        "../../libs/rmrk-2d-renderer/src/index.ts"
-      ],
-      "@rmrk-team/rmrk-evm-utils": [
-        "../../libs/rmrk-evm-utils/src/index.ts"
-      ],
-      "@rmrk-team/rmrk-hooks": [
-        "../../libs/rmrk-hooks/src/index.ts"
-      ],
-      "@rmrk-team/types": [
-        "../../libs/types/src/index.ts",
-      ]
-    }
+    ]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.jsx",
-    "./styled-system",
-    "./dist/types/**/*.ts",
-    "./next-env.d.ts",
-    ".next/types/**/*.ts"
-  ],
   "exclude": [
-    "./node_modules"
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts"
   ]
 }

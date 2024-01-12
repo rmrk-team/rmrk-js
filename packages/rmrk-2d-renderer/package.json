@@ -18,6 +18,7 @@
     "dist/**",
     "!dist/**/*.tsbuildinfo",
     "src/**/*.ts",
+    "src/**/*.tsx",
     "!src/**/*.test.ts",
     "!src/**/*.test-d.ts",
     "typings/rmrk-2d-renderer/index.d.ts"

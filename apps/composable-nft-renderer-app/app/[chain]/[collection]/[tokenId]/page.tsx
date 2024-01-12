@@ -18,7 +18,7 @@ export default function TokenDisplay({
   assertIsEvmNetwork(chain);
   const searchParams = useSearchParams();
   const advancedMode = searchParams.get('advancedMode') === 'true';
-  const emoteMode = searchParams.get('emoteMode') === 'true';
+  // const emoteMode = searchParams.get('emoteMode') === 'true';
 
   const chainId = getChainIdByNetworkName(chain);
 
@@ -30,7 +30,7 @@ export default function TokenDisplay({
           contractAddress={collection}
           tokenId={tokenId}
           advancedMode={advancedMode}
-          emoteMode={emoteMode}
+          // emoteMode={emoteMode}
           loader={<Loader />}
         />
       </Flex>
