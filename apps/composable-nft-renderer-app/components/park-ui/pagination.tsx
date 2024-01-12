@@ -29,7 +29,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
               page.type === 'page' ? (
                 <ArkPagination.Item
                   className={styles.item}
-                  key={index}
+                  key={`${page.value}-${index}`}
                   {...page}
                   asChild
                 >
@@ -38,7 +38,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
               ) : (
                 <ArkPagination.Ellipsis
                   className={styles.ellipsis}
-                  key={index}
+                  key={'pagination-ellipsis-more'}
                   index={index}
                 >
                   &#8230;
@@ -60,7 +60,12 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
 Pagination.displayName = 'Pagination';
 
 const ChevronLeftIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    role="img"
+    aria-label="previous page"
+  >
     <path
       fill="none"
       stroke="currentColor"
@@ -73,7 +78,12 @@ const ChevronLeftIcon = () => (
 );
 
 const ChevronRightIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    role="img"
+    aria-label="next page"
+  >
     <path
       fill="none"
       stroke="currentColor"

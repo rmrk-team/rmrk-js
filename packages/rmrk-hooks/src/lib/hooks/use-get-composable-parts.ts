@@ -70,7 +70,7 @@ export const useGetComposableParts = (
     abi: RMRKEquippableImpl,
     chainId,
     functionName: 'getAssetAndEquippableData',
-    args: [tokenId, assetId!],
+    args: [tokenId, assetId || BigInt(0)],
     query: { enabled: enabled && !!assetId },
   });
 

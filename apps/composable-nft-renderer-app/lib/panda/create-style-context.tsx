@@ -11,6 +11,7 @@ import {
 type GenericProps = Record<string, unknown>;
 type StyleRecipe = {
   (props?: GenericProps): Record<string, string>;
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   splitVariantProps: (props: GenericProps) => any;
 };
 type StyleSlot<R extends StyleRecipe> = keyof ReturnType<R>;

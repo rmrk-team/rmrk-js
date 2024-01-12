@@ -27,7 +27,7 @@ export const useGetInterfaceSupport = (args: Arguments, options?: Options) => {
   const network = mapChainIdToNetwork(chainId);
 
   const { data, isLoading, error, refetch } = useReadContract({
-    address: EVM_RMRK_CONTRACTS[network]['RMRKCollectionUtils'],
+    address: EVM_RMRK_CONTRACTS[network].RMRKCollectionUtils,
     abi: RMRKCollectionUtils,
     functionName: 'getInterfaceSupport',
     chainId,

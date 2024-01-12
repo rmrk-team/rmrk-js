@@ -34,7 +34,7 @@ export const fetchIpfsMetadata = async (
       }
     }
   } catch (error) {
-    console.log(`Failed to fetch from gateways`, error);
+    console.log('Failed to fetch from gateways', error);
   }
 
   return null;

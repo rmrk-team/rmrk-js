@@ -65,7 +65,7 @@ export const useGetTokenPrimaryAsset = (
     refetch: refetTopAssetForToken,
   } = useReadContract({
     address: enabledSimplePrimaryAsset
-      ? EVM_RMRK_CONTRACTS[network]['RMRKEquipRenderUtils']
+      ? EVM_RMRK_CONTRACTS[network].RMRKEquipRenderUtils
       : undefined,
     abi: RMRKEquipRenderUtils,
     functionName: 'getTopAsset',
@@ -81,7 +81,7 @@ export const useGetTokenPrimaryAsset = (
     refetch: refetchTopAssetAndEquippableDataForToken,
   } = useReadContract({
     address: enabledAssetWithEquippableData
-      ? EVM_RMRK_CONTRACTS[network]['RMRKEquipRenderUtils']
+      ? EVM_RMRK_CONTRACTS[network].RMRKEquipRenderUtils
       : undefined,
     abi: RMRKEquipRenderUtils,
     functionName: 'getTopAssetAndEquippableDataForToken',

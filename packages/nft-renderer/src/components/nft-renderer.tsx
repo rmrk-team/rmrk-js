@@ -210,78 +210,73 @@ export function NFTRenderer({
         Unsupported chain
       </div>
     );
-  } else {
-    const isLoading =
-      isGettingIsContract ||
-      isLoadingTokenUri ||
-      isLoadingPrimaryAsset ||
-      isLoadingTokenMetadata ||
-      isLoadingComposableState ||
-      isLoadingGetInterfaceSupport;
-
-    return (
-      <div
-        ref={rendererContainerRef}
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'relative',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        {isLoading ? (
-          <div style={{ alignSelf: 'center' }}>{loader}</div>
-        ) : (
-          <>
-            {isValidAddress === false ? <p>Invalid address</p> : null}
-            {isValidAddress && isContract === false ? (
-              <p>Not a contract</p>
-            ) : null}
-            {isContract && isErrorTokenUri ? (
-              <p>Failed to get NFT data</p>
-            ) : null}
-
-            {advancedMode ? (
-              <>
-                <h1>
-                  Token {tokenId} on {network} in {contractAddress}
-                </h1>
-                {composableState ? (
-                  <div>
-                    <>
-                      <p>Is Equippable</p>
-                      <p>metadataURI: {assetMetadataUri}</p>
-                      <p>groupId: {equippableGroupId?.toString()}</p>
-                      <p>catalog: {catalogAddress}</p>
-                    </>
-                  </div>
-                ) : primaryAsset ? (
-                  <p>metadataURI: {primaryAsset.metadataUri}</p>
-                ) : tokenUri ? (
-                  <p>metadataURI: {tokenUri}</p>
-                ) : null}
-              </>
-            ) : null}
-
-            {renderParts && renderParts.length > 0 ? (
-              <MultiLayer2DRenderer
-                resources={renderParts}
-                resizeObserveRef={rendererContainerRef}
-                theme={primaryAsset?.metadata?.theme}
-                fillBgWithImageBlur
-                loader={loader}
-                style={{
-                  aspectRatio: '1/1',
-                  objectFit: 'contain',
-                  width: '100%',
-                  height: '100%',
-                }}
-              />
-            ) : null}
-          </>
-        )}
-      </div>
-    );
   }
+  const isLoading =
+    isGettingIsContract ||
+    isLoadingTokenUri ||
+    isLoadingPrimaryAsset ||
+    isLoadingTokenMetadata ||
+    isLoadingComposableState ||
+    isLoadingGetInterfaceSupport;
+
+  return (
+    <div
+      ref={rendererContainerRef}
+      style={{
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      {isLoading ? (
+        <div style={{ alignSelf: 'center' }}>{loader}</div>
+      ) : (
+        <>
+          {isValidAddress === false ? <p>Invalid address</p> : null}
+          {isValidAddress && !isContract ? <p>Not a contract</p> : null}
+          {isContract && isErrorTokenUri ? <p>Failed to get NFT data</p> : null}
+
+          {advancedMode ? (
+            <>
+              <h1>
+                Token {tokenId} on {network} in {contractAddress}
+              </h1>
+              {composableState ? (
+                <div>
+                  <>
+                    <p>Is Equippable</p>
+                    <p>metadataURI: {assetMetadataUri}</p>
+                    <p>groupId: {equippableGroupId?.toString()}</p>
+                    <p>catalog: {catalogAddress}</p>
+                  </>
+                </div>
+              ) : primaryAsset ? (
+                <p>metadataURI: {primaryAsset.metadataUri}</p>
+              ) : tokenUri ? (
+                <p>metadataURI: {tokenUri}</p>
+              ) : null}
+            </>
+          ) : null}
+
+          {renderParts && renderParts.length > 0 ? (
+            <MultiLayer2DRenderer
+              resources={renderParts}
+              resizeObserveRef={rendererContainerRef}
+              theme={primaryAsset?.metadata?.theme}
+              fillBgWithImageBlur
+              loader={loader}
+              style={{
+                aspectRatio: '1/1',
+                objectFit: 'contain',
+                width: '100%',
+                height: '100%',
+              }}
+            />
+          ) : null}
+        </>
+      )}
+    </div>
+  );
 }

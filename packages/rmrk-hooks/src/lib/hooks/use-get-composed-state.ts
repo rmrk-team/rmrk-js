@@ -4,7 +4,7 @@ import {
   mapChainIdToNetwork,
 } from '@rmrk-team/rmrk-evm-utils';
 import type { Address, Chain } from 'viem';
-import { useContractRead, useReadContract } from 'wagmi';
+import { useReadContract } from 'wagmi';
 import { useFetchMetadataAndAddToEntities } from './use-fetch-metadata-and-add-to-entities.js';
 import { useGetTokenPrimaryAsset } from './use-get-token-primary-asset.js';
 
@@ -61,7 +61,7 @@ export const useGetComposedState = (
     isError: isErrorEquippableData,
     error: errorEquippableData,
     refetch: refetchEquippableData,
-  } = useContractRead({
+  } = useReadContract({
     address: EVM_RMRK_CONTRACTS[network].RMRKEquipRenderUtils,
     abi: RMRKEquipRenderUtils,
     chainId,

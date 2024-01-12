@@ -1,11 +1,8 @@
 {
+  "$schema": "https://biomejs.dev/schemas/1.5.1/schema.json",
   "files": {
-    "include": [
-      "apps/**/*.js",
-      "packages/**/*.ts",
-      "apps/**/*.tsx",
-      "packages/**/*.jsx"
-    ]
+    "ignoreUnknown": true,
+    "ignore": ["apps/**/styled-system/**"]
   },
   "formatter": {
     "enabled": true,
@@ -16,8 +13,12 @@
   },
   "linter": {
     "enabled": true,
+
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "complexity": {
+        "noForEach": "off"
+      }
     }
   },
   "javascript": {

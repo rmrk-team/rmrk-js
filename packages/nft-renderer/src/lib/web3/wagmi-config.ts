@@ -47,9 +47,9 @@ export const chains = allSupportedChains;
 
 const transports: Record<number, Transport> = {};
 
-allSupportedChains.forEach((chain) => {
+for (const chain of productionChains) {
   transports[chain.id] = http();
-});
+}
 
 export const wagmiConfig = createConfig({
   chains,

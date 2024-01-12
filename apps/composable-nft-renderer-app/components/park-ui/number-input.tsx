@@ -44,7 +44,12 @@ export const NumberInput = forwardRef<HTMLDivElement, NumberInputProps>(
 NumberInput.displayName = 'NumberInput';
 
 const ChevronUpIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    role="img"
+    aria-label="number up"
+  >
     <path
       fill="none"
       stroke="currentColor"
@@ -57,7 +62,12 @@ const ChevronUpIcon = () => (
 );
 
 const ChevronDownIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    role="img"
+    aria-label="number down"
+  >
     <path
       fill="none"
       stroke="currentColor"

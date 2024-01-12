@@ -78,34 +78,33 @@ const useGetCanvasStateDimensions = (ref?: React.RefObject<HTMLDivElement>) => {
 
 //FIXME: This is sometimes extracted before all sprites are rendered, so not all resources are fully loaded inside of canvas, and we end up with incomplete image
 const useBackdropImage = (
-  enabled = true,
   allRenderableResources: IResource[],
+  enabled = true,
   pixiApp?: Application<ICanvas>,
 ) => {
   const [bgImage, setBgImage] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    setBgImage(undefined);
-  }, [JSON.stringify(allRenderableResources)]);
+    if (allRenderableResources) {
+      setBgImage(undefined);
+    }
+  }, [allRenderableResources]);
 
   // Get image from canvas to apply as a backdrop background
-  const extractImage = useCallback(
-    async (pixiApp: Application<ICanvas>) => {
-      const blob = await pixiApp.renderer.extract.image(pixiApp.stage);
-      setBgImage(blob.src);
-    },
-    [setBgImage],
-  );
+  const extractImage = async (pixiApp: Application<ICanvas>) => {
+    const blob = await pixiApp.renderer.extract.image(pixiApp.stage);
+    setBgImage(blob.src);
+  };
 
   // Get image from canvas to apply as a backdrop background
   useEffect(() => {
-    if (!bgImage && pixiApp && enabled) {
+    if (!bgImage && !!pixiApp && enabled) {
       // Wait for the canvas to be rendered
       setTimeout(() => {
         extractImage(pixiApp);
       }, 600);
     }
-  }, [!!pixiApp, enabled, bgImage, extractImage, pixiApp]);
+  }, [pixiApp, enabled, bgImage, extractImage]);
 
   return bgImage;
 };
@@ -143,12 +142,12 @@ export const MultiLayer2DRenderer = ({
 
   const allRenderableResources = useMemo(
     () => resources.filter((r) => !!r.src),
-    [JSON.stringify(resources)],
+    [resources],
   );
 
   const bgImage = useBackdropImage(
-    fillBgWithImageBlur && isAllResourcesLoaded,
     allRenderableResources,
+    fillBgWithImageBlur && isAllResourcesLoaded,
     pixiApp,
   );
 
@@ -172,7 +171,7 @@ export const MultiLayer2DRenderer = ({
       onResourceLoad(w, h);
       setPixiResourceLoadedCount((prev) => prev + 1);
     },
-    [onResourceLoad, setPixiResourceLoadedCount],
+    [onResourceLoad],
   );
 
   return (
@@ -271,6 +270,8 @@ export const MultiLayer2DRenderer = ({
   );
 };
 
+// Fix for weird pnpm type issue
+// biome-ignore lint/suspicious/noRedeclare: <explanation>
 type useImage = (
   url: string,
   crossOrigin?: 'anonymous' | 'use-credentials',
@@ -308,7 +309,7 @@ const useCreateResourceTexture = (
       const contentType = response.headers.get('content-type');
       const code = await response.text();
 
-      let svgContent;
+      let svgContent: string;
 
       if (theme && code && contentType?.includes('svg')) {
         svgContent = DOMPurify.sanitize(code, {

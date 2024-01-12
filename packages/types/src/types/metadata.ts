@@ -36,5 +36,6 @@ export type Metadata = {
   image?: string;
   image_data?: string;
   animation_url?: string;
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   [key: string]: any;
 };

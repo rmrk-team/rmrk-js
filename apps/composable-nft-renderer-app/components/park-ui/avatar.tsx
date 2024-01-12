@@ -10,7 +10,7 @@ export interface AvatarProps extends ArkAvatarProps, AvatarVariantProps {
   src?: string;
 }
 
-export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
+export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props) => {
   const [variantProps, localProps] = avatar.splitVariantProps(props);
   const { name, src, ...rootProps } = localProps;
   const styles = avatar(variantProps);
@@ -34,6 +34,8 @@ const UserIcon = () => (
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
+    role="img"
+    aria-label="user image"
   >
     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
     <circle cx="12" cy="7" r="4" />

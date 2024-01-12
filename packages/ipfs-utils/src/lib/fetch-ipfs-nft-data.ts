@@ -18,13 +18,13 @@ export const fetchIpfsNftData = async (
 
     if (response.status === 200) {
       const headers = response.headers.get('content-type');
-      if (headers && headers.includes('application/json')) {
+      if (headers?.includes('application/json')) {
         const data = await response.json();
         return { data, provider: gatewayUrl };
-      } else {
-        // Return early if content-type is not application/json
-        return null;
       }
+
+      // Return early if content-type is not application/json
+      return null;
     }
   } catch (error) {
     console.log(`Failed to fetch from ${gatewayUrl} gateway`, error);
