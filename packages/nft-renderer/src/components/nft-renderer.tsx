@@ -13,10 +13,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { isAddress } from 'viem';
 import type { Address } from 'viem';
 import { usePublicClient, useReadContract } from 'wagmi';
+import type { Chain } from 'wagmi/chains';
 import type { RenderPart } from '../types/types.js';
 // import { sanitizeIpfsUrl } from '../lib/ipfs';
 import { Providers } from './providers.js';
-import type { Chain } from 'wagmi/chains';
 
 interface INFTRenderer {
   chainId: Chain['id'];

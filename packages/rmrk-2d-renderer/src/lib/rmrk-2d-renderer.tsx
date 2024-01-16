@@ -109,11 +109,11 @@ const useBackdropImage = (
   return bgImage;
 };
 
-export type RMRKAssetPart =  {
+export type RMRKAssetPart = {
   src: string;
   z: number | [number, number | typeof INHERIT_RENDER_CONTEXT];
   resources?: RMRKAssetPart[];
-}
+};
 
 type Props = {
   resources: RMRKAssetPart[];
@@ -124,7 +124,7 @@ type Props = {
   theme?: Record<string | number | symbol, unknown>;
   fillBgWithImageBlur?: boolean;
   loader?: React.ReactNode;
-}
+};
 
 export const MultiLayer2DRenderer = ({
   resources,

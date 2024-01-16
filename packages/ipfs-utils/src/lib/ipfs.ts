@@ -13,9 +13,10 @@ export const DEFAULT_IPFS_GATEWAY_KEYS = {
   ipfs: 'ipfs',
   pinata: 'pinata',
   nftStorage: 'nftStorage',
-}
+};
 
-export type DEFAULT_IPFS_GATEWAY_KEYS = (typeof DEFAULT_IPFS_GATEWAY_KEYS)[keyof typeof DEFAULT_IPFS_GATEWAY_KEYS];
+export type DEFAULT_IPFS_GATEWAY_KEYS =
+  (typeof DEFAULT_IPFS_GATEWAY_KEYS)[keyof typeof DEFAULT_IPFS_GATEWAY_KEYS];
 
 export const containsCID = (ipfsUrl?: string | null) => {
   if (typeof ipfsUrl !== 'string') {

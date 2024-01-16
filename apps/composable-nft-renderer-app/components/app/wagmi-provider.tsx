@@ -3,5 +3,7 @@ import React from 'react';
 import { WagmiProvider as WagmiProviderInner } from 'wagmi';
 
 export const WagmiProvider = ({ children }: { children: React.ReactNode }) => {
-  return <WagmiProviderInner config={wagmiConfig}>{children}</WagmiProviderInner>;
+  return (
+    <WagmiProviderInner config={wagmiConfig}>{children}</WagmiProviderInner>
+  );
 };
