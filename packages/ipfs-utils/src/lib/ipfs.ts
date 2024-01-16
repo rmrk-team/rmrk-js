@@ -47,7 +47,7 @@ export const containsCID = (ipfsUrl?: string | null) => {
 
 export const convertToDesiredGateway = (
   ipfsUrl?: string | null,
-  gatewayPrefixovider?: string,
+  gatewayPrefixovider = DEFAULT_IPFS_GATEWAY_URLS[DEFAULT_IPFS_GATEWAY_KEYS.pinata],
 ) => {
   const results = containsCID(ipfsUrl);
   if (!ipfsUrl || results.containsCid !== true || !results.cid) {

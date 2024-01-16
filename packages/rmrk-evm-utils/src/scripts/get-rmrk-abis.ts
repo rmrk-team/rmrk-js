@@ -2,8 +2,8 @@ import * as fs from 'fs';
 import { Abi } from 'abitype/zod';
 import 'dotenv/config';
 import type { Address } from 'viem';
-import { EVM_RMRK_CONTRACTS, NETWORK_CONTACTS_PROPS } from '../src/index.js';
-import { EVM_NETWORKS } from '../src/index.js';
+import { EVM_RMRK_CONTRACTS, NETWORK_CONTACTS_PROPS } from '../index.js';
+import { EVM_NETWORKS } from '../index.js';
 
 const BASESCAN_API_URL = 'https://api.basescan.org/api';
 

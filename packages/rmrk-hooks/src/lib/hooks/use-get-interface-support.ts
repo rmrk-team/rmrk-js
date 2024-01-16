@@ -1,4 +1,5 @@
 import {
+  EVM_NETWORKS,
   EVM_RMRK_CONTRACTS,
   RMRKCollectionUtils,
   mapChainIdToNetwork,
