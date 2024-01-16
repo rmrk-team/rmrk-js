@@ -9,7 +9,11 @@
     "directory": "packages/types"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build": "pnpm run clean && pnpm run build:esm+types",
+    "build:esm+types": "tsc -b tsconfig.build.json --declaration --declarationMap",
+    "dev": "pnpm run build:esm+types --watch",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo actions chains connectors query"
   },
   "files": [
     "dist/**",
@@ -19,8 +23,8 @@
     "!src/**/*.test-d.ts"
   ],
   "type": "module",
-  "main": "dist/rmrk-team-types.cjs.js",
-  "module": "dist/rmrk-team-types.esm.js",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
   "typings": "./dist/types/index.d.ts",
   "sideEffects": false,
@@ -32,6 +36,6 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "typescript": ">=5.3.3"
+    "typescript": ">=5.4.0-dev.20240116"
   }
 }

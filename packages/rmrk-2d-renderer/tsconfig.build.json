@@ -1,9 +1,18 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["src/**/*.ts", "typings/**/*.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "typings/**/*.d.ts"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test-d.ts"],
   "compilerOptions": {
     "sourceMap": true,
-    "jsx": "react-jsx"
-  }
+    "jsx": "react-jsx",
+    "composite": true,
+    "outDir": "./dist/esm",
+    "declarationDir": "./dist/types",
+    "rootDir": "src"
+  },
+  "references": [
+    {
+      "path": "../ipfs-utils/tsconfig.build.json"
+    }
+  ]
 }

@@ -12,16 +12,16 @@
   "dependencies": {
     "@ark-ui/anatomy": "^1.2.0",
     "@ark-ui/react": "^1.2.1",
-    "@rainbow-me/rainbowkit": "^2.0.0-beta.0",
+    "@rainbow-me/rainbowkit": "^2.0.0-beta.1",
     "@rmrk-team/nft-renderer": "workspace:*",
     "@rmrk-team/rmrk-evm-utils": "workspace:*",
-    "@tanstack/react-query": "^5.4.3",
+    "@tanstack/react-query": "^5.17.12",
     "lucide-react": "^0.303.0",
     "next": "13.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "viem": "^2.0.6",
-    "wagmi": "^2.1.2"
+    "viem": "^2.1.1",
+    "wagmi": "^2.2.1"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.27.0",
@@ -41,6 +41,6 @@
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "prettier": "^3.0.3",
-    "typescript": "5.4.0-dev.20240111"
+    "typescript": "5.4.0-dev.20240116"
   }
 }

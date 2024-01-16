@@ -10,7 +10,8 @@
   },
   "scripts": {
     "build": "pnpm run clean && pnpm run build:esm+types",
-    "build:esm+types": "tsc --project tsconfig.build.json --outDir ./dist/esm --declaration --declarationMap --declarationDir ./dist/types",
+    "build:esm+types": "tsc -b tsconfig.build.json --declaration --declarationMap",
+    "dev": "pnpm run build:esm+types --watch",
     "clean": "rm -rf dist tsconfig.tsbuildinfo actions chains connectors query",
     "test:build": "publint --strict",
     "typecheck": "tsc --noEmit"
@@ -47,7 +48,7 @@
     "use-image": "^1.1.1"
   },
   "devDependencies": {
-    "@tanstack/react-query": "^5.17.9",
+    "@tanstack/react-query": "^5.17.12",
     "@types/node": "18.16.9",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
@@ -55,17 +56,19 @@
     "abitype": "^0.10.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.4.0-dev.20240111",
-    "viem": "^2.0.6",
+    "typescript": "5.4.0-dev.20240116",
+    "viem": "^2.1.1",
     "vite": "^4.4.9",
-    "wagmi": "^2.1.2"
+    "wagmi": "^2.2.1"
   },
   "peerDependencies": {
-    "@tanstack/react-query": ">=5.0.0",
+    "@tanstack/react-query": ">=5.17.12",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "abitype": ">=0.10.3",
     "react": ">=18",
-    "typescript": ">=5.3.3",
-    "viem": ">=2.0.6",
-    "wagmi": ">=2.1.1"
+    "typescript": ">=5.4.0-dev.20240116",
+    "viem": ">=2.1.1",
+    "wagmi": ">=2.2.1"
   }
 }

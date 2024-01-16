@@ -2,4 +2,4 @@
 
 export * from './components/nft-renderer.js';
 export * from './lib/web3/consts.js';
-export * from './lib/web3/wagmi-config.js';
+// export * from './lib/web3/wagmi-config.js';

@@ -6,6 +6,25 @@
   ],
   "exclude": ["src/**/*.test.ts", "src/**/*.test-d.ts"],
   "compilerOptions": {
-    "sourceMap": true
-  }
+    "sourceMap": true,
+    "composite": true,
+    "outDir": "./dist/esm",
+    "declarationDir": "./dist/types",
+    "rootDir": "src",
+    "preserveSymlinks": false
+  },
+  "references": [
+    {
+      "path": "../ipfs-utils/tsconfig.build.json"
+    },
+    {
+      "path": "../rmrk-2d-renderer/tsconfig.build.json"
+    },
+    {
+      "path": "../rmrk-evm-utils/tsconfig.build.json"
+    },
+    {
+      "path": "../types/tsconfig.build.json"
+    }
+  ]
 }

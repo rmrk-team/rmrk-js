@@ -78,7 +78,7 @@ const useGetCanvasStateDimensions = (ref?: React.RefObject<HTMLDivElement>) => {
 
 //FIXME: This is sometimes extracted before all sprites are rendered, so not all resources are fully loaded inside of canvas, and we end up with incomplete image
 const useBackdropImage = (
-  allRenderableResources: IResource[],
+  allRenderableResources: RMRKAssetPart[],
   enabled = true,
   pixiApp?: Application<ICanvas>,
 ) => {
@@ -109,14 +109,14 @@ const useBackdropImage = (
   return bgImage;
 };
 
-export interface IResource {
+export type RMRKAssetPart =  {
   src: string;
   z: number | [number, number | typeof INHERIT_RENDER_CONTEXT];
-  resources?: IResource[];
+  resources?: RMRKAssetPart[];
 }
 
-interface IMultiLayer2DRenderer {
-  resources: IResource[];
+type Props = {
+  resources: RMRKAssetPart[];
   customLoadingComponent?: React.ReactNode;
   className?: string;
   style?: CSSProperties;
@@ -135,7 +135,7 @@ export const MultiLayer2DRenderer = ({
   theme,
   fillBgWithImageBlur,
   loader,
-}: IMultiLayer2DRenderer) => {
+}: Props) => {
   const [pixiResourceLoadedCount, setPixiResourceLoadedCount] = useState(0);
   const [isAllResourcesLoaded, setIsAllResourcesLoaded] = useState(false);
   const [pixiApp, setPixiApp] = useState<Application<ICanvas>>();
@@ -368,7 +368,7 @@ const useCreateResourceTexture = (
   return resourceTexture;
 };
 
-interface ILayer extends IResource {
+interface ILayer extends RMRKAssetPart {
   containerPosition?: [number, number];
   onLoad: (w: number, h: number) => void;
   stageWidth: number;

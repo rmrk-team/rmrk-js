@@ -16,7 +16,7 @@ import { usePublicClient, useReadContract } from 'wagmi';
 import type { RenderPart } from '../types/types.js';
 // import { sanitizeIpfsUrl } from '../lib/ipfs';
 import { Providers } from './providers.js';
-import type { Chain } from "wagmi/chains";
+import type { Chain } from 'wagmi/chains';
 
 interface INFTRenderer {
   chainId: Chain['id'];
@@ -25,18 +25,18 @@ interface INFTRenderer {
   advancedMode?: boolean;
   loader?: React.ReactNode;
 }
-
-/**
- * @description If you have more than 1 NFT to render in the same time, better use `NFTRenderer` rather than current.
- * Add a `WagmiProvider` and wrap it around `NFTRenderer`s to use it.
- */
-export default function NFTRendererWithProvider(props: INFTRenderer) {
-  return (
-    <Providers>
-      <NFTRenderer {...props} />
-    </Providers>
-  );
-}
+//
+// /**
+//  * @description If you have more than 1 NFT to render in the same time, better use `NFTRenderer` rather than current.
+//  * Add a `WagmiProvider` and wrap it around `NFTRenderer`s to use it.
+//  */
+// export default function NFTRendererWithProvider(props: INFTRenderer) {
+//   return (
+//     <Providers>
+//       <NFTRenderer {...props} />
+//     </Providers>
+//   );
+// }
 
 /**
  * @description To use this component, make sure you have a WagmiProvider wrapped it

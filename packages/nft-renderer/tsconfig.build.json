@@ -4,6 +4,21 @@
   "exclude": ["src/**/*.test.ts", "src/**/*.test-d.ts"],
   "compilerOptions": {
     "jsx": "react-jsx",
-    "sourceMap": true
-  }
+    "sourceMap": true,
+    "composite": true,
+    "outDir": "./dist/esm",
+    "declarationDir": "./dist/types",
+    "rootDir": "src"
+  },
+  "references": [
+    {
+      "path": "../rmrk-hooks/tsconfig.build.json"
+    },
+    {
+      "path": "../rmrk-2d-renderer/tsconfig.build.json"
+    },
+    {
+      "path": "../rmrk-evm-utils/tsconfig.build.json"
+    }
+  ]
 }

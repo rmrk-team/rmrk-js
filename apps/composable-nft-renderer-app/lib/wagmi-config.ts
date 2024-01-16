@@ -52,6 +52,7 @@ for (const chain of productionChains) {
 }
 
 export const wagmiConfig = createConfig({
+  ssr: true,
   chains,
   transports,
 });
