@@ -11,6 +11,7 @@ import { useCallback, useState } from 'react';
 import useImage from 'use-image';
 import { Skeleton } from '../ui/skeleton.js';
 import { INHERIT_RENDER_CONTEXT } from './consts.js';
+import { css, cx } from 'styled-system/css';
 
 const useObserveElementDimensions = (ref?: React.RefObject<HTMLDivElement>) => {
   const [width, setWidth] = useState(0);
@@ -179,15 +180,14 @@ export const MultiLayer2DRenderer = ({
       {!isAllResourcesLoaded
         ? customLoadingComponent ?? (
             <Skeleton
-              className="w-96 h-96 bg-gray-300 flex justify-center items-center"
-              style={{
+              className={css({
                 position: 'absolute',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
                 width: '100%',
                 height: '100%',
-              }}
+              })}
             >
               {loader}
             </Skeleton>
@@ -195,18 +195,18 @@ export const MultiLayer2DRenderer = ({
         : null}
 
       <div
-        style={{
+        className={css({
           height: '100%',
           width: '100%',
           position: 'relative',
           display: 'flex',
           justifyContent: 'center',
           overflow: 'hidden',
-        }}
+        })}
       >
         {bgImage && (
           <div
-            style={{
+            className={css({
               position: 'absolute',
               filter: 'blur(1.5rem)',
               transform: 'scale(1.1)',
@@ -214,25 +214,25 @@ export const MultiLayer2DRenderer = ({
               height: '100%',
               left: 0,
               top: 0,
-            }}
+            })}
           >
             <div
-              style={{
+              className={css({
                 height: '100%',
                 width: '100%',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-              }}
+              })}
             >
               <img
                 src={bgImage}
                 alt="background"
-                style={{
+                className={css({
                   height: '100%',
                   width: '100%',
                   objectFit: 'cover',
-                }}
+                })}
               />
             </div>
           </div>
@@ -242,13 +242,15 @@ export const MultiLayer2DRenderer = ({
           width={width}
           height={height}
           options={{ backgroundAlpha: 0 }}
-          className={`${className}`}
-          style={{
-            ...style,
-            position: 'relative',
-            zIndex: 1,
-            visibility: isAllResourcesLoaded ? 'visible' : 'hidden',
-          }}
+          style={style}
+          className={cx(
+            className,
+            css({
+              position: 'relative',
+              zIndex: 1,
+              visibility: isAllResourcesLoaded ? 'visible' : 'hidden',
+            }),
+          )}
         >
           <Container sortableChildren>
             {resources.map((resource, i) => (

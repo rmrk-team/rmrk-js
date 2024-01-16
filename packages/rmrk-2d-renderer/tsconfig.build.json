@@ -3,12 +3,18 @@
   "include": ["src/**/*.ts", "src/**/*.tsx", "typings/**/*.d.ts"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test-d.ts"],
   "compilerOptions": {
-    "sourceMap": true,
     "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
     "composite": true,
     "outDir": "./dist/esm",
+    "rootDir": "src",
     "declarationDir": "./dist/types",
-    "rootDir": "src"
+    "paths": {
+      "styled-system/css": ["./styled-system/css"],
+    }
   },
   "references": [
     {

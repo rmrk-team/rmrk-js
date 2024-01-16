@@ -9,8 +9,8 @@
     "directory": "packages/nft-renderer"
   },
   "scripts": {
-    "build": "pnpm run clean && pnpm build:postcss && pnpm run build:esm+types && pnpm copy:styled-system && tsc-alias -p tsconfig.build.json  && pnpm build:panda",
-    "build:esm+types": "tsc -b tsconfig.build.json --declaration --declarationMap",
+    "build": "pnpm run clean && pnpm run build:esm+types",
+    "build:esm+types": "pnpm build:postcss && tsc -b tsconfig.build.json --declaration --declarationMap && pnpm copy:styled-system && tsc-alias -p tsconfig.build.json && pnpm build:panda",
     "build:postcss": "postcss -o dist/esm/styles/index.css src/styles/index.css",
     "build:panda": "panda cssgen --outfile dist/styles.css",
     "copy:styled-system": "copyfiles ./styled-system/**/*.mjs ./styled-system/*.mjs dist/esm",
@@ -42,10 +42,7 @@
       "default": "./dist/esm/index.js"
     },
     "./package.json": "./package.json",
-    "./dist/styles.css": {
-      "import": "./dist/styles.css",
-      "require": "./dist/styles.css"
-    }
+    "./dist/styles.css": "./dist/styles.css"
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^2.0.0-beta.0",

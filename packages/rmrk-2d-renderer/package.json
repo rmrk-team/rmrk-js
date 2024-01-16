@@ -9,8 +9,12 @@
     "directory": "packages/rmrk-2d-renderer"
   },
   "scripts": {
-    "build": "pnpm run clean && pnpm run build:esm+types",
-    "build:esm+types": "tsc -b tsconfig.build.json --declaration --declarationMap",
+    "build": "pnpm run clean && pnpm prepare && pnpm run build:esm+types",
+    "build:esm+types": "pnpm build:postcss && tsc -b tsconfig.build.json --declaration --declarationMap && pnpm copy:styled-system && tsc-alias -p tsconfig.build.json && pnpm build:panda",
+    "build:postcss": "postcss -o dist/esm/styles/index.css src/styles/index.css",
+    "build:panda": "panda cssgen --outfile dist/styles.css",
+    "copy:styled-system": "copyfiles ./styled-system/**/*.mjs ./styled-system/*.mjs dist/esm",
+    "prepare": "panda codegen",
     "dev": "pnpm run build:esm+types --watch",
     "clean": "rm -rf dist tsconfig.tsbuildinfo actions chains connectors query",
     "test:build": "publint --strict",
@@ -23,7 +27,9 @@
     "src/**/*.tsx",
     "!src/**/*.test.ts",
     "!src/**/*.test-d.ts",
-    "typings/rmrk-2d-renderer/index.d.ts"
+    "typings/rmrk-2d-renderer/index.d.ts",
+    "styled-system/**/*.mjs",
+    "dist/styles.css"
   ],
   "type": "module",
   "main": "dist/esm/index.js",
@@ -36,7 +42,8 @@
       "types": "./dist/types/index.d.ts",
       "default": "./dist/esm/index.js"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./dist/styles.css": "./dist/styles.css"
   },
   "dependencies": {
     "@pixi/react": "^7.1.1",
@@ -47,12 +54,17 @@
     "use-image": "^1.1.1"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.27.0",
     "@types/node": "18.16.9",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "@vitejs/plugin-react": "^4.1.0",
+    "copyfiles": "^2.4.1",
+    "postcss": "^8.4.33",
+    "postcss-cli": "^11.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "tsc-alias": "^1.8.8",
     "typescript": "5.4.0-dev.20240116",
     "vite": "^4.4.9"
   },
