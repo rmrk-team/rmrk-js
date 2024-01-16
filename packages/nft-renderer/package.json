@@ -9,8 +9,12 @@
     "directory": "packages/nft-renderer"
   },
   "scripts": {
-    "build": "pnpm run clean && pnpm run build:esm+types",
+    "build": "pnpm run clean && pnpm build:postcss && pnpm run build:esm+types && pnpm copy:styled-system && tsc-alias -p tsconfig.build.json  && pnpm build:panda",
     "build:esm+types": "tsc -b tsconfig.build.json --declaration --declarationMap",
+    "build:postcss": "postcss -o dist/esm/styles/index.css src/styles/index.css",
+    "build:panda": "panda cssgen --outfile dist/styles.css",
+    "copy:styled-system": "copyfiles ./styled-system/**/*.mjs ./styled-system/*.mjs dist/esm",
+    "prepare": "panda codegen",
     "dev": "pnpm --workspace-concurrency=1 run build:esm+types --watch",
     "clean": "rm -rf dist tsconfig.tsbuildinfo actions chains connectors query",
     "test:build": "publint --strict",
@@ -21,6 +25,8 @@
     "!dist/**/*.tsbuildinfo",
     "src/**/*.ts",
     "src/**/*.tsx",
+    "styled-system/**/*.mjs",
+    "dist/styles.css",
     "!src/**/*.test.ts",
     "!src/**/*.test-d.ts"
   ],
@@ -35,24 +41,33 @@
       "types": "./dist/types/index.d.ts",
       "default": "./dist/esm/index.js"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./dist/styles.css": {
+      "import": "./dist/styles.css",
+      "require": "./dist/styles.css"
+    }
   },
   "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.0.0-beta.0",
     "@rmrk-team/rmrk-2d-renderer": "workspace:*",
     "@rmrk-team/rmrk-evm-utils": "workspace:*",
-    "@rmrk-team/rmrk-hooks": "workspace:*",
-    "@rainbow-me/rainbowkit": "^2.0.0-beta.0"
+    "@rmrk-team/rmrk-hooks": "workspace:*"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.27.0",
     "@types/node": "18.16.9",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "@vitejs/plugin-react": "^4.1.0",
+    "copyfiles": "^2.4.1",
+    "postcss": "^8.4.33",
+    "postcss-cli": "^11.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "tsc-alias": "^1.8.8",
     "typescript": "5.4.0-dev.20240116",
-    "vite": "^4.4.9",
     "viem": "^2.1.1",
+    "vite": "^4.4.9",
     "wagmi": "^2.2.1"
   },
   "peerDependencies": {

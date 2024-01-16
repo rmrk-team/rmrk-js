@@ -1,3 +1,4 @@
+import '../styles/index.css';
 import { MultiLayer2DRenderer } from '@rmrk-team/rmrk-2d-renderer';
 import {
   RMRKEquippableImpl,
@@ -17,6 +18,7 @@ import type { Chain } from 'wagmi/chains';
 import type { RenderPart } from '../types/types.js';
 // import { sanitizeIpfsUrl } from '../lib/ipfs';
 import { Providers } from './providers.js';
+import { css } from 'styled-system/css';
 
 interface INFTRenderer {
   chainId: Chain['id'];
@@ -200,16 +202,22 @@ export function NFTRenderer({
   return (
     <div
       ref={rendererContainerRef}
-      style={{
+      className={css({
         width: '100%',
         height: '100%',
         position: 'relative',
         display: 'flex',
         justifyContent: 'center',
-      }}
+      })}
     >
       {isLoading ? (
-        <div style={{ alignSelf: 'center' }}>{loader}</div>
+        <div
+          className={css({
+            alignSelf: 'center',
+          })}
+        >
+          {loader}
+        </div>
       ) : (
         <>
           {isValidAddress === false ? <p>Invalid address</p> : null}

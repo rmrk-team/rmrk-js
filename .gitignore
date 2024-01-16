@@ -44,7 +44,7 @@ apps/composable-nft-renderer-app/next-env.d.ts
 .next
 
 # Panda css
-apps/composable-nft-renderer-app/styled-system
+styled-system
 
 .nx/cache
 dist

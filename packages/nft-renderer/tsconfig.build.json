@@ -1,14 +1,20 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "./styled-system/**/*.{js,jsx,ts,tsx}"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test-d.ts"],
   "compilerOptions": {
     "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "composite": true,
     "outDir": "./dist/esm",
+    "rootDir": "src",
     "declarationDir": "./dist/types",
-    "rootDir": "src"
+    "paths": {
+      "styled-system/css": ["./styled-system/css"],
+    }
   },
   "references": [
     {
