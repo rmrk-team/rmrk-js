@@ -36,8 +36,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "is-ipfs": "6.0.2",
-    "@rmrk-team/types": "workspace:*"
+    "@rmrk-team/types": "workspace:*",
+    "is-ipfs": "6.0.2"
   },
   "peerDependencies": {
     "typescript": ">=5.4.0-dev.20240116"
@@ -46,5 +46,8 @@
     "typescript": {
       "optional": true
     }
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1"
   }
 }

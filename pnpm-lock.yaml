@@ -165,6 +165,10 @@ importers:
       typescript:
         specifier: '>=5.4.0-dev.20240116'
         version: 5.4.0-dev.20240116
+    devDependencies:
+      '@changesets/cli':
+        specifier: ^2.27.1
+        version: 2.27.1
 
   packages/nft-renderer:
     dependencies:
@@ -184,6 +188,9 @@ importers:
         specifier: '>=5.17.12'
         version: 5.17.12(react@18.2.0)
     devDependencies:
+      '@changesets/cli':
+        specifier: ^2.27.1
+        version: 2.27.1
       '@pandacss/dev':
         specifier: ^0.27.0
         version: 0.27.0(jsdom@23.2.0)(typescript@5.4.0-dev.20240116)
@@ -251,6 +258,9 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
+      '@changesets/cli':
+        specifier: ^2.27.1
+        version: 2.27.1
       '@pandacss/dev':
         specifier: ^0.27.0
         version: 0.27.0(jsdom@23.2.0)(typescript@5.4.0-dev.20240116)
@@ -293,6 +303,9 @@ importers:
 
   packages/rmrk-evm-utils:
     devDependencies:
+      '@changesets/cli':
+        specifier: ^2.27.1
+        version: 2.27.1
       '@types/node':
         specifier: 18.16.9
         version: 18.16.9
@@ -351,6 +364,9 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
+      '@changesets/cli':
+        specifier: ^2.27.1
+        version: 2.27.1
       '@tanstack/react-query':
         specifier: ^5.17.12
         version: 5.17.12(react@18.2.0)
@@ -393,6 +409,10 @@ importers:
       typescript:
         specifier: '>=5.4.0-dev.20240116'
         version: 5.4.0-dev.20240116
+    devDependencies:
+      '@changesets/cli':
+        specifier: ^2.27.1
+        version: 2.27.1
 
 packages:
 
