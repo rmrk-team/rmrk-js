@@ -1,27 +1,27 @@
-import "../styles/index.css";
-import { MultiLayer2DRenderer } from "@rmrk-team/rmrk-2d-renderer";
+import { MultiLayer2DRenderer } from '@rmrk-team/rmrk-2d-renderer';
 import {
   RMRKEquippableImpl,
   mapChainIdToNetwork,
-} from "@rmrk-team/rmrk-evm-utils";
+} from '@rmrk-team/rmrk-evm-utils';
 import {
   useFetchIpfsMetadata,
   useGetAssetData,
   useGetComposedState,
   useGetInterfaceSupport,
-} from "@rmrk-team/rmrk-hooks";
-import React, { useEffect, useRef, useState } from "react";
-import { isAddress } from "viem";
-import type { Address } from "viem";
-import { usePublicClient, useReadContract } from "wagmi";
-import type { Chain } from "wagmi/chains";
-import type { RenderPart } from "../types/types.js";
+} from '@rmrk-team/rmrk-hooks';
+import React, { useEffect, useRef, useState } from 'react';
+import { css } from 'styled-system/css';
+import { isAddress } from 'viem';
+import type { Address } from 'viem';
+import { usePublicClient, useReadContract } from 'wagmi';
+import type { Chain } from 'wagmi/chains';
+import '../styles/index.css';
+import type { RenderPart } from '../types/types.js';
 // import { sanitizeIpfsUrl } from '../lib/ipfs';
-import { Providers } from "./providers.js";
-import { css } from "styled-system/css";
+import { Providers } from './providers.js';
 
 interface INFTRenderer {
-  chainId: Chain["id"];
+  chainId: Chain['id'];
   contractAddress: Address;
   tokenId: bigint;
   advancedMode?: boolean;
@@ -82,7 +82,7 @@ export function NFTRenderer({
     interfaceSupport: { supports721, supportsEquippable, supportsMultiAsset },
   } = useGetInterfaceSupport(
     { contractAddress, chainId },
-    { enabled: isContract }
+    { enabled: isContract },
   );
 
   const {
@@ -92,7 +92,7 @@ export function NFTRenderer({
   } = useReadContract({
     address: contractAddress,
     abi: RMRKEquippableImpl,
-    functionName: "tokenURI",
+    functionName: 'tokenURI',
     args: [tokenIdBigint],
     chainId,
     query: { enabled: isContract && supports721 },
@@ -123,7 +123,7 @@ export function NFTRenderer({
       supportsEquippableInterface: supportsEquippable,
       supportsMultiAssetInterface: supportsMultiAsset,
     },
-    { enabled: isContract }
+    { enabled: isContract },
   );
 
   const {
@@ -139,11 +139,11 @@ export function NFTRenderer({
       ? [
           ...fixedPartsWithMetadatas.map((p) => ({
             z: p.z,
-            src: p.metadata?.mediaUri || "",
+            src: p.metadata?.mediaUri || '',
           })),
           ...slotPartsWithMetadatas.map((p) => ({
             z: p.z,
-            src: p.metadata?.mediaUri || "",
+            src: p.metadata?.mediaUri || '',
           })),
         ]
       : undefined;
@@ -155,13 +155,13 @@ export function NFTRenderer({
           src:
             primaryAsset?.metadata?.mediaUri ||
             primaryAsset?.metadata?.image ||
-            "",
+            '',
         },
       ]
     : undefined;
 
   const tokenRenderPart: RenderPart[] | undefined = primaryAsset
-    ? [{ z: 1, src: tokenMetadata?.mediaUri || tokenMetadata?.image || "" }]
+    ? [{ z: 1, src: tokenMetadata?.mediaUri || tokenMetadata?.image || '' }]
     : undefined;
 
   const renderParts = catalogRenderParts || assetRenderPart || tokenRenderPart;
@@ -203,17 +203,17 @@ export function NFTRenderer({
     <div
       ref={rendererContainerRef}
       className={css({
-        width: "100%",
-        height: "100%",
-        position: "relative",
-        display: "flex",
-        justifyContent: "center",
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        display: 'flex',
+        justifyContent: 'center',
       })}
     >
       {isLoading ? (
         <div
           className={css({
-            alignSelf: "center",
+            alignSelf: 'center',
           })}
         >
           {loader}
@@ -254,10 +254,10 @@ export function NFTRenderer({
               fillBgWithImageBlur
               loader={loader}
               className={css({
-                aspectRatio: "1/1",
-                objectFit: "contain",
-                width: "100%",
-                height: "100%",
+                aspectRatio: '1/1',
+                objectFit: 'contain',
+                width: '100%',
+                height: '100%',
               })}
             />
           ) : null}
