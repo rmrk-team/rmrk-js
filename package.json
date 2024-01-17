@@ -7,7 +7,7 @@
     "build": "pnpm run --r --filter \"./packages/**\" build",
     "build:apps": "pnpm run --r --filter \"./apps/**\" build",
     "panda:prepare": "panda codegen --cwd=apps/composable-nft-renderer-app",
-    "changeset:publish": "pnpm version:update && pnpm build && bun .scripts/formatPackageJson.ts && bun .scripts/generateProxyPackages.ts && changeset publish",
+    "changeset:publish": "pnpm build && changeset publish",
     "changeset:version": "changeset version",
     "clean": "pnpm run --r --parallel clean",
     "dev:react": "pnpm run --parallel --stream dev",
