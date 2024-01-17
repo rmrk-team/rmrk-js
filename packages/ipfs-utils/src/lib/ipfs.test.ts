@@ -1,10 +1,10 @@
 import { expect, test } from 'vitest';
 import {
+  DEFAULT_IPFS_GATEWAY_KEYS,
+  DEFAULT_IPFS_GATEWAY_URLS,
   containsCID,
   convertToDesiredGateway,
   sanitizeIpfsUrl,
-  DEFAULT_IPFS_GATEWAY_KEYS,
-  DEFAULT_IPFS_GATEWAY_URLS,
 } from './ipfs.js';
 
 test('containsCID', async () => {

@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import { getIsEvmNetwork } from './get-is-evm-network.js';
 import { EVM_NETWORKS } from './chain-mapping.js';
+import { getIsEvmNetwork } from './get-is-evm-network.js';
 
 test('getIsEvmNetwork', async () => {
   expect(getIsEvmNetwork('foo')).toBe(false);

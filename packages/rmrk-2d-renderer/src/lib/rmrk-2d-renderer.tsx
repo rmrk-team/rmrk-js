@@ -8,10 +8,10 @@ import type { ICanvas } from 'pixi.js';
 import type { CSSProperties } from 'react';
 import React, { useEffect, useMemo } from 'react';
 import { useCallback, useState } from 'react';
+import { css, cx } from 'styled-system/css';
 import useImage from 'use-image';
 import { Skeleton } from '../ui/skeleton.js';
 import { INHERIT_RENDER_CONTEXT } from './consts.js';
-import { css, cx } from 'styled-system/css';
 
 const useObserveElementDimensions = (ref?: React.RefObject<HTMLDivElement>) => {
   const [width, setWidth] = useState(0);
