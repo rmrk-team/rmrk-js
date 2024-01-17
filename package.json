@@ -17,6 +17,7 @@
     "lint": "biome check .",
     "lint:fix": "pnpm lint --apply",
     "test": "vitest",
+    "test:ci": "CI=true vitest --coverage --retry=3 --bail=1 --pool=forks",
     "test:watch": "pnpm run test --watch",
     "test:build": "pnpm run --r --parallel test:build",
     "test:cov": "vitest run --coverage",
