@@ -5,8 +5,8 @@ import {
 import type { Address } from 'viem';
 import type { Chain } from 'viem';
 import { useReadContract } from 'wagmi';
-import { useGetInterfaceSupport } from './use-get-interface-support.js';
 import { useRMRKConfig } from '../RMRKContextProvider.js';
+import { useGetInterfaceSupport } from './use-get-interface-support.js';
 
 type Arguments = {
   tokenId: bigint;

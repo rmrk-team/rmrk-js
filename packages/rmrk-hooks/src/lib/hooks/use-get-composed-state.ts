@@ -1,9 +1,9 @@
 import { RMRKEquipRenderUtils } from '@rmrk-team/rmrk-evm-utils';
 import type { Address, Chain } from 'viem';
 import { useReadContract } from 'wagmi';
+import { useRMRKConfig } from '../RMRKContextProvider.js';
 import { useFetchMetadataAndAddToEntities } from './use-fetch-metadata-and-add-to-entities.js';
 import { useGetTokenPrimaryAsset } from './use-get-token-primary-asset.js';
-import { useRMRKConfig } from '../RMRKContextProvider.js';
 
 type Arguments = {
   assetId?: bigint;

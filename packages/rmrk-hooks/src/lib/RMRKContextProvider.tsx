@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
 import type { RMRKUtilityContracts } from '@rmrk-team/rmrk-evm-utils';
-import { useContext } from 'react';
 import { EVM_RMRK_CONTRACTS } from '@rmrk-team/rmrk-evm-utils';
 import { mergeDeepRight } from 'ramda';
+import * as React from 'react';
+import { useContext } from 'react';
 
 type RMRKConfigInitial = {
   utilityContracts: RMRKUtilityContracts;
