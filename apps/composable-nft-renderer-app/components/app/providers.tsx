@@ -5,7 +5,7 @@ import { WagmiProvider } from 'components/app/wagmi-provider';
 import React from 'react';
 import { RMRKContextProvider } from '@rmrk-team/rmrk-hooks';
 import {
-  NETWORK_CONTACTS_PROPS,
+  NETWORK_CONTRACTS_PROPS,
   RMRKUtilityContracts,
 } from '@rmrk-team/rmrk-evm-utils';
 import { hardhat } from 'wagmi/chains';
@@ -15,9 +15,9 @@ const queryClient = new QueryClient();
 // You can pass custom utility contracts to the RMRKContextProvider
 const customUtilityContracts = {
   [hardhat.id]: {
-    [NETWORK_CONTACTS_PROPS.RMRKEquipRenderUtils]: '0x00',
-    [NETWORK_CONTACTS_PROPS.RMRKBulkWriter]: '0x00',
-    [NETWORK_CONTACTS_PROPS.RMRKCollectionUtils]: '0x00',
+    [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]: '0x00',
+    [NETWORK_CONTRACTS_PROPS.RMRKBulkWriter]: '0x00',
+    [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]: '0x00',
   },
 } satisfies RMRKUtilityContracts;
 

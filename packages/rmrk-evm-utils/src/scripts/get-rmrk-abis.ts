@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import { Abi } from 'abitype/zod';
 import 'dotenv/config';
 import type { Address } from 'viem';
-import { EVM_RMRK_CONTRACTS, NETWORK_CONTACTS_PROPS } from '../index.js';
+import { EVM_RMRK_CONTRACTS, NETWORK_CONTRACTS_PROPS } from '../index.js';
 import { base } from 'wagmi/chains';
 
 const BASESCAN_API_URL = 'https://api.basescan.org/api';
@@ -36,7 +36,7 @@ const getRmrkAbis = async () => {
     await getRmrkAbi(
       contractName,
       EVM_RMRK_CONTRACTS[base.id][
-        contractName as keyof typeof NETWORK_CONTACTS_PROPS
+        contractName as keyof typeof NETWORK_CONTRACTS_PROPS
       ],
     );
   }
