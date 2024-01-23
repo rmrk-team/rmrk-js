@@ -3,7 +3,7 @@ import { Abi } from 'abitype/zod';
 import 'dotenv/config';
 import type { Address } from 'viem';
 import { EVM_RMRK_CONTRACTS, NETWORK_CONTACTS_PROPS } from '../index.js';
-import { EVM_NETWORKS } from '../index.js';
+import { base } from 'wagmi/chains';
 
 const BASESCAN_API_URL = 'https://api.basescan.org/api';
 
@@ -32,12 +32,10 @@ const getRmrkAbi = async (contractName: string, contractAddress: Address) => {
 };
 
 const getRmrkAbis = async () => {
-  for (const contractName of Object.keys(
-    EVM_RMRK_CONTRACTS[EVM_NETWORKS.base],
-  )) {
+  for (const contractName of Object.keys(EVM_RMRK_CONTRACTS[base.id])) {
     await getRmrkAbi(
       contractName,
-      EVM_RMRK_CONTRACTS[EVM_NETWORKS.base][
+      EVM_RMRK_CONTRACTS[base.id][
         contractName as keyof typeof NETWORK_CONTACTS_PROPS
       ],
     );

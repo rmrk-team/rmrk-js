@@ -1,12 +1,8 @@
-import {
-  EVM_NETWORKS,
-  EVM_RMRK_CONTRACTS,
-  RMRKCollectionUtils,
-  mapChainIdToNetwork,
-} from '@rmrk-team/rmrk-evm-utils';
+import { RMRKCollectionUtils } from '@rmrk-team/rmrk-evm-utils';
 import type { Chain } from 'viem';
 import type { Address } from 'viem';
 import { useReadContract } from 'wagmi';
+import { useRMRKConfig } from '../RMRKContextProvider.js';
 
 type Arguments = {
   contractAddress: Address;
@@ -25,10 +21,10 @@ const ONE_DAY = 24 * 60 * 60 * 1000;
 export const useGetInterfaceSupport = (args: Arguments, options?: Options) => {
   const { contractAddress, chainId } = args;
   const { enabled = true } = options || {};
-  const network = mapChainIdToNetwork(chainId);
+  const config = useRMRKConfig();
 
-  const { data, isLoading, error, refetch } = useReadContract({
-    address: EVM_RMRK_CONTRACTS[network].RMRKCollectionUtils,
+  const { data, ...reactQueryReturnProps } = useReadContract({
+    address: config.utilityContracts[chainId]?.RMRKCollectionUtils,
     abi: RMRKCollectionUtils,
     functionName: 'getInterfaceSupport',
     chainId,
@@ -60,8 +56,6 @@ export const useGetInterfaceSupport = (args: Arguments, options?: Options) => {
 
   return {
     interfaceSupport,
-    isLoading,
-    error,
-    refetch,
+    ...reactQueryReturnProps,
   };
 };

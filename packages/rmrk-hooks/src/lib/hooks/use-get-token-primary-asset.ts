@@ -1,12 +1,9 @@
-import {
-  EVM_RMRK_CONTRACTS,
-  RMRKEquipRenderUtils,
-  mapChainIdToNetwork,
-} from '@rmrk-team/rmrk-evm-utils';
+import { RMRKEquipRenderUtils } from '@rmrk-team/rmrk-evm-utils';
 import type { RMRKAssetExtended } from '@rmrk-team/types';
 import type { Address, Chain } from 'viem';
 import { useReadContract } from 'wagmi';
 import { useGetInterfaceSupport } from './use-get-interface-support.js';
+import { useRMRKConfig } from '../RMRKContextProvider.js';
 
 type Arguments = {
   tokenId: bigint;
@@ -31,6 +28,7 @@ export const useGetTokenPrimaryAsset = (
   refetch: () => void;
   primaryAsset: RMRKAssetExtended | undefined;
 } => {
+  const config = useRMRKConfig();
   const {
     contractAddress,
     tokenId,
@@ -43,8 +41,6 @@ export const useGetTokenPrimaryAsset = (
   const requiresInterfaceCheck =
     supportsEquippableInterface === undefined ||
     supportsMultiAssetInterface === undefined;
-
-  const network = mapChainIdToNetwork(chainId);
 
   const {
     isLoading: isLoadingGetInterfaceSupport,
@@ -65,7 +61,7 @@ export const useGetTokenPrimaryAsset = (
     refetch: refetTopAssetForToken,
   } = useReadContract({
     address: enabledSimplePrimaryAsset
-      ? EVM_RMRK_CONTRACTS[network].RMRKEquipRenderUtils
+      ? config.utilityContracts[chainId]?.RMRKEquipRenderUtils
       : undefined,
     abi: RMRKEquipRenderUtils,
     functionName: 'getTopAsset',
@@ -81,7 +77,7 @@ export const useGetTokenPrimaryAsset = (
     refetch: refetchTopAssetAndEquippableDataForToken,
   } = useReadContract({
     address: enabledAssetWithEquippableData
-      ? EVM_RMRK_CONTRACTS[network].RMRKEquipRenderUtils
+      ? config.utilityContracts[chainId]?.RMRKEquipRenderUtils
       : undefined,
     abi: RMRKEquipRenderUtils,
     functionName: 'getTopAssetAndEquippableDataForToken',

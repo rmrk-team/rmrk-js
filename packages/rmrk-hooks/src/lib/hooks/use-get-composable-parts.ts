@@ -1,13 +1,12 @@
 import {
-  EVM_RMRK_CONTRACTS,
   RMRKEquipRenderUtils,
   RMRKEquippableImpl,
-  mapChainIdToNetwork,
 } from '@rmrk-team/rmrk-evm-utils';
 import type { Address } from 'viem';
 import type { Chain } from 'viem';
 import { useReadContract } from 'wagmi';
 import { useGetInterfaceSupport } from './use-get-interface-support.js';
+import { useRMRKConfig } from '../RMRKContextProvider.js';
 
 type Arguments = {
   tokenId: bigint;
@@ -24,8 +23,7 @@ export const useGetComposableParts = (
   { tokenId, address, assetId, chainId }: Arguments,
   { enabled = true }: Options,
 ) => {
-  const network = mapChainIdToNetwork(chainId);
-
+  const config = useRMRKConfig();
   const {
     isLoading,
     interfaceSupport: { supportsEquippable },
@@ -35,7 +33,7 @@ export const useGetComposableParts = (
   );
 
   const { data: topAsset, isLoading: isGettingTopAsset } = useReadContract({
-    address: EVM_RMRK_CONTRACTS[network].RMRKEquipRenderUtils,
+    address: config.utilityContracts[chainId]?.RMRKEquipRenderUtils,
     abi: RMRKEquipRenderUtils,
     chainId,
     functionName: 'getTopAsset',
@@ -51,7 +49,7 @@ export const useGetComposableParts = (
   } = useReadContract({
     address:
       enabled && !assetId
-        ? EVM_RMRK_CONTRACTS[network].RMRKEquipRenderUtils
+        ? config.utilityContracts[chainId]?.RMRKEquipRenderUtils
         : undefined,
     abi: RMRKEquipRenderUtils,
     chainId,

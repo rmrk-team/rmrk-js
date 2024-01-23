@@ -17,29 +17,15 @@ import { usePublicClient, useReadContract } from 'wagmi';
 import type { Chain } from 'wagmi/chains';
 import '../styles/index.css';
 import type { RenderPart } from '../types/types.js';
-// import { sanitizeIpfsUrl } from '../lib/ipfs';
-import { Providers } from './providers.js';
 
-interface INFTRenderer {
+type NFTRenderer = {
   chainId: Chain['id'];
   contractAddress: Address;
   tokenId: bigint;
   advancedMode?: boolean;
   loader?: React.ReactNode;
   onError?: (error: Error) => void;
-}
-//
-// /**
-//  * @description If you have more than 1 NFT to render in the same time, better use `NFTRenderer` rather than current.
-//  * Add a `WagmiProvider` and wrap it around `NFTRenderer`s to use it.
-//  */
-// export default function NFTRendererWithProvider(props: INFTRenderer) {
-//   return (
-//     <Providers>
-//       <NFTRenderer {...props} />
-//     </Providers>
-//   );
-// }
+};
 
 /**
  * @description To use this component, make sure you have a WagmiProvider wrapped it
@@ -51,7 +37,7 @@ export function NFTRenderer({
   advancedMode,
   loader,
   onError,
-}: INFTRenderer) {
+}: NFTRenderer) {
   const rendererContainerRef = useRef<null | HTMLDivElement>(null);
   const tokenIdBigint = BigInt(tokenId);
   const network = mapChainIdToNetwork(chainId);
@@ -80,6 +66,7 @@ export function NFTRenderer({
   const {
     isLoading: isLoadingGetInterfaceSupport,
     interfaceSupport: { supports721, supportsEquippable, supportsMultiAsset },
+    isFetching,
   } = useGetInterfaceSupport(
     { contractAddress, chainId },
     { enabled: isContract },
@@ -175,12 +162,15 @@ export function NFTRenderer({
   const error = errorComposableState || errorPrimaryAsset;
 
   useEffect(() => {
-    if (error && onError) onError(error);
+    if (error && onError) {
+      onError(error);
+    }
   }, [error, onError]);
 
   useEffect(() => {
-    if (chainId === undefined && onError)
+    if (chainId === undefined && onError) {
       onError(new Error(`Unsupported chain ${chainId}`));
+    }
   }, [chainId, onError]);
 
   if (error) {

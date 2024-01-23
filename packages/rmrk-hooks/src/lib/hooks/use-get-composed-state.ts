@@ -1,12 +1,9 @@
-import {
-  EVM_RMRK_CONTRACTS,
-  RMRKEquipRenderUtils,
-  mapChainIdToNetwork,
-} from '@rmrk-team/rmrk-evm-utils';
+import { RMRKEquipRenderUtils } from '@rmrk-team/rmrk-evm-utils';
 import type { Address, Chain } from 'viem';
 import { useReadContract } from 'wagmi';
 import { useFetchMetadataAndAddToEntities } from './use-fetch-metadata-and-add-to-entities.js';
 import { useGetTokenPrimaryAsset } from './use-get-token-primary-asset.js';
+import { useRMRKConfig } from '../RMRKContextProvider.js';
 
 type Arguments = {
   assetId?: bigint;
@@ -33,8 +30,8 @@ export const useGetComposedState = (
   }: Arguments,
   options?: Options,
 ) => {
-  const network = mapChainIdToNetwork(chainId);
   const { enabled = true, enabledMetadataFetch = true } = options || {};
+  const config = useRMRKConfig();
 
   const {
     primaryAsset,
@@ -62,7 +59,7 @@ export const useGetComposedState = (
     error: errorEquippableData,
     refetch: refetchEquippableData,
   } = useReadContract({
-    address: EVM_RMRK_CONTRACTS[network].RMRKEquipRenderUtils,
+    address: config.utilityContracts[chainId]?.RMRKEquipRenderUtils,
     abi: RMRKEquipRenderUtils,
     chainId,
     functionName: 'composeEquippables',

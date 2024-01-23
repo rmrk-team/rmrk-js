@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "include": [
     "src/**/*.ts",
+    "src/**/*.tsx",
     "./node_modules/@tanstack/react-query/build/modern/types.d.ts"
   ],
   "exclude": ["src/**/*.test.ts", "src/**/*.test-d.ts"],
@@ -11,7 +12,8 @@
     "outDir": "./dist/esm",
     "declarationDir": "./dist/types",
     "rootDir": "src",
-    "preserveSymlinks": false
+    "preserveSymlinks": false,
+    "jsx": "react-jsx"
   },
   "references": [
     {
