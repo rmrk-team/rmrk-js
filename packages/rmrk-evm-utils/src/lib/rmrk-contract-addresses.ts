@@ -1,4 +1,5 @@
 import type { Address, Chain } from 'viem';
+import { bsc } from 'viem/chains';
 import {
   astar,
   base,
@@ -11,7 +12,6 @@ import {
   polygonMumbai,
   sepolia,
 } from 'wagmi/chains';
-import { bsc } from 'viem/chains';
 
 export const NETWORK_CONTRACTS_PROPS = {
   RMRKEquipRenderUtils: 'RMRKEquipRenderUtils',
