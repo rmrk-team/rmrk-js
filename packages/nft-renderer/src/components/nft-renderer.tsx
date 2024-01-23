@@ -1,7 +1,7 @@
 import { MultiLayer2DRenderer } from '@rmrk-team/rmrk-2d-renderer';
 import {
-  RMRKEquippableImpl,
   RMRKCatalogImpl,
+  RMRKEquippableImpl,
   mapChainIdToNetwork,
 } from '@rmrk-team/rmrk-evm-utils';
 import {
