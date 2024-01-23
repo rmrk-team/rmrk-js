@@ -2,8 +2,8 @@ import { RMRKEquipRenderUtils } from '@rmrk-team/rmrk-evm-utils';
 import type { RMRKAssetExtended } from '@rmrk-team/types';
 import type { Address, Chain } from 'viem';
 import { useReadContract } from 'wagmi';
-import { useGetInterfaceSupport } from './use-get-interface-support.js';
 import { useRMRKConfig } from '../RMRKContextProvider.js';
+import { useGetInterfaceSupport } from './use-get-interface-support.js';
 
 type Arguments = {
   tokenId: bigint;
