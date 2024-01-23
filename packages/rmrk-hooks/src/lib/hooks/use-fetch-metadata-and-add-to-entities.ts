@@ -23,17 +23,18 @@ export const useFetchMetadataAndAddToEntities = <T>(
 ): {
   isLoading: boolean;
   isError: boolean;
+  isFetching: boolean;
+  refetch: () => void;
   data: EntityWithMetadata<T>[] | undefined;
 } => {
-  const {
-    isLoading,
-    isError,
-    data: metadatas,
-  } = useFetchIpfsMetadatas(args, options);
+  const { data: metadatas, ...otherReactQueryProps } = useFetchIpfsMetadatas(
+    args,
+    options,
+  );
   const entitiesWithMetadata = entities?.map((e, i) => ({
     ...e,
     metadata: metadatas?.[i] || undefined,
   }));
 
-  return { isLoading, isError, data: entitiesWithMetadata };
+  return { ...otherReactQueryProps, data: entitiesWithMetadata };
 };

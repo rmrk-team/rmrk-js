@@ -38,6 +38,7 @@ export const useGetComposedState = (
     error: errorPrimaryAsset,
     isError: isErrorPrimaryAsset,
     isLoading: isLoadingPrimaryAsset,
+    isFetching: isFetchingPrimaryAsset,
     refetch: refetchPrimaryAsset,
   } = useGetTokenPrimaryAsset(
     {
@@ -56,6 +57,7 @@ export const useGetComposedState = (
     data: equippableDataResponse,
     isLoading: isLoadingEquippableData,
     isError: isErrorEquippableData,
+    isFetching: isFetchingEquippableData,
     error: errorEquippableData,
     refetch: refetchEquippableData,
   } = useReadContract({
@@ -78,6 +80,7 @@ export const useGetComposedState = (
   const {
     isLoading: isLoadingFixedPartsMetadatas,
     isError: isErrorFixedPartsMetadatas,
+    isFetching: isFetchingFixedPartsMetadatas,
     data: fixedPartsWithMetadatas,
   } = useFetchMetadataAndAddToEntities(
     {
@@ -90,6 +93,7 @@ export const useGetComposedState = (
   const {
     isLoading: isLoadingSlotPartsMetadatas,
     isError: isErrorSlotPartsMetadatas,
+    isFetching: isFetchingSlotPartsMetadatas,
     data: slotPartsWithMetadatas,
   } = useFetchMetadataAndAddToEntities(
     {
@@ -119,6 +123,11 @@ export const useGetComposedState = (
       isErrorPrimaryAsset ||
       isErrorFixedPartsMetadatas ||
       isErrorSlotPartsMetadatas,
+    isFetching:
+      isFetchingEquippableData ||
+      isFetchingPrimaryAsset ||
+      isFetchingFixedPartsMetadatas ||
+      isFetchingSlotPartsMetadatas,
     refetch: refetchEquippableData || refetchPrimaryAsset,
     error: errorEquippableData || errorPrimaryAsset,
   };

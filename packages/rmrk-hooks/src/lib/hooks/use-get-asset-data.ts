@@ -35,7 +35,11 @@ export const useGetAssetData = (args: Arguments, options?: Options) => {
 
   const {
     isLoading: isLoadingGetInterfaceSupport,
+    isError: isErrorGetInterfaceSupport,
+    error: errorGetInterfaceSupport,
+    isFetching: isFetchingGetInterfaceSupport,
     interfaceSupport: { supportsEquippable, supportsMultiAsset },
+    refetch: refetchGetInterfaceSupport,
   } = useGetInterfaceSupport(
     { contractAddress, chainId },
     { enabled: requiresInterfaceCheck },
@@ -44,6 +48,8 @@ export const useGetAssetData = (args: Arguments, options?: Options) => {
   const {
     primaryAsset,
     isLoading: isLoadingPrimaryAsset,
+    isError: isErrorPrimaryAsset,
+    isFetching: isFetchingPrimaryAsset,
     error: errorPrimaryAsset,
     refetch: refetchPrimaryAsset,
   } = useGetTokenPrimaryAsset(
@@ -60,6 +66,8 @@ export const useGetAssetData = (args: Arguments, options?: Options) => {
   const {
     assetById,
     isLoading: isLoadingAssetById,
+    isFetching: isFetchingAssetById,
+    isError: isErrorAssetById,
     error: errorAssetById,
     refetch: refetchAssetById,
   } = useGetTokenAssetById(
@@ -82,6 +90,7 @@ export const useGetAssetData = (args: Arguments, options?: Options) => {
     error: errorIpfsMetadata,
     isError: isErrorIpfsMetadata,
     refetch: refetchIpfsMetadata,
+    isFetching: isFetchingIpfsMetadata,
   } = useFetchMetadataAndAddToEntity(
     { metadataUri: assetData?.metadataUri },
     { enabled: !!assetData?.metadataUri },
@@ -94,9 +103,22 @@ export const useGetAssetData = (args: Arguments, options?: Options) => {
       isLoadingPrimaryAsset ||
       isLoadingGetInterfaceSupport ||
       isLoadingIpfsMetadata,
-    isError: !!errorAssetById || !!errorPrimaryAsset || !!errorIpfsMetadata,
-    error: errorAssetById || errorPrimaryAsset || errorIpfsMetadata,
-    refetch: refetchPrimaryAsset || refetchAssetById || refetchIpfsMetadata,
+    isFetching:
+      isFetchingAssetById ||
+      isFetchingPrimaryAsset ||
+      isFetchingGetInterfaceSupport ||
+      isFetchingIpfsMetadata,
+    isError:
+      isErrorPrimaryAsset ||
+      isErrorAssetById ||
+      isErrorIpfsMetadata ||
+      isErrorGetInterfaceSupport,
+    error:
+      errorAssetById ||
+      errorPrimaryAsset ||
+      errorIpfsMetadata ||
+      errorGetInterfaceSupport,
+    refetch: refetchPrimaryAsset || refetchAssetById,
     asset,
   };
 };

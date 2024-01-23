@@ -23,6 +23,7 @@ export const useGetTokenPrimaryAsset = (
   options?: Options,
 ): {
   isLoading: boolean;
+  isFetching: boolean;
   isError: boolean;
   error: Error | null;
   refetch: () => void;
@@ -45,6 +46,9 @@ export const useGetTokenPrimaryAsset = (
   const {
     isLoading: isLoadingGetInterfaceSupport,
     interfaceSupport: { supportsEquippable, supportsMultiAsset },
+    isFetching: isFetchingGetInterfaceSupport,
+    error: errorGetInterfaceSupport,
+    isError: isErrorGetInterfaceSupport,
   } = useGetInterfaceSupport(
     { contractAddress, chainId },
     { enabled: enabled && requiresInterfaceCheck },
@@ -58,6 +62,8 @@ export const useGetTokenPrimaryAsset = (
     data: topAssetForToken,
     isLoading: loadingTopAssetForToken,
     error: errorTopAsseForToken,
+    isError: isErrorTopAsseForToken,
+    isFetching: isFetchingTopAsseForToken,
     refetch: refetTopAssetForToken,
   } = useReadContract({
     address: enabledSimplePrimaryAsset
@@ -73,6 +79,8 @@ export const useGetTokenPrimaryAsset = (
   const {
     data: topAssetAndEquippableDataForToken,
     isLoading: loadingTopAssetAndEquippableDataForToken,
+    isError: isErrorTopAssetAndEquippableDataForToken,
+    isFetching: isFetchingTopAssetAndEquippableDataForToken,
     error: errorTopAssetAndEquippableDataForToken,
     refetch: refetchTopAssetAndEquippableDataForToken,
   } = useReadContract({
@@ -86,23 +94,21 @@ export const useGetTokenPrimaryAsset = (
     query: { enabled: enabledAssetWithEquippableData },
   });
 
-  const primaryAssetWithEquippableData: RMRKAssetExtended | undefined =
-    topAssetAndEquippableDataForToken
-      ? {
-          id: topAssetAndEquippableDataForToken.id,
-          partIds: [...topAssetAndEquippableDataForToken.partIds],
-          metadataUri: topAssetAndEquippableDataForToken.metadata,
-          equippableGroupId:
-            topAssetAndEquippableDataForToken.equippableGroupId,
-          catalogAddress: topAssetAndEquippableDataForToken.catalogAddress,
-        }
-      : undefined;
+  const primaryAssetWithEquippableData = topAssetAndEquippableDataForToken
+    ? ({
+        id: topAssetAndEquippableDataForToken.id,
+        partIds: [...topAssetAndEquippableDataForToken.partIds],
+        metadataUri: topAssetAndEquippableDataForToken.metadata,
+        equippableGroupId: topAssetAndEquippableDataForToken.equippableGroupId,
+        catalogAddress: topAssetAndEquippableDataForToken.catalogAddress,
+      } satisfies RMRKAssetExtended)
+    : undefined;
 
-  const primaryAssetSimple: RMRKAssetExtended | undefined = topAssetForToken
-    ? {
+  const primaryAssetSimple = topAssetForToken
+    ? ({
         id: topAssetForToken[0],
         metadataUri: topAssetForToken[2],
-      }
+      } satisfies RMRKAssetExtended)
     : undefined;
 
   return {
@@ -110,8 +116,18 @@ export const useGetTokenPrimaryAsset = (
       isLoadingGetInterfaceSupport ||
       loadingTopAssetForToken ||
       loadingTopAssetAndEquippableDataForToken,
-    isError: !!errorTopAsseForToken || !!errorTopAssetAndEquippableDataForToken,
-    error: errorTopAsseForToken || errorTopAssetAndEquippableDataForToken,
+    isFetching:
+      isFetchingGetInterfaceSupport ||
+      isFetchingTopAsseForToken ||
+      isFetchingTopAssetAndEquippableDataForToken,
+    isError:
+      isErrorGetInterfaceSupport ||
+      isErrorTopAsseForToken ||
+      isErrorTopAssetAndEquippableDataForToken,
+    error:
+      errorTopAsseForToken ||
+      errorTopAssetAndEquippableDataForToken ||
+      errorGetInterfaceSupport,
     refetch: refetchTopAssetAndEquippableDataForToken || refetTopAssetForToken,
     primaryAsset: primaryAssetSimple || primaryAssetWithEquippableData,
   };

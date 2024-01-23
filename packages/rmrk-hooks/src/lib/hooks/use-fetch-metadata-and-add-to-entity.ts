@@ -17,17 +17,14 @@ export const useFetchMetadataAndAddToEntity = <T extends WithMetadata>(
   options?: Options,
   entity?: T,
 ) => {
-  const {
-    isLoading,
-    error,
-    isError,
-    refetch,
-    data: metadata,
-  } = useFetchIpfsMetadata(args, options);
+  const { data: metadata, ...otherReactQueryProps } = useFetchIpfsMetadata(
+    args,
+    options,
+  );
 
   if (entity) {
     entity.metadata = metadata || undefined;
   }
 
-  return { isLoading, isError, error, refetch, data: entity };
+  return { ...otherReactQueryProps, data: entity };
 };

@@ -1,7 +1,4 @@
-import {
-  RMRKEquippableImpl,
-  mapChainIdToNetwork,
-} from '@rmrk-team/rmrk-evm-utils';
+import { RMRKEquippableImpl } from '@rmrk-team/rmrk-evm-utils';
 import type { RMRKAssetExtended } from '@rmrk-team/types';
 import type { Address, Chain } from 'viem';
 import { useReadContract } from 'wagmi';
@@ -28,6 +25,7 @@ export const useGetTokenAssetById = (
   isLoading: boolean;
   isError: boolean;
   error: Error | null;
+  isFetching: boolean;
   refetch: () => void;
   assetById: RMRKAssetExtended | undefined;
 } => {
@@ -45,15 +43,10 @@ export const useGetTokenAssetById = (
     supportsEquippableInterface === undefined ||
     supportsMultiAssetInterface === undefined;
 
-  const network = mapChainIdToNetwork(chainId);
-
   const {
     isLoading: isLoadingGetInterfaceSupport,
-    interfaceSupport: {
-      supportsEquippable,
-      supportsMultiAsset,
-      supportsNesting,
-    },
+    isFetching: isFetchingGetInterfaceSupport,
+    interfaceSupport: { supportsEquippable, supportsMultiAsset },
   } = useGetInterfaceSupport(
     { contractAddress, chainId },
     { enabled: enabled && requiresInterfaceCheck },
@@ -66,8 +59,8 @@ export const useGetTokenAssetById = (
   const {
     data: assetMetadataUri,
     isLoading: isLoadingAssetMetadataUri,
+    isFetching: isFetchingAssetMetadataUri,
     error: errorAssetMetadataUri,
-    refetch: refetAssetMetadataUri,
   } = useReadContract({
     address: enabledSimplePrimaryAsset ? contractAddress : undefined,
     abi: RMRKEquippableImpl,
@@ -80,6 +73,7 @@ export const useGetTokenAssetById = (
   const {
     data: assetAndEquippableDataForToken,
     isLoading: isLoadingAssetAndEquippableDataForToken,
+    isFetching: isFetchingAssetAndEquippableDataForToken,
     error: errorAssetAndEquippableDataForToken,
     refetch: refetchAssetAndEquippableDataForToken,
   } = useReadContract({
@@ -116,7 +110,11 @@ export const useGetTokenAssetById = (
       isLoadingAssetMetadataUri,
     isError: !!errorAssetAndEquippableDataForToken || !!errorAssetMetadataUri,
     error: errorAssetAndEquippableDataForToken || errorAssetMetadataUri,
-    refetch: refetchAssetAndEquippableDataForToken || refetAssetMetadataUri,
+    isFetching:
+      isFetchingGetInterfaceSupport ||
+      isFetchingAssetMetadataUri ||
+      isFetchingAssetAndEquippableDataForToken,
+    refetch: refetchAssetAndEquippableDataForToken,
     assetById: assetSimple || assetWithEquippableData,
   };
 };

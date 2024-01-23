@@ -4,6 +4,7 @@ import {
   fetchIpfsMetadata,
 } from '@rmrk-team/ipfs-utils';
 import { useQueries } from '@tanstack/react-query';
+import { useCallback } from 'react';
 
 type Props = {
   metadataUris: string[] | undefined;
@@ -18,7 +19,7 @@ export const useFetchIpfsMetadatas = (
 ) => {
   const { enabled = true } = options || {};
 
-  const result = useQueries({
+  const results = useQueries({
     queries: (metadataUris || []).map((metadataUri) => ({
       queryKey: ['fetchIpfsMetadata', metadataUri],
       queryFn: () =>
@@ -31,12 +32,19 @@ export const useFetchIpfsMetadatas = (
     })),
   });
 
-  const isLoading = result.some((r) => r.isLoading);
-  const isError = result.some((r) => r.isError);
+  const refetchAll = useCallback(() => {
+    results.forEach((result) => result.refetch());
+  }, [results]);
+
+  const isLoading = results.some((r) => r.isLoading);
+  const isError = results.some((r) => r.isError);
+  const isFetching = results.some((r) => r.isFetching);
 
   return {
     isLoading,
     isError,
-    data: metadataUris ? result.map((r) => r.data) : undefined,
+    isFetching,
+    data: metadataUris ? results.map((r) => r.data) : undefined,
+    refetch: refetchAll,
   };
 };
