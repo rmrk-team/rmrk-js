@@ -18,6 +18,7 @@ const customUtilityContracts = {
     [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]: '0x00',
     [NETWORK_CONTRACTS_PROPS.RMRKBulkWriter]: '0x00',
     [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]: '0x00',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]: '0x00',
   },
 } satisfies RMRKUtilityContracts;
 

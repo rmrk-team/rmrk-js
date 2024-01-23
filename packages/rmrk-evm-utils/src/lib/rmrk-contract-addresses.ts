@@ -11,11 +11,13 @@ import {
   polygonMumbai,
   sepolia,
 } from 'wagmi/chains';
+import { bsc } from 'viem/chains';
 
 export const NETWORK_CONTRACTS_PROPS = {
   RMRKEquipRenderUtils: 'RMRKEquipRenderUtils',
   RMRKBulkWriter: 'RMRKBulkWriter',
   RMRKCollectionUtils: 'RMRKCollectionUtils',
+  RMRKCatalogUtils: 'RMRKCatalogUtils',
 } as const;
 
 export type NETWORK_CONTRACTS_PROPS =
@@ -32,6 +34,8 @@ export const EVM_RMRK_CONTRACTS = {
       '0xb6ccec23d23b4ed3f623cafbc90cfff32dbf1834',
     [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]:
       '0x244eE3b7F2692191BdA9E9E236e4D2008dd35Ce9',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
+      '0xCB5FbC83B0f40F76Eca5ea4798F7827AF22d2005',
   },
   [mainnet.id]: {
     [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]:
@@ -40,6 +44,8 @@ export const EVM_RMRK_CONTRACTS = {
       '0xA1bE03772e25001df2B8A3F4FC88d8d3810A285e',
     [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]:
       '0x388e1d9b6509ad62c162cd68ccefa84e09aa8280',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
+      '0x746EC2492143Cc9D6F6824b3566D90B45f4eb8D3',
   },
   [sepolia.id]: {
     [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]:
@@ -48,6 +54,8 @@ export const EVM_RMRK_CONTRACTS = {
       '0xee04d24462A3952aC8f64F23f5F16e0fFFb5b6CC',
     [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]:
       '0x3ea5D7985718B6bFa75172Dcd0a79E4c587a6694',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
+      '0x102A441b9a9438B38a65a9D5Eedfc4e4307860B6',
   },
   [polygon.id]: {
     [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]:
@@ -56,6 +64,8 @@ export const EVM_RMRK_CONTRACTS = {
       '0x28F5550315182D8446e9BFa5eD24a7796ee6e2a1',
     [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]:
       '0x7cD79daAF8E178Fb4Af7017608633e23587c167e',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
+      '0x8f80A08a01F531c35c0ccfb05e2a4043b8C77D6B',
   },
   [polygonMumbai.id]: {
     [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]:
@@ -64,6 +74,8 @@ export const EVM_RMRK_CONTRACTS = {
       '0xA799A6b45ED9BeE6A9bE436aef29469b9BE0DE3F',
     [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]:
       '0xf57160A562cD87dC786C7388b75BaBAe7EfB60C9',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
+      '0x5d02901FefD49885eBD5678d62C0D24CA634446B',
   },
   [moonbaseAlpha.id]: {
     [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]:
@@ -72,6 +84,8 @@ export const EVM_RMRK_CONTRACTS = {
       '0x3d3295D71138078df5F470A22628ec4377416e5d',
     [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]:
       '0x6407d7D24023348Ff660b6F5Fa0F5D644953cf2c',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
+      '0x209c232356e9602f253f38b2E1fD6ee351b6dfe0',
   },
   [base.id]: {
     [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]:
@@ -80,6 +94,8 @@ export const EVM_RMRK_CONTRACTS = {
       '0x91d098a91faf61984F965C3A202Ad30747dae275',
     [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]:
       '0xBa1eA71FF1695C3fe8dfBC774Af30448316E98dc',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
+      '0xd9026e54dab671E09B039E03AC9e416C6Fba958D',
   },
   [baseSepolia.id]: {
     [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]:
@@ -88,6 +104,8 @@ export const EVM_RMRK_CONTRACTS = {
       '0xb4F28c86808872f7B368893cbc975F764aD0fdB5',
     [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]:
       '0x4aCFECbA1a5d83a6D8868E55f784b9d5453d1339',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
+      '0x91d098a91faf61984F965C3A202Ad30747dae275',
   },
   [astar.id]: {
     [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]:
@@ -96,6 +114,18 @@ export const EVM_RMRK_CONTRACTS = {
       '0x5B01637FD17c1ac79df13dFF4F7080Fdd4cfEC46',
     [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]:
       '0xCeecc3C73284CfB9d3AB87F8b653D14Bd3b65FeC',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
+      '0x26912429223e93cb26D63B8D2C44CFF512083dFb',
+  },
+  [bsc.id]: {
+    [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]:
+      '0x7Bd4fDCcACb2D084bc68b750f00ffC012fB2b6A2',
+    [NETWORK_CONTRACTS_PROPS.RMRKBulkWriter]:
+      '0x07864668A597Ac3866Fd70A4313C7304C9E81693',
+    [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]:
+      '0x2D9eE1277F40606b5fC6C1984Cc3990dC63CeFFA',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
+      '0x6f2ebaDF4aA67Be1Ac57bFE6eBbC99D6C1fa25bF',
   },
   [hardhat.id]: {
     [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]:
@@ -103,6 +133,8 @@ export const EVM_RMRK_CONTRACTS = {
     [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]:
       '0x0000000000000000000000000000000000000000',
     [NETWORK_CONTRACTS_PROPS.RMRKBulkWriter]:
+      '0x0000000000000000000000000000000000000000',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
       '0x0000000000000000000000000000000000000000',
   },
 } as const satisfies RMRKUtilityContracts;
