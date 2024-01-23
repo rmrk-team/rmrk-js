@@ -1,0 +1,370 @@
+export const RMRKCatalogImpl = [
+  {
+    inputs: [
+      { internalType: 'string', name: 'metadataURI', type: 'string' },
+      { internalType: 'string', name: 'type_', type: 'string' },
+    ],
+    stateMutability: 'nonpayable',
+    type: 'constructor',
+  },
+  { inputs: [], name: 'RMRKBadConfig', type: 'error' },
+  { inputs: [], name: 'RMRKIdZeroForbidden', type: 'error' },
+  { inputs: [], name: 'RMRKLocked', type: 'error' },
+  { inputs: [], name: 'RMRKNewContributorIsZeroAddress', type: 'error' },
+  { inputs: [], name: 'RMRKNewOwnerIsZeroAddress', type: 'error' },
+  { inputs: [], name: 'RMRKNotOwner', type: 'error' },
+  { inputs: [], name: 'RMRKNotOwnerOrContributor', type: 'error' },
+  { inputs: [], name: 'RMRKPartAlreadyExists', type: 'error' },
+  { inputs: [], name: 'RMRKPartDoesNotExist', type: 'error' },
+  { inputs: [], name: 'RMRKPartIsNotSlot', type: 'error' },
+  { inputs: [], name: 'RMRKZeroLengthIdsPassed', type: 'error' },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: 'uint64', name: 'partId', type: 'uint64' },
+      {
+        indexed: false,
+        internalType: 'address[]',
+        name: 'equippableAddresses',
+        type: 'address[]',
+      },
+    ],
+    name: 'AddedEquippables',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: 'uint64', name: 'partId', type: 'uint64' },
+      {
+        indexed: true,
+        internalType: 'enum IRMRKCatalog.ItemType',
+        name: 'itemType',
+        type: 'uint8',
+      },
+      { indexed: false, internalType: 'uint8', name: 'zIndex', type: 'uint8' },
+      {
+        indexed: false,
+        internalType: 'address[]',
+        name: 'equippableAddresses',
+        type: 'address[]',
+      },
+      {
+        indexed: false,
+        internalType: 'string',
+        name: 'metadataURI',
+        type: 'string',
+      },
+    ],
+    name: 'AddedPart',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'contributor',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'bool',
+        name: 'isContributor',
+        type: 'bool',
+      },
+    ],
+    name: 'ContributorUpdate',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'previousOwner',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'newOwner',
+        type: 'address',
+      },
+    ],
+    name: 'OwnershipTransferred',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: 'uint64', name: 'partId', type: 'uint64' },
+    ],
+    name: 'SetEquippableToAll',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: 'uint64', name: 'partId', type: 'uint64' },
+      {
+        indexed: false,
+        internalType: 'address[]',
+        name: 'equippableAddresses',
+        type: 'address[]',
+      },
+    ],
+    name: 'SetEquippables',
+    type: 'event',
+  },
+  {
+    inputs: [
+      { internalType: 'uint64', name: 'partId', type: 'uint64' },
+      {
+        internalType: 'address[]',
+        name: 'equippableAddresses',
+        type: 'address[]',
+      },
+    ],
+    name: 'addEquippableAddresses',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        components: [
+          { internalType: 'uint64', name: 'partId', type: 'uint64' },
+          {
+            components: [
+              {
+                internalType: 'enum IRMRKCatalog.ItemType',
+                name: 'itemType',
+                type: 'uint8',
+              },
+              { internalType: 'uint8', name: 'z', type: 'uint8' },
+              {
+                internalType: 'address[]',
+                name: 'equippable',
+                type: 'address[]',
+              },
+              { internalType: 'string', name: 'metadataURI', type: 'string' },
+            ],
+            internalType: 'struct IRMRKCatalog.Part',
+            name: 'part',
+            type: 'tuple',
+          },
+        ],
+        internalType: 'struct IRMRKCatalog.IntakeStruct',
+        name: 'intakeStruct',
+        type: 'tuple',
+      },
+    ],
+    name: 'addPart',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        components: [
+          { internalType: 'uint64', name: 'partId', type: 'uint64' },
+          {
+            components: [
+              {
+                internalType: 'enum IRMRKCatalog.ItemType',
+                name: 'itemType',
+                type: 'uint8',
+              },
+              { internalType: 'uint8', name: 'z', type: 'uint8' },
+              {
+                internalType: 'address[]',
+                name: 'equippable',
+                type: 'address[]',
+              },
+              { internalType: 'string', name: 'metadataURI', type: 'string' },
+            ],
+            internalType: 'struct IRMRKCatalog.Part',
+            name: 'part',
+            type: 'tuple',
+          },
+        ],
+        internalType: 'struct IRMRKCatalog.IntakeStruct[]',
+        name: 'intakeStructs',
+        type: 'tuple[]',
+      },
+    ],
+    name: 'addPartList',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'uint64', name: 'partId', type: 'uint64' },
+      { internalType: 'address', name: 'targetAddress', type: 'address' },
+    ],
+    name: 'checkIsEquippable',
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'uint64', name: 'partId', type: 'uint64' }],
+    name: 'checkIsEquippableToAll',
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'getLock',
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'getMetadataURI',
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'uint64', name: 'partId', type: 'uint64' }],
+    name: 'getPart',
+    outputs: [
+      {
+        components: [
+          {
+            internalType: 'enum IRMRKCatalog.ItemType',
+            name: 'itemType',
+            type: 'uint8',
+          },
+          { internalType: 'uint8', name: 'z', type: 'uint8' },
+          { internalType: 'address[]', name: 'equippable', type: 'address[]' },
+          { internalType: 'string', name: 'metadataURI', type: 'string' },
+        ],
+        internalType: 'struct IRMRKCatalog.Part',
+        name: '',
+        type: 'tuple',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'uint64[]', name: 'partIds', type: 'uint64[]' }],
+    name: 'getParts',
+    outputs: [
+      {
+        components: [
+          {
+            internalType: 'enum IRMRKCatalog.ItemType',
+            name: 'itemType',
+            type: 'uint8',
+          },
+          { internalType: 'uint8', name: 'z', type: 'uint8' },
+          { internalType: 'address[]', name: 'equippable', type: 'address[]' },
+          { internalType: 'string', name: 'metadataURI', type: 'string' },
+        ],
+        internalType: 'struct IRMRKCatalog.Part[]',
+        name: '',
+        type: 'tuple[]',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'getType',
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'address', name: 'contributor', type: 'address' }],
+    name: 'isContributor',
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'address', name: 'contributor', type: 'address' },
+      { internalType: 'bool', name: 'grantRole', type: 'bool' },
+    ],
+    name: 'manageContributor',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'owner',
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'uint64', name: 'partId', type: 'uint64' }],
+    name: 'resetEquippableAddresses',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'uint64', name: 'partId', type: 'uint64' },
+      {
+        internalType: 'address[]',
+        name: 'equippableAddresses',
+        type: 'address[]',
+      },
+    ],
+    name: 'setEquippableAddresses',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'uint64', name: 'partId', type: 'uint64' }],
+    name: 'setEquippableToAll',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'setLock',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'bytes4', name: 'interfaceId', type: 'bytes4' }],
+    name: 'supportsInterface',
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'address', name: 'newOwner', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+] as const;

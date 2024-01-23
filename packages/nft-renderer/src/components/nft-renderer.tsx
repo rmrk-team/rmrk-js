@@ -1,6 +1,7 @@
 import { MultiLayer2DRenderer } from '@rmrk-team/rmrk-2d-renderer';
 import {
   RMRKEquippableImpl,
+  RMRKCatalogImpl,
   mapChainIdToNetwork,
 } from '@rmrk-team/rmrk-evm-utils';
 import {
@@ -8,6 +9,7 @@ import {
   useGetAssetData,
   useGetComposedState,
   useGetInterfaceSupport,
+  useRMRKConfig,
 } from '@rmrk-team/rmrk-hooks';
 import React, { useEffect, useRef, useState } from 'react';
 import { css } from 'styled-system/css';
@@ -41,6 +43,8 @@ export function NFTRenderer({
   const rendererContainerRef = useRef<null | HTMLDivElement>(null);
   const tokenIdBigint = BigInt(tokenId);
   const network = mapChainIdToNetwork(chainId);
+
+  const config = useRMRKConfig();
 
   const publicClient = usePublicClient({
     chainId,
@@ -121,6 +125,24 @@ export function NFTRenderer({
     catalogAddress,
   } = composableState;
 
+  const {
+    data: catalogType,
+    isLoading: loadingCatalogType,
+    error: errorCatalogType,
+  } = useReadContract({
+    address: catalogAddress,
+    abi: RMRKCatalogImpl,
+    functionName: 'getType',
+    chainId,
+    query: { enabled: !!catalogAddress },
+  });
+
+  const isImageCatalogType =
+    !!catalogType &&
+    (catalogType.startsWith('image/') ||
+      catalogType.startsWith('img/') ||
+      ['image', 'img', 'png', 'jpg', 'jpeg', 'svg'].includes(catalogType));
+
   const catalogRenderParts: RenderPart[] | undefined =
     fixedPartsWithMetadatas && slotPartsWithMetadatas
       ? [
@@ -187,7 +209,16 @@ export function NFTRenderer({
     isLoadingPrimaryAsset ||
     isLoadingTokenMetadata ||
     isLoadingComposableState ||
-    isLoadingGetInterfaceSupport;
+    isLoadingGetInterfaceSupport ||
+    loadingCatalogType;
+
+  if (!isLoading && !isImageCatalogType) {
+    return (
+      <div>
+        <p>Unsupported catalog type: {catalogType}</p>
+      </div>
+    );
+  }
 
   return (
     <div
