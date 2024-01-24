@@ -1,6 +1,7 @@
 {
   "name": "rmrk-js",
   "version": "0.0.1",
+  "description": "The monorepo repository of RMRK EVM typescript libraries",
   "private": true,
   "type": "module",
   "scripts": {
@@ -57,5 +58,15 @@
     "packages": [
       "packages/*"
     ]
-  }
+  },
+  "license": "MIT",
+  "authors": [
+    "yurinondual.eth <yuripetusko@gmail.com>"
+  ],
+  "contributors": [
+    {
+      "name": "Ayuilos",
+      "url": "https://github.com/Ayuilos"
+    }
+  ]
 }

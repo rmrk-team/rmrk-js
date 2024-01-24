@@ -1,5 +1,6 @@
 {
   "name": "@rmrk-team/rmrk-2d-renderer",
+  "description": "React Pixi (Canvas) renderer for multi layered composable NFTs built on RMRK standards",
   "version": "0.0.4",
   "private": false,
   "access": "public",
@@ -73,5 +74,15 @@
   "peerDependencies": {
     "react": ">=18",
     "typescript": ">=5.4.0-dev.20240116"
-  }
+  },
+  "license": "MIT",
+  "authors": [
+    "yurinondual.eth <yuripetusko@gmail.com>"
+  ],
+  "contributors": [
+    {
+      "name": "Ayuilos",
+      "url": "https://github.com/Ayuilos"
+    }
+  ]
 }

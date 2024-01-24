@@ -1,5 +1,6 @@
 {
   "name": "@rmrk-team/rmrk-hooks",
+  "description": "React hooks for working with NFTs built on RMRK standards",
   "version": "0.0.5",
   "private": false,
   "access": "public",
@@ -73,5 +74,9 @@
     "typescript": ">=5.4.0-dev.20240116",
     "viem": ">=2.1.1",
     "wagmi": ">=2.2.1"
-  }
+  },
+  "license": "MIT",
+  "authors": [
+    "yurinondual.eth <yuripetusko@gmail.com>"
+  ]
 }

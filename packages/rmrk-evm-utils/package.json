@@ -1,5 +1,6 @@
 {
   "name": "@rmrk-team/rmrk-evm-utils",
+  "description": "Typescript utilities and actions for working with NFTs built on RMRK standards",
   "version": "0.0.4",
   "private": false,
   "access": "public",
@@ -54,5 +55,9 @@
     "typescript": ">=5.4.0-dev.20240116",
     "viem": ">=2.1.1",
     "wagmi": ">=2.2.1"
-  }
+  },
+  "license": "MIT",
+  "authors": [
+    "yurinondual.eth <yuripetusko@gmail.com>"
+  ]
 }
