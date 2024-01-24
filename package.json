@@ -2,6 +2,8 @@
   "name": "rmrk-js",
   "version": "0.0.1",
   "description": "The monorepo repository of RMRK EVM typescript libraries",
+  "bugs": "https://github.com/rmrk-team/rmrk-js/issues",
+  "homepage": "https://github.com/rmrk-team/rmrk-js",
   "private": true,
   "type": "module",
   "scripts": {

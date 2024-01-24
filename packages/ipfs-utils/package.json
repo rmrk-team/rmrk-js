@@ -1,6 +1,8 @@
 {
   "name": "@rmrk-team/ipfs-utils",
   "description": "IPFS utils for RMRK NFTs",
+  "bugs": "https://github.com/rmrk-team/rmrk-js/issues",
+  "homepage": "https://github.com/rmrk-team/rmrk-js",
   "version": "0.0.5",
   "private": false,
   "access": "public",
