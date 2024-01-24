@@ -12,12 +12,13 @@
   },
   "scripts": {
     "build": "pnpm run clean && pnpm run build:esm+types",
-    "build:esm+types": "pnpm build:postcss && tsc -b tsconfig.build.json --declaration --declarationMap && pnpm copy:styled-system && tsc-alias -p tsconfig.build.json && pnpm build:panda",
+    "build:esm+types": "pnpm build:postcss && tsc -b tsconfig.build.json --declaration --declarationMap",
+    "build:misc": "pnpm copy:styled-system && tsc-alias -p tsconfig.build.json",
     "build:postcss": "postcss -o dist/esm/styles/index.css src/styles/index.css",
     "build:panda": "panda cssgen --outfile dist/styles.css",
     "copy:styled-system": "copyfiles ./styled-system/**/*.mjs ./styled-system/*.mjs dist/esm",
     "prepare": "panda codegen",
-    "dev": "pnpm --workspace-concurrency=1 run build:esm+types --watch",
+    "dev": "pnpm --workspace-concurrency=1 run build:esm+types --watch && run build:misc --watch && build:panda --watch",
     "clean": "rm -rf dist tsconfig.tsbuildinfo actions chains connectors query",
     "test:build": "publint --strict",
     "typecheck": "tsc --noEmit"
@@ -60,6 +61,7 @@
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "@vitejs/plugin-react": "^4.1.0",
+    "@wagmi/core": "^2.6.0",
     "copyfiles": "^2.4.1",
     "postcss": "^8.4.33",
     "postcss-cli": "^11.0.0",
@@ -67,17 +69,18 @@
     "react-dom": "18.2.0",
     "tsc-alias": "^1.8.8",
     "typescript": "5.4.0-dev.20240116",
-    "viem": "^2.1.1",
+    "viem": "^2.5.0",
     "vite": "^4.4.9",
-    "wagmi": "^2.2.1"
+    "wagmi": "^2.5.1"
   },
   "peerDependencies": {
     "@tanstack/react-query": ">=5.17.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": ">=5.4.0-dev.20240116",
-    "viem": ">=2.1.1",
-    "wagmi": ">=2.2.1"
+    "viem": ">=2.5.0",
+    "wagmi": ">=2.5.1",
+    "@wagmi/core": "^2.6.0"
   },
   "license": "MIT",
   "authors": [

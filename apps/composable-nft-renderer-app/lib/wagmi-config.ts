@@ -47,7 +47,7 @@ export const chains = allSupportedChains;
 
 const transports: Record<number, Transport> = {};
 
-for (const chain of productionChains) {
+for (const chain of allSupportedChains) {
   transports[chain.id] = http();
 }
 

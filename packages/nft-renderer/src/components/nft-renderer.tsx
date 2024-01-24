@@ -35,22 +35,25 @@ const useIsAddressAContract = ({
   useEffect(() => {
     const isValidAddress = isAddress(address);
 
-    if (isValidAddress) {
-      (async () => {
-        setIsLoading(true);
-        const isContract = await publicClient.getBytecode({
-          address,
-        });
-        setIsContract(!!isContract);
-        setIsLoading(false);
-        if (!isContract) {
-          setError(new Error(`Address ${address} is not a contract`));
-        }
-      })();
-    } else {
-      setError(new Error(`Address ${address} is not a valid address`));
+    if (chainId && publicClient) {
+      if (isValidAddress) {
+        (async () => {
+          setIsLoading(true);
+          const isContract = await publicClient.getBytecode({
+            address,
+          });
+
+          setIsContract(!!isContract);
+          setIsLoading(false);
+          if (!isContract) {
+            setError(new Error(`Address ${address} is not a contract`));
+          }
+        })();
+      } else {
+        setError(new Error(`Address ${address} is not a valid address`));
+      }
     }
-  }, [address, publicClient]);
+  }, [address, chainId, publicClient]);
 
   useEffect(() => {
     if (error && onError) {

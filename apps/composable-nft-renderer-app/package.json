@@ -21,8 +21,8 @@
     "next": "13.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "viem": "^2.1.1",
-    "wagmi": "^2.2.1"
+    "viem": "^2.5.0",
+    "wagmi": "^2.5.1"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.27.0",
