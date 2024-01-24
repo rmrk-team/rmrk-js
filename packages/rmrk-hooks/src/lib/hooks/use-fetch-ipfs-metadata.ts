@@ -4,6 +4,7 @@ import {
   fetchIpfsMetadata,
 } from '@rmrk-team/ipfs-utils';
 import { useQuery } from '@tanstack/react-query';
+import { useRMRKConfig } from '../RMRKContextProvider.js';
 
 type Props = { metadataUri: string | undefined; ipfsGatewayUrl?: string };
 
@@ -22,6 +23,7 @@ export const useFetchIpfsMetadata = (
   { metadataUri, ipfsGatewayUrl }: Props,
   options?: Options,
 ) => {
+  const rmrkConfig = useRMRKConfig();
   const { enabled = true } = options || {};
   return useQuery({
     queryKey: ['fetchIpfsMetadata', metadataUri],
@@ -29,6 +31,7 @@ export const useFetchIpfsMetadata = (
       return fetchIpfsMetadata(
         metadataUri,
         ipfsGatewayUrl ||
+          rmrkConfig?.ipfsGateway ||
           DEFAULT_IPFS_GATEWAY_URLS[DEFAULT_IPFS_GATEWAY_KEYS.cloudflare],
       );
     },

@@ -8,12 +8,14 @@ import { useContext } from 'react';
 
 type RMRKConfigInitial = {
   utilityContracts: RMRKUtilityContracts;
+  ipfsGateway?: string;
 };
 
 export type RMRKConfig<
   utilityContracts extends RMRKUtilityContracts = RMRKUtilityContracts,
 > = {
   utilityContracts: utilityContracts;
+  ipfsGateway?: string;
 };
 
 export type ResolveRMRKConfig = {
