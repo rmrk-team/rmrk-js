@@ -1,5 +1,11 @@
 # @rmrk-team/rmrk-hooks
 
+## 0.0.9
+
+### Patch Changes
+
+- [`885eb3a`](https://github.com/rmrk-team/rmrk-js/commit/885eb3a0026e5a3e6affc7eea5376e6e11755517) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Add ability to pass ipfsGateway to rmrk provider context
+
 ## 0.0.8
 
 ### Patch Changes
