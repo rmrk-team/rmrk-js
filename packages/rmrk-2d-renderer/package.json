@@ -1,7 +1,7 @@
 {
   "name": "@rmrk-team/rmrk-2d-renderer",
   "description": "React Pixi (Canvas) renderer for multi layered composable NFTs built on RMRK standards",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": false,
   "access": "public",
   "repository": {

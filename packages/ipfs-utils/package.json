@@ -1,7 +1,7 @@
 {
   "name": "@rmrk-team/ipfs-utils",
   "description": "IPFS utils for RMRK NFTs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": false,
   "access": "public",
   "repository": {
