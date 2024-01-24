@@ -1,5 +1,12 @@
 # @rmrk-team/rmrk-2d-renderer
 
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`211dc4c`](https://github.com/rmrk-team/rmrk-js/commit/211dc4ca9cd9e61294ffd6551eed1502bc8a5bd5)]:
+  - @rmrk-team/ipfs-utils@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes

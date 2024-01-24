@@ -1,5 +1,16 @@
 # @rmrk-team/nft-renderer
 
+## 0.0.10
+
+### Patch Changes
+
+- [`211dc4c`](https://github.com/rmrk-team/rmrk-js/commit/211dc4ca9cd9e61294ffd6551eed1502bc8a5bd5) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Add ability to pass ipfsGateway to rmrk config provider to be used in ipfs fetching hooks
+
+- Updated dependencies [[`211dc4c`](https://github.com/rmrk-team/rmrk-js/commit/211dc4ca9cd9e61294ffd6551eed1502bc8a5bd5)]:
+  - @rmrk-team/ipfs-utils@0.0.7
+  - @rmrk-team/rmrk-2d-renderer@0.0.7
+  - @rmrk-team/rmrk-hooks@0.0.10
+
 ## 0.0.9
 
 ### Patch Changes
