@@ -11,14 +11,14 @@
     "directory": "packages/nft-renderer"
   },
   "scripts": {
-    "build": "pnpm run clean && pnpm run build:esm+types",
+    "build": "pnpm run clean && pnpm run build:esm+types && pnpm run build:misc && pnpm run build:panda",
     "build:esm+types": "pnpm build:postcss && tsc -b tsconfig.build.json --declaration --declarationMap",
     "build:misc": "pnpm copy:styled-system && tsc-alias -p tsconfig.build.json",
     "build:postcss": "postcss -o dist/esm/styles/index.css src/styles/index.css",
     "build:panda": "panda cssgen --outfile dist/styles.css",
     "copy:styled-system": "copyfiles ./styled-system/**/*.mjs ./styled-system/*.mjs dist/esm",
     "prepare": "panda codegen",
-    "dev": "pnpm --workspace-concurrency=1 run build:esm+types --watch && run build:misc --watch && build:panda --watch",
+    "dev": "pnpm --workspace-concurrency=1 run build:esm+types --watch && pnpm run build:misc --watch && pnpm run build:panda --watch",
     "clean": "rm -rf dist tsconfig.tsbuildinfo actions chains connectors query",
     "test:build": "publint --strict",
     "typecheck": "tsc --noEmit"
