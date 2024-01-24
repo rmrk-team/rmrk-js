@@ -3,7 +3,7 @@
   "bugs": "https://github.com/rmrk-team/rmrk-js/issues",
   "homepage": "https://github.com/rmrk-team/rmrk-js",
   "description": "Types to be used in combination with other packages of the RMRK EVM monorepo",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": false,
   "access": "public",
   "repository": {
