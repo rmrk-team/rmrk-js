@@ -13,27 +13,60 @@ pnpm install @rmrk-team/nft-renderer
 ## Usage
 
 ```tsx
-import { Address } from "viem";
+import React from "react";
+import type {Address} from "viem";
+import {
+  NETWORK_CONTRACTS_PROPS,
+  RMRKUtilityContracts,
+} from "@rmrk-team/rmrk-evm-utils";
+import {RMRKContextProvider} from "@rmrk-team/rmrk-hooks";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {WagmiProvider} from "wagmi";
+import {hardhat} from "wagmi/chains";
 
-export const NftRendererWrapper
-({
-     chainId, contractAddress, tokenId
+const queryClient = new QueryClient();
+
+// You can pass custom utility contracts to the RMRKContextProvider
+const customUtilityContracts = {
+  [hardhat.id]: {
+    [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]: "0x00",
+    [NETWORK_CONTRACTS_PROPS.RMRKBulkWriter]: "0x00",
+    [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]: "0x00",
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]: "0x00",
+  },
+} satisfies RMRKUtilityContracts;
+
+const rmrkConfig = {
+  utilityContracts: customUtilityContracts,
+};
+
+export const NftRendererWrapper = ({
+   contractAddress,
+   tokenId,
  }: {
-    chainId: number, contractAddress: Address, tokenId: bigint
+  chainId: number;
+  contractAddress: Address;
+  tokenId: bigint;
 }) => {
-    return (
-        <Flex height="100vh" width="100vw">
-            <Flex height="100vh" aspectRatio={'1/1'} margin="0 auto">
-                <NFTRenderer
-                    chainId={chainId}
-                    contractAddress={collection}
-                    tokenId={tokenId}
-                    loader={<Loader/>}
-                />
+  return (
+    <WagmiProvider config={wagmiConfig}>
+      <QueryClientProvider client={queryClient}>
+        <RMRKContextProvider config={rmrkConfig}>
+          <Flex height="100vh" width="100vw">
+            <Flex height="100vh" aspectRatio={"1/1"} margin="0 auto">
+              <NFTRenderer
+                chainId={chainId}
+                contractAddress={contractAddress}
+                tokenId={tokenId}
+                loader={<Loader/>}
+              />
             </Flex>
-        </Flex>
-    );
-}
+          </Flex>
+        </RMRKContextProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  );
+};
 ```
 
 ## Building

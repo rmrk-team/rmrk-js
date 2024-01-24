@@ -16,7 +16,10 @@ type Options = {
 const ONE_DAY = 24 * 60 * 60 * 1000;
 
 /**
- * Used to get extended information about a specified collection.
+ * Retrieves interface support information for a given contract address and chain ID.
+ *
+ * @param {Arguments} args - The arguments object containing the contract address and chain ID.
+ * @param {Options} [options] - The options object containing additional configuration.
  */
 export const useGetInterfaceSupport = (args: Arguments, options?: Options) => {
   const { contractAddress, chainId } = args;

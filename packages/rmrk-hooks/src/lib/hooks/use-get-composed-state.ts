@@ -19,6 +19,18 @@ type Options = {
   enabledMetadataFetch?: boolean;
 };
 
+/**
+ * Retrieves the composed state of an asset with the given arguments.
+ * @param {object} arguments - The arguments required to fetch the composed state.
+ * @param {string} arguments.contractAddress - The contract address of the asset.
+ * @param {boolean} arguments.supportsEquippableInterface - Indicates whether the asset supports the equippable interface.
+ * @param {boolean} arguments.supportsMultiAssetInterface - Indicates whether the asset supports the multi-asset interface.
+ * @param {string} arguments.assetId - The ID of the asset.
+ * @param {string} arguments.chainId - The chain ID of the blockchain network.
+ * @param {object} options - Optional configuration options.
+ * @param {boolean} options.enabled - Indicates whether the fetch is enabled.
+ * @param {boolean} options.enabledMetadataFetch - Indicates whether metadata fetch is enabled.
+ */
 export const useGetComposedState = (
   {
     contractAddress,

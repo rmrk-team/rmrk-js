@@ -13,6 +13,19 @@ type Props = {
 
 type Options = { enabled?: boolean };
 
+/**
+ * A custom hook that fetches IPFS metadata for the given URIs.
+ * @param {Object} props - The properties object.
+ * @param {Array} props.metadataUris - The URIs of the metadata to fetch.
+ * @param {string} props.ipfsGatewayUrl - The URL of the IPFS gateway to use.
+ * @param {Object} options - Optional options object.
+ * @param {boolean} options.enabled - Whether the hook is enabled or not. Defaults to true.
+ * @property {boolean} isLoading - Indicates if the metadata is currently being loaded.
+ * @property {boolean} isError - Indicates if an error occurred while fetching the metadata.
+ * @property {boolean} isFetching - Indicates if the metadata is currently being fetched.
+ * @property {Array|undefined} data - The fetched metadata. Undefined if metadataUris is not provided.
+ * @property {Function} refetch - A function to manually trigger a re-fetch of the metadata.
+ */
 export const useFetchIpfsMetadatas = (
   { metadataUris, ipfsGatewayUrl }: Props,
   options?: Options,

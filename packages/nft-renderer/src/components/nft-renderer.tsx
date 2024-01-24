@@ -1,15 +1,10 @@
 import { MultiLayer2DRenderer } from '@rmrk-team/rmrk-2d-renderer';
-import {
-  RMRKCatalogImpl,
-  RMRKEquippableImpl,
-  mapChainIdToNetwork,
-} from '@rmrk-team/rmrk-evm-utils';
+import { RMRKCatalogImpl, RMRKEquippableImpl } from '@rmrk-team/rmrk-evm-utils';
 import {
   useFetchIpfsMetadata,
   useGetAssetData,
   useGetComposedState,
   useGetInterfaceSupport,
-  useRMRKConfig,
 } from '@rmrk-team/rmrk-hooks';
 import React, { useEffect, useRef, useState } from 'react';
 import { css } from 'styled-system/css';
@@ -19,6 +14,57 @@ import { usePublicClient, useReadContract } from 'wagmi';
 import type { Chain } from 'wagmi/chains';
 import '../styles/index.css';
 import type { RenderPart } from '../types/types.js';
+
+const useIsAddressAContract = ({
+  address,
+  chainId,
+  onError,
+}: {
+  address: Address;
+  chainId: Chain['id'];
+  onError?: (error: Error) => void;
+}) => {
+  const publicClient = usePublicClient({
+    chainId,
+  });
+
+  const [isContract, setIsContract] = useState<boolean>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error>();
+
+  useEffect(() => {
+    const isValidAddress = isAddress(address);
+
+    if (isValidAddress) {
+      (async () => {
+        setIsLoading(true);
+        const isContract = await publicClient.getBytecode({
+          address,
+        });
+        setIsContract(!!isContract);
+        setIsLoading(false);
+        if (!isContract) {
+          setError(new Error(`Address ${address} is not a contract`));
+        }
+      })();
+    } else {
+      setError(new Error(`Address ${address} is not a valid address`));
+    }
+  }, [address, publicClient]);
+
+  useEffect(() => {
+    if (error && onError) {
+      onError(error);
+    }
+  }, [error, onError]);
+
+  return {
+    isContract,
+    isLoading,
+    error,
+    isError: !!error,
+  };
+};
 
 type NFTRenderer = {
   chainId: Chain['id'];
@@ -30,42 +76,31 @@ type NFTRenderer = {
 };
 
 /**
- * @description To use this component, make sure you have a WagmiProvider wrapped it
+ * Renders a multi layered RMRK NFT based on the provided parameters.
+ *
+ * @param {Object} options - The options for rendering the NFT.
+ * @param {string} options.chainId - The chain ID of the blockchain network.
+ * @param {string} options.contractAddress - The address of the contract containing the NFT.
+ * @param {string} options.tokenId - The ID of the token to render.
+ * @param {ReactNode} options.loader - The loader component to display while the NFT is loading.
+ * @param {Function} options.onError - The callback function to handle errors.
  */
 export function NFTRenderer({
   chainId,
   contractAddress,
   tokenId,
-  advancedMode,
   loader,
   onError,
 }: NFTRenderer) {
   const rendererContainerRef = useRef<null | HTMLDivElement>(null);
   const tokenIdBigint = BigInt(tokenId);
-  const network = mapChainIdToNetwork(chainId);
 
-  const config = useRMRKConfig();
-
-  const publicClient = usePublicClient({
-    chainId,
-  });
-
-  const isValidAddress = isAddress(contractAddress);
-  const [isContract, setIsContract] = useState<boolean>();
-  const [isGettingIsContract, setIsGettingIsContract] = useState<boolean>(true);
-
-  useEffect(() => {
-    (async () => {
-      if (isValidAddress) {
-        setIsGettingIsContract(true);
-        const isContract = await publicClient.getBytecode({
-          address: contractAddress,
-        });
-        setIsContract(!!isContract);
-        setIsGettingIsContract(false);
-      }
-    })();
-  }, [contractAddress, isValidAddress, publicClient]);
+  const {
+    isContract,
+    isLoading: isLoadingIsContract,
+    isError: isErrorIsContract,
+    error: errorIsContract,
+  } = useIsAddressAContract({ address: contractAddress, chainId });
 
   const {
     isLoading: isLoadingGetInterfaceSupport,
@@ -129,6 +164,7 @@ export function NFTRenderer({
     data: catalogType,
     isLoading: loadingCatalogType,
     error: errorCatalogType,
+    isError: isErrorCatalogType,
   } = useReadContract({
     address: catalogAddress,
     abi: RMRKCatalogImpl,
@@ -179,9 +215,15 @@ export function NFTRenderer({
     isErrorTokenUri ||
     isErrorTokenMetadata ||
     isErrorPrimaryAsset ||
-    isErrorComposableState;
+    isErrorComposableState ||
+    isErrorIsContract ||
+    isErrorCatalogType;
 
-  const error = errorComposableState || errorPrimaryAsset;
+  const error =
+    errorComposableState ||
+    errorPrimaryAsset ||
+    errorIsContract ||
+    errorCatalogType;
 
   useEffect(() => {
     if (error && onError) {
@@ -204,7 +246,7 @@ export function NFTRenderer({
   }
 
   const isLoading =
-    isGettingIsContract ||
+    isLoadingIsContract ||
     isLoadingTokenUri ||
     isLoadingPrimaryAsset ||
     isLoadingTokenMetadata ||
@@ -241,32 +283,6 @@ export function NFTRenderer({
         </div>
       ) : (
         <>
-          {isValidAddress === false ? <p>Invalid address</p> : null}
-          {isValidAddress && !isContract ? <p>Not a contract</p> : null}
-          {isContract && isErrorTokenUri ? <p>Failed to get NFT data</p> : null}
-
-          {advancedMode ? (
-            <>
-              <h1>
-                Token {tokenId.toString()} on {network} in {contractAddress}
-              </h1>
-              {composableState ? (
-                <div>
-                  <>
-                    <p>Is Equippable</p>
-                    <p>metadataURI: {assetMetadataUri}</p>
-                    <p>groupId: {equippableGroupId?.toString()}</p>
-                    <p>catalog: {catalogAddress}</p>
-                  </>
-                </div>
-              ) : primaryAsset ? (
-                <p>metadataURI: {primaryAsset.metadataUri}</p>
-              ) : tokenUri ? (
-                <p>metadataURI: {tokenUri}</p>
-              ) : null}
-            </>
-          ) : null}
-
           {renderParts && renderParts.length > 0 ? (
             <MultiLayer2DRenderer
               resources={renderParts}

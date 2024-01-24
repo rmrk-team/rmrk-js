@@ -18,6 +18,12 @@ type Options = {
   enabledMetadataFetch?: boolean;
 };
 
+/**
+ * Retrieves asset data based on the provided arguments and options.
+ *
+ * @param {Arguments} args - The arguments for retrieving asset data.
+ * @param {Options} [options] - The options for retrieving asset data.
+ */
 export const useGetAssetData = (args: Arguments, options?: Options) => {
   const {
     contractAddress,

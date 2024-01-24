@@ -18,6 +18,20 @@ type Options = {
   enabledMetadataFetch?: boolean;
 };
 
+/**
+ * Retrieves the primary asset for a given token using various parameters.
+ *
+ * @param {Arguments} args - The arguments for retrieving the primary asset.
+ * @param {Options} [options] - The options for customizing the retrieval.
+ * @returns {{
+ *   isLoading: boolean;
+ *   isFetching: boolean;
+ *   isError: boolean;
+ *   error: Error | null;
+ *   refetch: () => void;
+ *   primaryAsset: RMRKAssetExtended | undefined;
+ * }}
+ */
 export const useGetTokenPrimaryAsset = (
   args: Arguments,
   options?: Options,

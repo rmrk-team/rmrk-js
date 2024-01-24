@@ -18,6 +18,20 @@ type Options = {
   enabledMetadataFetch?: boolean;
 };
 
+/**
+ * Retrieves token asset by its ID.
+ *
+ * @param {Arguments} args - The arguments required to retrieve the token asset.
+ * @param {Options} [options] - The options for retrieving the token asset.
+ * @returns {{
+ *   isLoading: boolean;
+ *   isError: boolean;
+ *   error: Error | null;
+ *   isFetching: boolean;
+ *   refetch: () => void;
+ *   assetById: RMRKAssetExtended | undefined;
+ * }} The token asset object.
+ */
 export const useGetTokenAssetById = (
   args: Arguments,
   options?: Options,

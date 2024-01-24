@@ -9,6 +9,15 @@ type Props = { metadataUri: string | undefined; ipfsGatewayUrl?: string };
 
 type Options = { enabled?: boolean };
 
+/**
+ * Fetches IPFS metadata and returns the result using React Query's `useQuery` hook.
+ *
+ * @param {Object} props - The props object.
+ * @param {string} props.metadataUri - The URI of the IPFS metadata to fetch.
+ * @param {string} props.ipfsGatewayUrl - The URL of the IPFS gateway to use for fetching.
+ * @param {Object} [options] - The options object.
+ * @param {boolean} [options.enabled=true] - Indicates whether the fetch should be enabled.
+ */
 export const useFetchIpfsMetadata = (
   { metadataUri, ipfsGatewayUrl }: Props,
   options?: Options,
