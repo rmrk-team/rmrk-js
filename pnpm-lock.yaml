@@ -184,6 +184,9 @@ importers:
       '@rainbow-me/rainbowkit':
         specifier: ^2.0.0-beta.0
         version: 2.0.0-beta.0(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0)(viem@2.5.0)(wagmi@2.5.1)
+      '@rmrk-team/ipfs-utils':
+        specifier: workspace:*
+        version: link:../ipfs-utils
       '@rmrk-team/rmrk-2d-renderer':
         specifier: workspace:*
         version: link:../rmrk-2d-renderer

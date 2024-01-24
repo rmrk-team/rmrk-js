@@ -1,3 +1,4 @@
+import { sanitizeIpfsUrl } from '@rmrk-team/ipfs-utils';
 import { MultiLayer2DRenderer } from '@rmrk-team/rmrk-2d-renderer';
 import { RMRKCatalogImpl, RMRKEquippableImpl } from '@rmrk-team/rmrk-evm-utils';
 import {
@@ -5,6 +6,7 @@ import {
   useGetAssetData,
   useGetComposedState,
   useGetInterfaceSupport,
+  useRMRKConfig,
 } from '@rmrk-team/rmrk-hooks';
 import React, { useEffect, useRef, useState } from 'react';
 import { css } from 'styled-system/css';
@@ -98,6 +100,8 @@ export function NFTRenderer({
   const rendererContainerRef = useRef<null | HTMLDivElement>(null);
   const tokenIdBigint = BigInt(tokenId);
 
+  const rmrkConfig = useRMRKConfig();
+
   const {
     isContract,
     isLoading: isLoadingIsContract,
@@ -187,11 +191,17 @@ export function NFTRenderer({
       ? [
           ...fixedPartsWithMetadatas.map((p) => ({
             z: p.z,
-            src: p.metadata?.mediaUri || '',
+            src: sanitizeIpfsUrl(
+              p.metadata?.mediaUri || '',
+              rmrkConfig.ipfsGateway,
+            ),
           })),
           ...slotPartsWithMetadatas.map((p) => ({
             z: p.z,
-            src: p.metadata?.mediaUri || '',
+            src: sanitizeIpfsUrl(
+              p.metadata?.mediaUri || '',
+              rmrkConfig.ipfsGateway,
+            ),
           })),
         ]
       : undefined;
@@ -200,16 +210,26 @@ export function NFTRenderer({
     ? [
         {
           z: 1,
-          src:
+          src: sanitizeIpfsUrl(
             primaryAsset?.metadata?.mediaUri ||
-            primaryAsset?.metadata?.image ||
-            '',
+              primaryAsset?.metadata?.image ||
+              '',
+            rmrkConfig.ipfsGateway,
+          ),
         },
       ]
     : undefined;
 
   const tokenRenderPart: RenderPart[] | undefined = primaryAsset
-    ? [{ z: 1, src: tokenMetadata?.mediaUri || tokenMetadata?.image || '' }]
+    ? [
+        {
+          z: 1,
+          src: sanitizeIpfsUrl(
+            tokenMetadata?.mediaUri || tokenMetadata?.image || '',
+            rmrkConfig.ipfsGateway,
+          ),
+        },
+      ]
     : undefined;
 
   const renderParts = catalogRenderParts || assetRenderPart || tokenRenderPart;

@@ -84,7 +84,7 @@ export const convertToDesiredGateway = (
 
 export const sanitizeIpfsUrl = (
   ipfsUrl?: string | null,
-  gatewayUrl = DEFAULT_IPFS_GATEWAY_URLS[DEFAULT_IPFS_GATEWAY_KEYS.pinata],
+  gatewayUrl?: string,
 ) => {
   if (!ipfsUrl || typeof ipfsUrl !== 'string') return '';
 
@@ -92,8 +92,20 @@ export const sanitizeIpfsUrl = (
     return ipfsUrl.replace('http://', 'https://');
   }
 
+  // If no gateway url is passed, and url contains cid, and url already starts with http, just return it as is
+  if (
+    ipfsUrl.startsWith('http') &&
+    containsCID(ipfsUrl).containsCid &&
+    !gatewayUrl
+  ) {
+    return ipfsUrl.replace('http://', 'https://');
+  }
+
   if (containsCID(ipfsUrl).containsCid) {
-    return convertToDesiredGateway(ipfsUrl, gatewayUrl);
+    return convertToDesiredGateway(
+      ipfsUrl,
+      gatewayUrl || DEFAULT_IPFS_GATEWAY_URLS[DEFAULT_IPFS_GATEWAY_KEYS.pinata],
+    );
   }
 
   return '';
