@@ -1,5 +1,15 @@
 # @rmrk-team/nft-renderer
 
+## 0.0.7
+
+### Patch Changes
+
+- [`1f6419c`](https://github.com/rmrk-team/rmrk-js/commit/1f6419c068a2a111482a8f5b4443e4c288b3cd4c) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Update deps
+
+- Updated dependencies [[`1f6419c`](https://github.com/rmrk-team/rmrk-js/commit/1f6419c068a2a111482a8f5b4443e4c288b3cd4c)]:
+  - @rmrk-team/rmrk-evm-utils@0.0.7
+  - @rmrk-team/rmrk-hooks@0.0.8
+
 ## 0.0.6
 
 ### Patch Changes
