@@ -1,5 +1,11 @@
 # @rmrk-team/nft-renderer
 
+## 0.0.8
+
+### Patch Changes
+
+- [`f9f3bd5`](https://github.com/rmrk-team/rmrk-js/commit/f9f3bd5259e2b5f08d386d0e45941baf2752c615) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Fix build script not copying styles system folder
+
 ## 0.0.7
 
 ### Patch Changes
