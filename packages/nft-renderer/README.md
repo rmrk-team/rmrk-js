@@ -4,6 +4,8 @@
 
 React component for rendering multi-layered composable 2d [RMRK](https://evm.rmrk.app) EVM NFTs.
 
+---
+
 ## Installation
 
 ```bash

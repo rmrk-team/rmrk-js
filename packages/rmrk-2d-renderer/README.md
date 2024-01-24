@@ -4,6 +4,8 @@
 
 A Pixi (Canvas) based renderer for multilayered and composable [RMRK](https://evm.rmrk.app) EVM NFTs. This package doesn't interact with the chain, and is usually used in combination with [@rmrk-team/nft-renderer](/packages/nft-renderer).
 
+---
+
 ## Installation
 
 ```bash

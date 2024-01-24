@@ -4,6 +4,8 @@
 
 React hooks for working with [RMRK](https://evm.rmrk.app) EVM NFTs.
 
+---
+
 ## Installation
 
 ```bash

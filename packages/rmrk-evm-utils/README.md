@@ -4,6 +4,8 @@
 
 Typescript utilities for [RMRK](https://evm.rmrk.app) EVM NFTs.
 
+---
+
 ## Installation
 
 ```bash

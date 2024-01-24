@@ -4,6 +4,8 @@
 
 Common Typescript types for [RMRK](https://evm.rmrk.app) EVM NFTs.
 
+---
+
 ## Installation
 
 ```bash

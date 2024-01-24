@@ -2,16 +2,19 @@
 
 A collection of typescript and frontend packages for working with [RMRK EVM NFTs](https://https://evm.rmrk.app).
 
+---
+
 > Note: Do not try to update `next.js` version, it's confirmed that `next@^13.4` will cause a constant object in `@pixi/core` become empty after `npm run build`.
 
 
 ## Packages
 
-- [@rmrk-team/ipfs-utils](./packages/ipfs-utils) - IPFS utils for RMRK EVM NFTs (WIP)
-- [@rmrk-team/nft-renderer](./packages/nft-renderer) - React component that fetches NFT data and assets and renders 2d renderer
-- [@rmrk-team/rmrk-2d-renderer](./packages/rmrk-2d-renderer) - Pixi.js based 2d composable renderer. Takes an array of AssetParts as input and renders them on HTML canvas. Usually not used on it's own
-- [@rmrk-team/rmrk-hooks](./packages/rmrk-hooks) - Collection of react hooks for working with RMRK EVM NFTs (WIP)
-- [@rmrk-team/types](./packages/types) - Common Typescript types for RMRK EVM NFTs (WIP)
+- [@rmrk-team/nft-renderer](./packages/nft-renderer) - React component that fetches NFT data and assets and renders 2d renderer <a href="https://www.npmjs.com/package/@rmrk-team/nft-renderer"><picture><source srcset="https://img.shields.io/npm/v/@rmrk-team/nft-renderer?style=flat"><img src="https://img.shields.io/npm/v/@rmrk-team/nft-renderer?style=flat" alt="Version"></picture></a>
+- [@rmrk-team/rmrk-hooks](./packages/rmrk-hooks) - Collection of React hooks for working with RMRK EVM NFTs (WIP) <a href="https://www.npmjs.com/package/@rmrk-team/rmrk-hooks"><picture><source srcset="https://img.shields.io/npm/v/@rmrk-team/rmrk-hooks?style=flat"><img src="https://img.shields.io/npm/v/@rmrk-team/rmrk-hooks?style=flat" alt="Version"></picture></a>
+- [@rmrk-team/rmrk-evm-utils](./packages/rmrk-evm-utils) - Typescript utils and actions for RMRK EVM NFTs (WIP) <a href="https://www.npmjs.com/package/@rmrk-team/rmrk-evm-utils"><picture><source srcset="https://img.shields.io/npm/v/@rmrk-team/rmrk-evm-utils?style=flat"><img src="https://img.shields.io/npm/v/@rmrk-team/rmrk-evm-utils?style=flat" alt="Version"></picture></a>
+- [@rmrk-team/ipfs-utils](./packages/ipfs-utils) - IPFS utils for RMRK EVM NFTs (WIP) <a href="https://www.npmjs.com/package/@rmrk-team/ipfs-utils"><picture><source srcset="https://img.shields.io/npm/v/@rmrk-team/ipfs-utils?style=flat"><img src="https://img.shields.io/npm/v/@rmrk-team/ipfs-utils?style=flat" alt="Version"></picture></a>
+- [@rmrk-team/rmrk-2d-renderer](./packages/rmrk-2d-renderer) - Pixi.js based 2d composable renderer. Takes an array of AssetParts as input and renders them on HTML canvas. Usually not used on it's own <a href="https://www.npmjs.com/package/@rmrk-team/rmrk-2d-renderer"><picture><source srcset="https://img.shields.io/npm/v/@rmrk-team/rmrk-2d-renderer?style=flat"><img src="https://img.shields.io/npm/v/@rmrk-team/rmrk-2d-renderer?style=flat" alt="Version"></picture></a>
+- [@rmrk-team/types](./packages/types) - Common Typescript types for RMRK EVM NFTs (WIP) <a href="https://www.npmjs.com/package/@rmrk-team/types"><picture><source srcset="https://img.shields.io/npm/v/@rmrk-team/types?style=flat"><img src="https://img.shields.io/npm/v/@rmrk-team/types?style=flat" alt="Version"></picture></a>
 
 ## Example apps
 
