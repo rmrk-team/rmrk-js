@@ -27,7 +27,7 @@ const customUtilityContracts = {
 } satisfies RMRKUtilityContracts;
 
 const rmrkConfig = {
-  utilityContracts: customUtilityContracts
+  utilityContracts: customUtilityContracts,
 };
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
