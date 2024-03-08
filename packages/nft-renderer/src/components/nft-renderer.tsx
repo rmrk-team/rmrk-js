@@ -14,7 +14,6 @@ import { isAddress } from 'viem';
 import type { Address } from 'viem';
 import { usePublicClient, useReadContract } from 'wagmi';
 import type { Chain } from 'wagmi/chains';
-import '../styles/index.css';
 import type { RenderPart } from '../types/types.js';
 
 const useIsAddressAContract = ({

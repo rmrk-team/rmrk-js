@@ -1,1 +1,4 @@
+@import url('@rmrk-team/rmrk-2d-renderer/dist/styles.css');
+@import url('@rmrk-team/nft-renderer/dist/styles.css');
+
 @layer reset, base, tokens, recipes, utilities;

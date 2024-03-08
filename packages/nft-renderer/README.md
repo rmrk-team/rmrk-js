@@ -9,10 +9,18 @@ React component for rendering multi-layered composable 2d [RMRK](https://evm.rmr
 ## Installation
 
 ```bash
-pnpm install @rmrk-team/nft-renderer
+pnpm install @rmrk-team/rmrk-2d-renderer @rmrk-team/nft-renderer
 ```
 
 ## Usage
+
+`// global.css`
+```css
+@import url('@rmrk-team/rmrk-2d-renderer/dist/styles.css');
+@import url('@rmrk-team/nft-renderer/dist/styles.css');
+
+@layer reset, base, tokens, recipes, utilities;
+```
 
 ```tsx
 import React from "react";
@@ -25,6 +33,9 @@ import {RMRKContextProvider} from "@rmrk-team/rmrk-hooks";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {WagmiProvider} from "wagmi";
 import {hardhat} from "wagmi/chains";
+
+// Import css
+import './global.css'
 
 const queryClient = new QueryClient();
 
