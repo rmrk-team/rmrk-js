@@ -1,5 +1,19 @@
 # @rmrk-team/nft-renderer
 
+## 0.1.0
+
+### Minor Changes
+
+- [`7ca34c1`](https://github.com/rmrk-team/rmrk-js/commit/7ca34c1236106f809d72dd38eecdc3d8e3cc32e5) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Don't ship nft-renderer with css import, as this can break build tools, instead consumer will have to import css as needed
+
+### Patch Changes
+
+- Updated dependencies [[`7ca34c1`](https://github.com/rmrk-team/rmrk-js/commit/7ca34c1236106f809d72dd38eecdc3d8e3cc32e5)]:
+  - @rmrk-team/ipfs-utils@0.1.0
+  - @rmrk-team/rmrk-2d-renderer@0.1.0
+  - @rmrk-team/rmrk-evm-utils@0.1.0
+  - @rmrk-team/rmrk-hooks@0.1.0
+
 ## 0.0.11
 
 ### Patch Changes
