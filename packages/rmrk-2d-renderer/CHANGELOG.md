@@ -1,5 +1,14 @@
 # @rmrk-team/rmrk-2d-renderer
 
+## 0.0.8
+
+### Patch Changes
+
+- [`51eb891`](https://github.com/rmrk-team/rmrk-js/commit/51eb8911533a93d9624e144a6955ef57f7227140) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Update typescript to latest version
+
+- Updated dependencies [[`51eb891`](https://github.com/rmrk-team/rmrk-js/commit/51eb8911533a93d9624e144a6955ef57f7227140)]:
+  - @rmrk-team/ipfs-utils@0.0.8
+
 ## 0.0.7
 
 ### Patch Changes
