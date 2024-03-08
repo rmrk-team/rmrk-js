@@ -8,7 +8,7 @@
   "access": "public",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rmrk-team/rmrk-ui.git",
+    "url": "https://github.com/rmrk-team/rmrk-js.git",
     "directory": "packages/ipfs-utils"
   },
   "scripts": {
@@ -43,7 +43,7 @@
     "is-ipfs": "6.0.2"
   },
   "peerDependencies": {
-    "typescript": ">=5.4.0-dev.20240116"
+    "typescript": ">=5.4.2"
   },
   "peerDependenciesMeta": {
     "typescript": {
