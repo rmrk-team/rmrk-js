@@ -1,5 +1,11 @@
 # @rmrk-team/types
 
+## 0.1.0
+
+### Minor Changes
+
+- [`7ca34c1`](https://github.com/rmrk-team/rmrk-js/commit/7ca34c1236106f809d72dd38eecdc3d8e3cc32e5) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Don't ship nft-renderer with css import, as this can break build tools, instead consumer will have to import css as needed
+
 ## 0.0.7
 
 ### Patch Changes
