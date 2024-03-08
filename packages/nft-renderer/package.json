@@ -2,7 +2,7 @@
   "name": "@rmrk-team/nft-renderer",
   "description": "React NFT renderer for multi layered composable NFTs built on RMRK standards",
   "bugs": "https://github.com/rmrk-team/rmrk-js/issues",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "private": false,
   "access": "public",
   "repository": {
