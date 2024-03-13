@@ -1,5 +1,11 @@
 # @rmrk-team/rmrk-evm-utils
 
+## 0.1.1
+
+### Patch Changes
+
+- [`08ddec7`](https://github.com/rmrk-team/rmrk-js/commit/08ddec76e6764d7b3516d041638da0058891ab12) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Updated RMRKCollectionUtils contract addresses
+
 ## 0.1.0
 
 ### Minor Changes
