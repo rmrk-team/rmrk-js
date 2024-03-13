@@ -28,6 +28,7 @@ const customUtilityContracts = {
 
 const rmrkConfig = {
   utilityContracts: customUtilityContracts,
+  // ipfsGateway: 'https://ipfs.io'
 };
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
