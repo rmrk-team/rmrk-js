@@ -89,6 +89,8 @@ export const useGetComposedState = (
     slotParts,
   ] = equippableDataResponse || [];
 
+  const fixedMetadataUris = fixedParts?.map((p) => p.metadataURI);
+
   const {
     isLoading: isLoadingFixedPartsMetadatas,
     isError: isErrorFixedPartsMetadatas,
@@ -96,10 +98,14 @@ export const useGetComposedState = (
     data: fixedPartsWithMetadatas,
   } = useFetchMetadataAndAddToEntities(
     {
-      metadataUris: fixedParts?.map((p) => p.metadataURI),
+      metadataUris: fixedMetadataUris,
     },
-    { enabled: enabled && enabledMetadataFetch },
+    { enabled: enabled && enabledMetadataFetch && !!fixedMetadataUris },
     fixedParts?.map((p) => ({ z: p.z })),
+  );
+
+  const slotMetadataUris = slotParts?.map(
+    (p) => p.childAssetMetadata || p.partMetadata,
   );
 
   const {
@@ -109,11 +115,9 @@ export const useGetComposedState = (
     data: slotPartsWithMetadatas,
   } = useFetchMetadataAndAddToEntities(
     {
-      metadataUris: slotParts?.map(
-        (p) => p.childAssetMetadata || p.partMetadata,
-      ),
+      metadataUris: slotMetadataUris,
     },
-    { enabled: enabled && enabledMetadataFetch },
+    { enabled: enabled && enabledMetadataFetch && !!slotMetadataUris },
     slotParts?.map((p) => ({ z: p.z })),
   );
 
