@@ -1,5 +1,14 @@
 # @rmrk-team/nft-renderer
 
+## 0.1.2
+
+### Patch Changes
+
+- [`eaeabbe`](https://github.com/rmrk-team/rmrk-js/commit/eaeabbebfe0818793fc17d5b381685f4d20bda9c) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Wait until we have all metadatas before fetching uris
+
+- Updated dependencies [[`eaeabbe`](https://github.com/rmrk-team/rmrk-js/commit/eaeabbebfe0818793fc17d5b381685f4d20bda9c)]:
+  - @rmrk-team/rmrk-hooks@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes
