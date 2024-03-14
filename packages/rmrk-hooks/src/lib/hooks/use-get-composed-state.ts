@@ -81,13 +81,8 @@ export const useGetComposedState = (
     query: { enabled: enabled && !!assetIdToUse },
   });
 
-  const [
-    assetMetadataUri,
-    equippableGroupId,
-    catalogAddress,
-    fixedParts,
-    slotParts,
-  ] = equippableDataResponse || [];
+  const [assetMetadataUri, equippableGroupId, catalogAddress, fixedParts, slotParts] =
+    equippableDataResponse || [];
 
   const fixedMetadataUris = fixedParts?.map((p) => p.metadataURI);
 
@@ -104,9 +99,7 @@ export const useGetComposedState = (
     fixedParts?.map((p) => ({ z: p.z })),
   );
 
-  const slotMetadataUris = slotParts?.map(
-    (p) => p.childAssetMetadata || p.partMetadata,
-  );
+  const slotMetadataUris = slotParts?.map((p) => p.childAssetMetadata || p.partMetadata);
 
   const {
     isLoading: isLoadingSlotPartsMetadatas,
@@ -124,7 +117,13 @@ export const useGetComposedState = (
   return {
     data: {
       fixedPartsWithMetadatas,
-      slotPartsWithMetadatas,
+      slotPartsWithMetadatas:
+        !!slotPartsWithMetadatas && !!slotParts
+          ? slotPartsWithMetadatas.map((partWithMetadata) => ({
+              ...partWithMetadata,
+              ...slotParts.find((part) => part.z === partWithMetadata.z),
+            }))
+          : undefined,
       assetMetadataUri,
       equippableGroupId,
       catalogAddress,
