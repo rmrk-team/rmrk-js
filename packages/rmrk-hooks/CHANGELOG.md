@@ -1,5 +1,11 @@
 # @rmrk-team/rmrk-hooks
 
+## 0.2.0
+
+### Minor Changes
+
+- [`325e6e2`](https://github.com/rmrk-team/rmrk-js/commit/325e6e2bec733177cbe86e966ffc821603653bb2) Thanks [@YuriGii](https://github.com/YuriGii)! - fix nft-renderer config and add equipped item details to useGetComposedState
+
 ## 0.1.2
 
 ### Patch Changes
