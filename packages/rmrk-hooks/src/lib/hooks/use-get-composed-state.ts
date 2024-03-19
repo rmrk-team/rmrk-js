@@ -124,7 +124,13 @@ export const useGetComposedState = (
   return {
     data: {
       fixedPartsWithMetadatas,
-      slotPartsWithMetadatas,
+      slotPartsWithMetadatas:
+        !!slotPartsWithMetadatas && !!slotParts
+          ? slotPartsWithMetadatas.map((partWithMetadata) => ({
+              ...partWithMetadata,
+              ...slotParts.find((part) => part.z === partWithMetadata.z),
+            }))
+          : undefined,
       assetMetadataUri,
       equippableGroupId,
       catalogAddress,
