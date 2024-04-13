@@ -1,5 +1,11 @@
 # @rmrk-team/rmrk-2d-renderer
 
+## 0.1.1
+
+### Patch Changes
+
+- [`682e065`](https://github.com/rmrk-team/rmrk-js/commit/682e06570c345fe6ae26ad46000371b47421aa9a) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Use use-resize-observer package instead of a custom hook
+
 ## 0.1.0
 
 ### Minor Changes
