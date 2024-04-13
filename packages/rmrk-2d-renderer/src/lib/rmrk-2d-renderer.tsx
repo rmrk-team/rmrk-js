@@ -12,27 +12,7 @@ import { css, cx } from 'styled-system/css';
 import useImage from 'use-image';
 import { Skeleton } from '../ui/skeleton.js';
 import { INHERIT_RENDER_CONTEXT } from './consts.js';
-
-const useObserveElementDimensions = (ref?: React.RefObject<HTMLDivElement>) => {
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
-  useEffect(() => {
-    const resizeObserver = new ResizeObserver((event) => {
-      // Depending on the layout, you may need to swap inlineSize with blockSize
-      // https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry/contentBoxSize
-      setWidth(event[0]?.contentBoxSize[0]?.inlineSize || 0);
-      setHeight(event[0]?.contentBoxSize[0]?.blockSize || 0);
-    });
-
-    if (ref?.current) {
-      resizeObserver.observe(ref.current);
-    }
-  }, [ref?.current]);
-
-  const isLoading = width === 0 || height === 0;
-
-  return { width, height, isLoading };
-};
+import useResizeObserver from 'use-resize-observer';
 
 const useGetResourceDimensions = () => {
   const [w, setW] = useState(0);
@@ -58,11 +38,10 @@ const useGetResourceDimensions = () => {
 };
 
 const useGetCanvasStateDimensions = (ref?: React.RefObject<HTMLDivElement>) => {
-  const {
-    width,
-    height,
-    isLoading: isLoadingParentDimensions,
-  } = useObserveElementDimensions(ref);
+  const { width = 0, height = 0 } = useResizeObserver<HTMLDivElement>({ ref });
+
+  const isLoadingParentDimensions = width === 0 || height === 0;
+
   const {
     onResourceLoad,
     isLoading: isLoadingResourceDimensions,
