@@ -37,7 +37,7 @@ This project uses [Biome.js](https://biomejs.dev) for code formatting (instead o
 
 Build all packages and generate a new changeset
 
-When submitting a PR with a change that requires a new version, please run `pnpm changesets` and select appropriate type of version bump (major, minor or patch if none is selected). When PR is merged, the new version will be automatically published to npm
+When submitting a PR with a change that requires a new version, please run `pnpm changeset` and select appropriate type of version bump (major, minor or patch if none is selected). When PR is merged, the new version will be automatically published to npm
 
 
 ## Credits:
