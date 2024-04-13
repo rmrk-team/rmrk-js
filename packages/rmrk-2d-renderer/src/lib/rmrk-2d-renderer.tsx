@@ -10,9 +10,9 @@ import React, { useEffect, useMemo } from 'react';
 import { useCallback, useState } from 'react';
 import { css, cx } from 'styled-system/css';
 import useImage from 'use-image';
+import useResizeObserver from 'use-resize-observer';
 import { Skeleton } from '../ui/skeleton.js';
 import { INHERIT_RENDER_CONTEXT } from './consts.js';
-import useResizeObserver from 'use-resize-observer';
 
 const useGetResourceDimensions = () => {
   const [w, setW] = useState(0);
