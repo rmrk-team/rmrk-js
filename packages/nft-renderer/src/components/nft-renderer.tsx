@@ -9,11 +9,11 @@ import {
   useRMRKConfig,
 } from '@rmrk-team/rmrk-hooks';
 import React, { useEffect, useRef, useState } from 'react';
-import { css } from '../styled-system/css/css.js';
 import { isAddress } from 'viem';
 import type { Address } from 'viem';
 import { usePublicClient, useReadContract } from 'wagmi';
 import type { Chain } from 'wagmi/chains';
+import { css } from '../styled-system/css/css.js';
 import type { RenderPart } from '../types/types.js';
 
 const useIsAddressAContract = ({

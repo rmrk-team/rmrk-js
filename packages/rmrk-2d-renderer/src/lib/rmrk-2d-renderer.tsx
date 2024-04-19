@@ -8,10 +8,10 @@ import type { ICanvas } from 'pixi.js';
 import type { CSSProperties } from 'react';
 import React, { useEffect, useMemo } from 'react';
 import { useCallback, useState } from 'react';
-import { css } from '../styled-system/css/css.js';
-import { cx } from '../styled-system/css/cx.js';
 import useImage from 'use-image';
 import useResizeObserver from 'use-resize-observer';
+import { css } from '../styled-system/css/css.js';
+import { cx } from '../styled-system/css/cx.js';
 import { Skeleton } from '../ui/skeleton.js';
 import { INHERIT_RENDER_CONTEXT } from './consts.js';
 
