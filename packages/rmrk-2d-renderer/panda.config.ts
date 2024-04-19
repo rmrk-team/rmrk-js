@@ -8,6 +8,8 @@ export default defineConfig({
   // Where to look for your css declarations
   include: ['./src/**/*.{js,jsx,ts,tsx}'],
 
+  outExtension: 'js',
+
   // Files to exclude
   exclude: [],
 
@@ -17,6 +19,6 @@ export default defineConfig({
   },
 
   // The output directory for your css system
-  outdir: 'styled-system',
+  outdir: 'src/styled-system',
   jsxFramework: 'react',
 });

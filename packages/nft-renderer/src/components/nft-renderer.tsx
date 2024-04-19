@@ -9,7 +9,7 @@ import {
   useRMRKConfig,
 } from '@rmrk-team/rmrk-hooks';
 import React, { useEffect, useRef, useState } from 'react';
-import { css } from 'styled-system/css';
+import { css } from '../styled-system/css/css.js';
 import { isAddress } from 'viem';
 import type { Address } from 'viem';
 import { usePublicClient, useReadContract } from 'wagmi';

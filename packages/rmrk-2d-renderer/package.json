@@ -13,10 +13,10 @@
   },
   "scripts": {
     "build": "pnpm run clean && pnpm prepare && pnpm run build:esm+types",
-    "build:esm+types": "pnpm build:postcss && tsc -b tsconfig.build.json --declaration --declarationMap && pnpm copy:styled-system && tsc-alias -p tsconfig.build.json && pnpm build:panda",
+    "build:esm+types": "pnpm build:postcss && tsc -b tsconfig.build.json --declaration --declarationMap && pnpm copy:styled-system && pnpm build:panda",
     "build:postcss": "postcss -o dist/esm/styles/index.css src/styles/index.css",
     "build:panda": "panda cssgen --outfile dist/styles.css",
-    "copy:styled-system": "copyfiles ./styled-system/**/*.mjs ./styled-system/*.mjs dist/esm",
+    "copy:styled-system": "copyfiles --up 1 ./src/styled-system/**/*.js ./src/styled-system/*.js dist/esm",
     "prepare": "panda codegen",
     "dev": "pnpm run build:esm+types --watch",
     "clean": "rm -rf dist tsconfig.tsbuildinfo actions chains connectors query",
