@@ -1,5 +1,17 @@
 # @rmrk-team/rmrk-hooks
 
+## 0.2.2
+
+### Patch Changes
+
+- [`a1cfe3b`](https://github.com/rmrk-team/rmrk-js/commit/a1cfe3b5d7b19ba5eac03c1be3a475753053b425) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Improve esm export and update all deps
+
+- Updated dependencies [[`a1cfe3b`](https://github.com/rmrk-team/rmrk-js/commit/a1cfe3b5d7b19ba5eac03c1be3a475753053b425)]:
+  - @rmrk-team/ipfs-utils@0.1.1
+  - @rmrk-team/rmrk-2d-renderer@0.1.2
+  - @rmrk-team/rmrk-evm-utils@0.1.2
+  - @rmrk-team/types@0.1.1
+
 ## 0.2.1
 
 ### Patch Changes
