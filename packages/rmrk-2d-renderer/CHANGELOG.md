@@ -1,5 +1,11 @@
 # @rmrk-team/rmrk-2d-renderer
 
+## 0.1.5
+
+### Patch Changes
+
+- [`ca64edc`](https://github.com/rmrk-team/rmrk-js/commit/ca64edc69e805f0ea9f83b4df654bc5cf2579535) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - All urls should come pre-sanitized to 2d renderer
+
 ## 0.1.4
 
 ### Patch Changes
