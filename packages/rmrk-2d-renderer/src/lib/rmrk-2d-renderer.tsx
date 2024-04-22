@@ -1,5 +1,4 @@
 import { Container, Sprite, Stage, useApp } from '@pixi/react';
-import { sanitizeIpfsUrl } from '@rmrk-team/ipfs-utils';
 import DOMPurify from 'isomorphic-dompurify';
 // import { Skeleton } from './ui/skeleton';
 import { Loader2 } from 'lucide-react';
@@ -283,8 +282,7 @@ const useCreateResourceTexture = (
   onLoad: (w: number, h: number) => void,
   theme?: Record<string | number | symbol, unknown>,
 ) => {
-  const url = sanitizeIpfsUrl(src);
-  const [image] = (useImage as unknown as useImage)(url, 'anonymous');
+  const [image] = (useImage as unknown as useImage)(src, 'anonymous');
 
   useEffect(() => {
     if (image) {
@@ -297,7 +295,7 @@ const useCreateResourceTexture = (
 
   useEffect(() => {
     const downloadImage = async () => {
-      const response = await fetch(url);
+      const response = await fetch(src);
       const contentType = response.headers.get('content-type');
       const code = await response.text();
 
@@ -348,14 +346,14 @@ const useCreateResourceTexture = (
       }
     };
 
-    if (url && theme) {
+    if (src && theme) {
       downloadImage();
     }
 
     if (image && !theme) {
       setResourceTexture(Texture.from(image));
     }
-  }, [url, image, theme]);
+  }, [src, image, theme]);
 
   return resourceTexture;
 };
