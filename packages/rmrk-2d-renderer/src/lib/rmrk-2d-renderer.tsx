@@ -5,7 +5,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import { Loader2 } from 'lucide-react';
 import { Application, Resource, Texture } from 'pixi.js';
 import type { ICanvas } from 'pixi.js';
-import type { CSSProperties } from 'react';
+import { type CSSProperties, useRef } from 'react';
 import React, { useEffect, useMemo } from 'react';
 import { useCallback, useState } from 'react';
 import useImage from 'use-image';
@@ -73,18 +73,28 @@ const useBackdropImage = (
 
   // Get image from canvas to apply as a backdrop background
   const extractImage = async (pixiApp: Application<ICanvas>) => {
-    const blob = await pixiApp.renderer.extract.image(pixiApp.stage);
-    setBgImage(blob.src);
+    if (pixiApp.stage) {
+      const blob = await pixiApp.renderer.extract.image(pixiApp.stage);
+      setBgImage(blob.src);
+    }
   };
+
+  const extractImageTimeout = useRef<NodeJS.Timeout>();
 
   // Get image from canvas to apply as a backdrop background
   useEffect(() => {
     if (!bgImage && !!pixiApp && enabled) {
       // Wait for the canvas to be rendered
-      setTimeout(() => {
+      extractImageTimeout.current = setTimeout(() => {
         extractImage(pixiApp);
       }, 600);
     }
+
+    return () => {
+      if (extractImageTimeout.current) {
+        clearTimeout(extractImageTimeout.current);
+      }
+    };
   }, [pixiApp, enabled, bgImage, extractImage]);
 
   return bgImage;
