@@ -1,5 +1,16 @@
 # @rmrk-team/nft-renderer
 
+## 0.2.3
+
+### Patch Changes
+
+- [`f52a1a5`](https://github.com/rmrk-team/rmrk-js/commit/f52a1a5376fa7e5b4c04773042e7da49fd9ad012) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Don't sanitize blob: uris in ipfs utils
+
+- Updated dependencies [[`f52a1a5`](https://github.com/rmrk-team/rmrk-js/commit/f52a1a5376fa7e5b4c04773042e7da49fd9ad012)]:
+  - @rmrk-team/ipfs-utils@0.1.2
+  - @rmrk-team/rmrk-2d-renderer@0.1.3
+  - @rmrk-team/rmrk-hooks@0.2.3
+
 ## 0.2.2
 
 ### Patch Changes
