@@ -10,14 +10,19 @@ import { isBase64Metadata } from './is-base-64-metadata.js';
 
 type Options = {
   shouldSanitizeIpfsUrls?: boolean;
-  ipfsGatewayUrl?: string
+  ipfsGatewayUrl?: string;
 };
 
 export const fetchIpfsMetadata = async (
   metadataUri?: string | null,
-  options?: Options
+  options?: Options,
 ): Promise<Metadata | null> => {
-  const { shouldSanitizeIpfsUrls = true, ipfsGatewayUrl = DEFAULT_IPFS_GATEWAY_URLS[DEFAULT_IPFS_GATEWAY_KEYS.pinata] } = options || {};
+  const {
+    shouldSanitizeIpfsUrls = true,
+    ipfsGatewayUrl = DEFAULT_IPFS_GATEWAY_URLS[
+      DEFAULT_IPFS_GATEWAY_KEYS.pinata
+    ],
+  } = options || {};
   if (metadataUri && isBase64Metadata(metadataUri)) {
     return JSON.parse(getBase64Value(metadataUri)); // TODO: validation
   }
@@ -35,8 +40,12 @@ export const fetchIpfsMetadata = async (
       if (provider) {
         return {
           ...restMetadata,
-          mediaUri: shouldSanitizeIpfsUrls ? sanitizeIpfsUrl((metadata as Metadata)?.mediaUri || '', provider) : (metadata as Metadata)?.mediaUri,
-          thumbnailUri: shouldSanitizeIpfsUrls ? sanitizeIpfsUrl(thumbnail || '', provider) : thumbnail,
+          mediaUri: shouldSanitizeIpfsUrls
+            ? sanitizeIpfsUrl((metadata as Metadata)?.mediaUri || '', provider)
+            : (metadata as Metadata)?.mediaUri,
+          thumbnailUri: shouldSanitizeIpfsUrls
+            ? sanitizeIpfsUrl(thumbnail || '', provider)
+            : thumbnail,
           externalUri: (metadata as Metadata).externalUri || external_url,
         };
       }

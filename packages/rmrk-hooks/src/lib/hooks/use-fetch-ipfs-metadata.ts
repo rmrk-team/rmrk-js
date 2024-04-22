@@ -8,7 +8,7 @@ import { useRMRKConfig } from '../RMRKContextProvider.js';
 
 type Props = { metadataUri: string | undefined; ipfsGatewayUrl?: string };
 
-type Options = { enabled?: boolean, shouldSanitizeIpfsUrls?: boolean; };
+type Options = { enabled?: boolean; shouldSanitizeIpfsUrls?: boolean };
 
 /**
  * Fetches IPFS metadata and returns the result using React Query's `useQuery` hook.
@@ -28,15 +28,13 @@ export const useFetchIpfsMetadata = (
   return useQuery({
     queryKey: ['fetchIpfsMetadata', metadataUri],
     queryFn: () => {
-      return fetchIpfsMetadata(
-        metadataUri,
-          {
-            ipfsGatewayUrl: ipfsGatewayUrl ||
-                rmrkConfig?.ipfsGateway ||
-                DEFAULT_IPFS_GATEWAY_URLS[DEFAULT_IPFS_GATEWAY_KEYS.cloudflare],
-            shouldSanitizeIpfsUrls
-          }
-      );
+      return fetchIpfsMetadata(metadataUri, {
+        ipfsGatewayUrl:
+          ipfsGatewayUrl ||
+          rmrkConfig?.ipfsGateway ||
+          DEFAULT_IPFS_GATEWAY_URLS[DEFAULT_IPFS_GATEWAY_KEYS.cloudflare],
+        shouldSanitizeIpfsUrls,
+      });
     },
     enabled,
   });
