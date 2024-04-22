@@ -1,5 +1,11 @@
 # @rmrk-team/rmrk-2d-renderer
 
+## 0.1.4
+
+### Patch Changes
+
+- [`e69102a`](https://github.com/rmrk-team/rmrk-js/commit/e69102aaad38c0bd720639dbb4cb022e796d152a) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - fix: clear extractImageTimeout timeout on unmount
+
 ## 0.1.3
 
 ### Patch Changes

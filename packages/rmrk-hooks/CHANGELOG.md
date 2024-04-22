@@ -1,5 +1,12 @@
 # @rmrk-team/rmrk-hooks
 
+## 0.2.4
+
+### Patch Changes
+
+- Updated dependencies [[`e69102a`](https://github.com/rmrk-team/rmrk-js/commit/e69102aaad38c0bd720639dbb4cb022e796d152a)]:
+  - @rmrk-team/rmrk-2d-renderer@0.1.4
+
 ## 0.2.3
 
 ### Patch Changes
