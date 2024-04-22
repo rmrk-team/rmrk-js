@@ -3,7 +3,7 @@
   "description": "React Pixi (Canvas) renderer for multi layered composable NFTs built on RMRK standards",
   "bugs": "https://github.com/rmrk-team/rmrk-js/issues",
   "homepage": "https://github.com/rmrk-team/rmrk-js",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "access": "public",
   "repository": {
