@@ -12,7 +12,7 @@ type Props = {
   ipfsGatewayUrl?: string;
 };
 
-type Options = { enabled?: boolean, shouldSanitizeIpfsUrls?: boolean; };
+type Options = { enabled?: boolean; shouldSanitizeIpfsUrls?: boolean };
 
 /**
  * A custom hook that fetches IPFS metadata for the given URIs.
@@ -38,15 +38,13 @@ export const useFetchIpfsMetadatas = (
     queries: (metadataUris || []).map((metadataUri) => ({
       queryKey: ['fetchIpfsMetadata', metadataUri],
       queryFn: () =>
-        fetchIpfsMetadata(
-          metadataUri,
-            {
-              ipfsGatewayUrl: ipfsGatewayUrl ||
-                  rmrkConfig?.ipfsGateway ||
-                  DEFAULT_IPFS_GATEWAY_URLS[DEFAULT_IPFS_GATEWAY_KEYS.cloudflare],
-              shouldSanitizeIpfsUrls
-            }
-        ),
+        fetchIpfsMetadata(metadataUri, {
+          ipfsGatewayUrl:
+            ipfsGatewayUrl ||
+            rmrkConfig?.ipfsGateway ||
+            DEFAULT_IPFS_GATEWAY_URLS[DEFAULT_IPFS_GATEWAY_KEYS.cloudflare],
+          shouldSanitizeIpfsUrls,
+        }),
       enabled,
     })),
   });
