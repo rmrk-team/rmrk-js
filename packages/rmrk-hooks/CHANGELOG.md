@@ -1,5 +1,13 @@
 # @rmrk-team/rmrk-hooks
 
+## 0.2.8
+
+### Patch Changes
+
+- [`f36a27a`](https://github.com/rmrk-team/rmrk-js/commit/f36a27a38c6a077028f0f820ed05a5a7d987a591) Thanks [@YuriGii](https://github.com/YuriGii)! - fix imports
+
+- [`3074b7f`](https://github.com/rmrk-team/rmrk-js/commit/3074b7f30a766703dba3fa4ee07b31887ee85ce8) Thanks [@YuriGii](https://github.com/YuriGii)! - patch imports
+
 ## 0.2.5
 
 ### Patch Changes
