@@ -54,7 +54,8 @@ export const useGetTokenPrimaryAsset = (
   const { enabled = true, enabledMetadataFetch = true } = options || {};
 
   const requiresInterfaceCheck =
-    supportsEquippableInterface === undefined || supportsMultiAssetInterface === undefined;
+    supportsEquippableInterface === undefined ||
+    supportsMultiAssetInterface === undefined;
 
   const {
     isLoading: isLoadingGetInterfaceSupport,
@@ -67,7 +68,8 @@ export const useGetTokenPrimaryAsset = (
     { enabled: enabled && requiresInterfaceCheck },
   );
 
-  const enabledSimplePrimaryAsset = enabled && supportsMultiAsset && !supportsEquippable;
+  const enabledSimplePrimaryAsset =
+    enabled && supportsMultiAsset && !supportsEquippable;
   const enabledAssetWithEquippableData = enabled && supportsEquippable;
 
   const {
@@ -137,7 +139,9 @@ export const useGetTokenPrimaryAsset = (
       isErrorTopAsseForToken ||
       isErrorTopAssetAndEquippableDataForToken,
     error:
-      errorTopAsseForToken || errorTopAssetAndEquippableDataForToken || errorGetInterfaceSupport,
+      errorTopAsseForToken ||
+      errorTopAssetAndEquippableDataForToken ||
+      errorGetInterfaceSupport,
     refetch: refetchTopAssetAndEquippableDataForToken || refetTopAssetForToken,
     primaryAsset: primaryAssetSimple || primaryAssetWithEquippableData,
   };

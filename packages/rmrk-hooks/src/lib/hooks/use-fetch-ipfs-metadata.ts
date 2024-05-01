@@ -19,7 +19,10 @@ type Options = { enabled?: boolean; shouldSanitizeIpfsUrls?: boolean };
  * @param {Object} [options] - The options object.
  * @param {boolean} [options.enabled=true] - Indicates whether the fetch should be enabled.
  */
-export const useFetchIpfsMetadata = ({ metadataUri, ipfsGatewayUrl }: Props, options?: Options) => {
+export const useFetchIpfsMetadata = (
+  { metadataUri, ipfsGatewayUrl }: Props,
+  options?: Options,
+) => {
   const rmrkConfig = useRMRKConfig();
   const { enabled = true, shouldSanitizeIpfsUrls = true } = options || {};
   return useQuery({

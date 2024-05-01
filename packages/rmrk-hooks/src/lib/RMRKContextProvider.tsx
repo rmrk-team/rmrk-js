@@ -15,5 +15,7 @@ export const RMRKContextProvider = ({ children, config }: Props) => {
     utilityContracts: EVM_RMRK_CONTRACTS,
   } satisfies RMRKConfig;
   const rmrkConfig = mergeDeepRight(defaultConfig, config || {});
-  return <RMRKContext.Provider value={rmrkConfig}>{children}</RMRKContext.Provider>;
+  return (
+    <RMRKContext.Provider value={rmrkConfig}>{children}</RMRKContext.Provider>
+  );
 };
