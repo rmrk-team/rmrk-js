@@ -1,7 +1,7 @@
 import { RMRKEquipRenderUtils } from '@rmrk-team/rmrk-evm-utils';
 import type { Address, Chain } from 'viem';
 import { useReadContract } from 'wagmi';
-import { useRMRKConfig } from '../RMRKContextProvider.js';
+import { useRMRKConfig } from '../RMRKContext.js';
 import { useFetchMetadataAndAddToEntities } from './use-fetch-metadata-and-add-to-entities.js';
 import { useGetTokenPrimaryAsset } from './use-get-token-primary-asset.js';
 
@@ -81,13 +81,8 @@ export const useGetComposedState = (
     query: { enabled: enabled && !!assetIdToUse },
   });
 
-  const [
-    assetMetadataUri,
-    equippableGroupId,
-    catalogAddress,
-    fixedParts,
-    slotParts,
-  ] = equippableDataResponse || [];
+  const [assetMetadataUri, equippableGroupId, catalogAddress, fixedParts, slotParts] =
+    equippableDataResponse || [];
 
   const fixedMetadataUris = fixedParts?.map((p) => p.metadataURI);
 
@@ -104,9 +99,7 @@ export const useGetComposedState = (
     fixedParts?.map((p) => ({ z: p.z })),
   );
 
-  const slotMetadataUris = slotParts?.map(
-    (p) => p.childAssetMetadata || p.partMetadata,
-  );
+  const slotMetadataUris = slotParts?.map((p) => p.childAssetMetadata || p.partMetadata);
 
   const {
     isLoading: isLoadingSlotPartsMetadatas,

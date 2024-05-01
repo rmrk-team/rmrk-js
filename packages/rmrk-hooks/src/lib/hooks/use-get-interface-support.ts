@@ -2,7 +2,7 @@ import { RMRKCollectionUtils } from '@rmrk-team/rmrk-evm-utils';
 import type { Chain } from 'viem';
 import type { Address } from 'viem';
 import { useReadContract } from 'wagmi';
-import { useRMRKConfig } from '../RMRKContextProvider.js';
+import { useRMRKConfig } from '../RMRKContext.js';
 
 type Arguments = {
   contractAddress: Address;

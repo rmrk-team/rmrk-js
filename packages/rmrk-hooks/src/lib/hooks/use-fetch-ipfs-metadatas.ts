@@ -5,7 +5,7 @@ import {
 } from '@rmrk-team/ipfs-utils';
 import { useQueries } from '@tanstack/react-query';
 import { useCallback } from 'react';
-import { useRMRKConfig } from '../RMRKContextProvider.tsx';
+import { useRMRKConfig } from '../RMRKContext.js';
 
 type Props = {
   metadataUris: string[] | undefined;

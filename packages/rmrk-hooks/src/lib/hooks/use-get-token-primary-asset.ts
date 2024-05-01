@@ -2,7 +2,7 @@ import { RMRKEquipRenderUtils } from '@rmrk-team/rmrk-evm-utils';
 import type { RMRKAssetExtended } from '@rmrk-team/types';
 import type { Address, Chain } from 'viem';
 import { useReadContract } from 'wagmi';
-import { useRMRKConfig } from '../RMRKContextProvider.js';
+import { useRMRKConfig } from '../RMRKContext.js';
 import { useGetInterfaceSupport } from './use-get-interface-support.js';
 
 type Arguments = {
@@ -54,8 +54,7 @@ export const useGetTokenPrimaryAsset = (
   const { enabled = true, enabledMetadataFetch = true } = options || {};
 
   const requiresInterfaceCheck =
-    supportsEquippableInterface === undefined ||
-    supportsMultiAssetInterface === undefined;
+    supportsEquippableInterface === undefined || supportsMultiAssetInterface === undefined;
 
   const {
     isLoading: isLoadingGetInterfaceSupport,
@@ -68,8 +67,7 @@ export const useGetTokenPrimaryAsset = (
     { enabled: enabled && requiresInterfaceCheck },
   );
 
-  const enabledSimplePrimaryAsset =
-    enabled && supportsMultiAsset && !supportsEquippable;
+  const enabledSimplePrimaryAsset = enabled && supportsMultiAsset && !supportsEquippable;
   const enabledAssetWithEquippableData = enabled && supportsEquippable;
 
   const {
@@ -139,9 +137,7 @@ export const useGetTokenPrimaryAsset = (
       isErrorTopAsseForToken ||
       isErrorTopAssetAndEquippableDataForToken,
     error:
-      errorTopAsseForToken ||
-      errorTopAssetAndEquippableDataForToken ||
-      errorGetInterfaceSupport,
+      errorTopAsseForToken || errorTopAssetAndEquippableDataForToken || errorGetInterfaceSupport,
     refetch: refetchTopAssetAndEquippableDataForToken || refetTopAssetForToken,
     primaryAsset: primaryAssetSimple || primaryAssetWithEquippableData,
   };
