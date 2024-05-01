@@ -1,5 +1,20 @@
 # @rmrk-team/ipfs-utils
 
+## 0.1.2
+
+### Patch Changes
+
+- [`f52a1a5`](https://github.com/rmrk-team/rmrk-js/commit/f52a1a5376fa7e5b4c04773042e7da49fd9ad012) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Don't sanitize blob: uris in ipfs utils
+
+## 0.1.1
+
+### Patch Changes
+
+- [`a1cfe3b`](https://github.com/rmrk-team/rmrk-js/commit/a1cfe3b5d7b19ba5eac03c1be3a475753053b425) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Improve esm export and update all deps
+
+- Updated dependencies [[`a1cfe3b`](https://github.com/rmrk-team/rmrk-js/commit/a1cfe3b5d7b19ba5eac03c1be3a475753053b425)]:
+  - @rmrk-team/types@0.1.1
+
 ## 0.1.0
 
 ### Minor Changes

@@ -11,10 +11,7 @@
     "composite": true,
     "outDir": "./dist/esm",
     "rootDir": "src",
-    "declarationDir": "./dist/types",
-    "paths": {
-      "styled-system/css": ["./styled-system/css"],
-    }
+    "declarationDir": "./dist/types"
   },
   "references": [
     {

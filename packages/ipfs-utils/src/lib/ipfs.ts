@@ -108,5 +108,9 @@ export const sanitizeIpfsUrl = (
     );
   }
 
+  if (ipfsUrl.startsWith('blob:')) {
+    return ipfsUrl;
+  }
+
   return '';
 };

@@ -12,19 +12,19 @@
   "dependencies": {
     "@ark-ui/anatomy": "^1.2.0",
     "@ark-ui/react": "^1.2.1",
-    "@rainbow-me/rainbowkit": "^2.0.0-beta.1",
+    "@rainbow-me/rainbowkit": "^2.0.5",
     "@rmrk-team/nft-renderer": "workspace:*",
     "@rmrk-team/rmrk-2d-renderer": "workspace:*",
     "@rmrk-team/rmrk-evm-utils": "workspace:*",
     "@rmrk-team/rmrk-hooks": "workspace:*",
-    "@tanstack/react-query": "^5.17.12",
+    "@tanstack/react-query": "^5.29.2",
     "canvas": "^2.11.2",
     "lucide-react": "^0.303.0",
     "next": "13.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "viem": "^2.5.0",
-    "wagmi": "^2.5.1"
+    "viem": "^2.9.23",
+    "wagmi": "^2.5.20"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.27.0",
@@ -35,7 +35,7 @@
     "@typescript-eslint/eslint-plugin": "5.58.0",
     "@typescript-eslint/parser": "5.58.0",
     "@zag-js/select": "^0.32.0",
-    "abitype": "^0.10.3",
+    "abitype": "^1.0.2",
     "eslint": "8.53.0",
     "eslint-config-next": "14.0.1",
     "eslint-config-prettier": "8.10.0",

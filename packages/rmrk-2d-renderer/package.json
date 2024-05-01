@@ -3,7 +3,7 @@
   "description": "React Pixi (Canvas) renderer for multi layered composable NFTs built on RMRK standards",
   "bugs": "https://github.com/rmrk-team/rmrk-js/issues",
   "homepage": "https://github.com/rmrk-team/rmrk-js",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "private": false,
   "access": "public",
   "repository": {
@@ -13,10 +13,10 @@
   },
   "scripts": {
     "build": "pnpm run clean && pnpm prepare && pnpm run build:esm+types",
-    "build:esm+types": "pnpm build:postcss && tsc -b tsconfig.build.json --declaration --declarationMap && pnpm copy:styled-system && tsc-alias -p tsconfig.build.json && pnpm build:panda",
+    "build:esm+types": "pnpm build:postcss && tsc -b tsconfig.build.json --declaration --declarationMap && pnpm copy:styled-system && pnpm build:panda",
     "build:postcss": "postcss -o dist/esm/styles/index.css src/styles/index.css",
     "build:panda": "panda cssgen --outfile dist/styles.css",
-    "copy:styled-system": "copyfiles ./styled-system/**/*.mjs ./styled-system/*.mjs dist/esm",
+    "copy:styled-system": "copyfiles --up 1 ./src/styled-system/**/*.js ./src/styled-system/*.js dist/esm",
     "prepare": "panda codegen",
     "dev": "pnpm run build:esm+types --watch",
     "clean": "rm -rf dist tsconfig.tsbuildinfo actions chains connectors query",
@@ -54,7 +54,8 @@
     "isomorphic-dompurify": "^2.2.0",
     "lucide-react": "^0.303.0",
     "pixi.js": "^7.2.4",
-    "use-image": "^1.1.1"
+    "use-image": "^1.1.1",
+    "use-resize-observer": "^9.1.0"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",

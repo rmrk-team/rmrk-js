@@ -2,7 +2,7 @@
   "name": "@rmrk-team/nft-renderer",
   "description": "React NFT renderer for multi layered composable NFTs built on RMRK standards",
   "bugs": "https://github.com/rmrk-team/rmrk-js/issues",
-  "version": "0.1.2",
+  "version": "0.2.5",
   "private": false,
   "access": "public",
   "repository": {
@@ -16,7 +16,7 @@
     "build:misc": "pnpm copy:styled-system && tsc-alias -p tsconfig.build.json",
     "build:postcss": "postcss -o dist/esm/styles/index.css src/styles/index.css",
     "build:panda": "panda cssgen --outfile dist/styles.css",
-    "copy:styled-system": "copyfiles ./styled-system/**/*.mjs ./styled-system/*.mjs dist/esm",
+    "copy:styled-system": "copyfiles --up 1 ./src/styled-system/**/*.js ./src/styled-system/*.js dist/esm",
     "prepare": "panda codegen",
     "dev": "pnpm --workspace-concurrency=1 run build:esm+types --watch && pnpm run build:misc --watch && pnpm run build:panda --watch",
     "clean": "rm -rf dist tsconfig.tsbuildinfo actions chains connectors query",
@@ -62,7 +62,7 @@
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "@vitejs/plugin-react": "^4.1.0",
-    "@wagmi/core": "^2.6.0",
+    "@wagmi/core": "^2.6.17",
     "copyfiles": "^2.4.1",
     "postcss": "^8.4.33",
     "postcss-cli": "^11.0.0",
@@ -70,18 +70,18 @@
     "react-dom": "18.2.0",
     "tsc-alias": "^1.8.8",
     "typescript": "^5.4.2",
-    "viem": "^2.5.0",
+    "viem": "^2.9.23",
     "vite": "^4.4.9",
-    "wagmi": "^2.5.1"
+    "wagmi": "^2.5.20"
   },
   "peerDependencies": {
-    "@tanstack/react-query": ">=5.17.12",
+    "@tanstack/react-query": ">=5.29.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": ">=5.4.2",
-    "viem": ">=2.5.0",
-    "wagmi": ">=2.5.1",
-    "@wagmi/core": "^2.6.0"
+    "viem": ">=2.9.23",
+    "wagmi": ">=2.5.20",
+    "@wagmi/core": "^2.6.17"
   },
   "license": "MIT",
   "authors": [

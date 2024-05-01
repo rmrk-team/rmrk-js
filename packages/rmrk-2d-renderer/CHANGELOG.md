@@ -1,5 +1,41 @@
 # @rmrk-team/rmrk-2d-renderer
 
+## 0.1.5
+
+### Patch Changes
+
+- [`ca64edc`](https://github.com/rmrk-team/rmrk-js/commit/ca64edc69e805f0ea9f83b4df654bc5cf2579535) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - All urls should come pre-sanitized to 2d renderer
+
+## 0.1.4
+
+### Patch Changes
+
+- [`e69102a`](https://github.com/rmrk-team/rmrk-js/commit/e69102aaad38c0bd720639dbb4cb022e796d152a) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - fix: clear extractImageTimeout timeout on unmount
+
+## 0.1.3
+
+### Patch Changes
+
+- [`f52a1a5`](https://github.com/rmrk-team/rmrk-js/commit/f52a1a5376fa7e5b4c04773042e7da49fd9ad012) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Don't sanitize blob: uris in ipfs utils
+
+- Updated dependencies [[`f52a1a5`](https://github.com/rmrk-team/rmrk-js/commit/f52a1a5376fa7e5b4c04773042e7da49fd9ad012)]:
+  - @rmrk-team/ipfs-utils@0.1.2
+
+## 0.1.2
+
+### Patch Changes
+
+- [`a1cfe3b`](https://github.com/rmrk-team/rmrk-js/commit/a1cfe3b5d7b19ba5eac03c1be3a475753053b425) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Improve esm export and update all deps
+
+- Updated dependencies [[`a1cfe3b`](https://github.com/rmrk-team/rmrk-js/commit/a1cfe3b5d7b19ba5eac03c1be3a475753053b425)]:
+  - @rmrk-team/ipfs-utils@0.1.1
+
+## 0.1.1
+
+### Patch Changes
+
+- [`682e065`](https://github.com/rmrk-team/rmrk-js/commit/682e06570c345fe6ae26ad46000371b47421aa9a) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Use use-resize-observer package instead of a custom hook
+
 ## 0.1.0
 
 ### Minor Changes

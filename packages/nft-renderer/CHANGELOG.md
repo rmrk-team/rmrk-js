@@ -1,5 +1,67 @@
 # @rmrk-team/nft-renderer
 
+## 0.2.5
+
+### Patch Changes
+
+- Updated dependencies [[`ca64edc`](https://github.com/rmrk-team/rmrk-js/commit/ca64edc69e805f0ea9f83b4df654bc5cf2579535)]:
+  - @rmrk-team/rmrk-2d-renderer@0.1.5
+  - @rmrk-team/rmrk-hooks@0.2.5
+
+## 0.2.4
+
+### Patch Changes
+
+- [`e69102a`](https://github.com/rmrk-team/rmrk-js/commit/e69102aaad38c0bd720639dbb4cb022e796d152a) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - fix: clear extractImageTimeout timeout on unmount
+
+- Updated dependencies [[`e69102a`](https://github.com/rmrk-team/rmrk-js/commit/e69102aaad38c0bd720639dbb4cb022e796d152a)]:
+  - @rmrk-team/rmrk-2d-renderer@0.1.4
+  - @rmrk-team/rmrk-hooks@0.2.4
+
+## 0.2.3
+
+### Patch Changes
+
+- [`f52a1a5`](https://github.com/rmrk-team/rmrk-js/commit/f52a1a5376fa7e5b4c04773042e7da49fd9ad012) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Don't sanitize blob: uris in ipfs utils
+
+- Updated dependencies [[`f52a1a5`](https://github.com/rmrk-team/rmrk-js/commit/f52a1a5376fa7e5b4c04773042e7da49fd9ad012)]:
+  - @rmrk-team/ipfs-utils@0.1.2
+  - @rmrk-team/rmrk-2d-renderer@0.1.3
+  - @rmrk-team/rmrk-hooks@0.2.3
+
+## 0.2.2
+
+### Patch Changes
+
+- [`a1cfe3b`](https://github.com/rmrk-team/rmrk-js/commit/a1cfe3b5d7b19ba5eac03c1be3a475753053b425) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Improve esm export and update all deps
+
+- Updated dependencies [[`a1cfe3b`](https://github.com/rmrk-team/rmrk-js/commit/a1cfe3b5d7b19ba5eac03c1be3a475753053b425)]:
+  - @rmrk-team/ipfs-utils@0.1.1
+  - @rmrk-team/rmrk-2d-renderer@0.1.2
+  - @rmrk-team/rmrk-evm-utils@0.1.2
+  - @rmrk-team/rmrk-hooks@0.2.2
+
+## 0.2.1
+
+### Patch Changes
+
+- [`682e065`](https://github.com/rmrk-team/rmrk-js/commit/682e06570c345fe6ae26ad46000371b47421aa9a) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Use use-resize-observer package instead of a custom hook
+
+- Updated dependencies [[`682e065`](https://github.com/rmrk-team/rmrk-js/commit/682e06570c345fe6ae26ad46000371b47421aa9a)]:
+  - @rmrk-team/rmrk-2d-renderer@0.1.1
+  - @rmrk-team/rmrk-hooks@0.2.1
+
+## 0.2.0
+
+### Minor Changes
+
+- [`325e6e2`](https://github.com/rmrk-team/rmrk-js/commit/325e6e2bec733177cbe86e966ffc821603653bb2) Thanks [@YuriGii](https://github.com/YuriGii)! - fix nft-renderer config and add equipped item details to useGetComposedState
+
+### Patch Changes
+
+- Updated dependencies [[`325e6e2`](https://github.com/rmrk-team/rmrk-js/commit/325e6e2bec733177cbe86e966ffc821603653bb2)]:
+  - @rmrk-team/rmrk-hooks@0.2.0
+
 ## 0.1.2
 
 ### Patch Changes

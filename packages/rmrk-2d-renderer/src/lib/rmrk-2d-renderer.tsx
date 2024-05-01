@@ -1,38 +1,18 @@
 import { Container, Sprite, Stage, useApp } from '@pixi/react';
-import { sanitizeIpfsUrl } from '@rmrk-team/ipfs-utils';
 import DOMPurify from 'isomorphic-dompurify';
 // import { Skeleton } from './ui/skeleton';
 import { Loader2 } from 'lucide-react';
 import { Application, Resource, Texture } from 'pixi.js';
 import type { ICanvas } from 'pixi.js';
-import type { CSSProperties } from 'react';
+import { type CSSProperties, useRef } from 'react';
 import React, { useEffect, useMemo } from 'react';
 import { useCallback, useState } from 'react';
-import { css, cx } from 'styled-system/css';
 import useImage from 'use-image';
+import useResizeObserver from 'use-resize-observer';
+import { css } from '../styled-system/css/css.js';
+import { cx } from '../styled-system/css/cx.js';
 import { Skeleton } from '../ui/skeleton.js';
 import { INHERIT_RENDER_CONTEXT } from './consts.js';
-
-const useObserveElementDimensions = (ref?: React.RefObject<HTMLDivElement>) => {
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
-  useEffect(() => {
-    const resizeObserver = new ResizeObserver((event) => {
-      // Depending on the layout, you may need to swap inlineSize with blockSize
-      // https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry/contentBoxSize
-      setWidth(event[0]?.contentBoxSize[0]?.inlineSize || 0);
-      setHeight(event[0]?.contentBoxSize[0]?.blockSize || 0);
-    });
-
-    if (ref?.current) {
-      resizeObserver.observe(ref.current);
-    }
-  }, [ref?.current]);
-
-  const isLoading = width === 0 || height === 0;
-
-  return { width, height, isLoading };
-};
 
 const useGetResourceDimensions = () => {
   const [w, setW] = useState(0);
@@ -58,11 +38,10 @@ const useGetResourceDimensions = () => {
 };
 
 const useGetCanvasStateDimensions = (ref?: React.RefObject<HTMLDivElement>) => {
-  const {
-    width,
-    height,
-    isLoading: isLoadingParentDimensions,
-  } = useObserveElementDimensions(ref);
+  const { width = 0, height = 0 } = useResizeObserver<HTMLDivElement>({ ref });
+
+  const isLoadingParentDimensions = width === 0 || height === 0;
+
   const {
     onResourceLoad,
     isLoading: isLoadingResourceDimensions,
@@ -93,18 +72,28 @@ const useBackdropImage = (
 
   // Get image from canvas to apply as a backdrop background
   const extractImage = async (pixiApp: Application<ICanvas>) => {
-    const blob = await pixiApp.renderer.extract.image(pixiApp.stage);
-    setBgImage(blob.src);
+    if (pixiApp.stage) {
+      const blob = await pixiApp.renderer.extract.image(pixiApp.stage);
+      setBgImage(blob.src);
+    }
   };
+
+  const extractImageTimeout = useRef<NodeJS.Timeout>();
 
   // Get image from canvas to apply as a backdrop background
   useEffect(() => {
     if (!bgImage && !!pixiApp && enabled) {
       // Wait for the canvas to be rendered
-      setTimeout(() => {
+      extractImageTimeout.current = setTimeout(() => {
         extractImage(pixiApp);
       }, 600);
     }
+
+    return () => {
+      if (extractImageTimeout.current) {
+        clearTimeout(extractImageTimeout.current);
+      }
+    };
   }, [pixiApp, enabled, bgImage, extractImage]);
 
   return bgImage;
@@ -293,8 +282,7 @@ const useCreateResourceTexture = (
   onLoad: (w: number, h: number) => void,
   theme?: Record<string | number | symbol, unknown>,
 ) => {
-  const url = sanitizeIpfsUrl(src);
-  const [image] = (useImage as unknown as useImage)(url, 'anonymous');
+  const [image] = (useImage as unknown as useImage)(src, 'anonymous');
 
   useEffect(() => {
     if (image) {
@@ -307,7 +295,7 @@ const useCreateResourceTexture = (
 
   useEffect(() => {
     const downloadImage = async () => {
-      const response = await fetch(url);
+      const response = await fetch(src);
       const contentType = response.headers.get('content-type');
       const code = await response.text();
 
@@ -358,14 +346,14 @@ const useCreateResourceTexture = (
       }
     };
 
-    if (url && theme) {
+    if (src && theme) {
       downloadImage();
     }
 
     if (image && !theme) {
       setResourceTexture(Texture.from(image));
     }
-  }, [url, image, theme]);
+  }, [src, image, theme]);
 
   return resourceTexture;
 };
