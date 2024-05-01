@@ -3,6 +3,7 @@
   "include": ["src/**/*.ts", "test/**/*.ts", "src/**/*.tsx"],
   "exclude": [],
   "compilerOptions": {
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "allowImportingTsExtensions": true
   }
 }
