@@ -1,5 +1,11 @@
 # @rmrk-team/nft-renderer
 
+## 0.2.7
+
+### Patch Changes
+
+- [`ef8245d`](https://github.com/rmrk-team/rmrk-js/commit/ef8245dcc4d49983b408be7f7b4ec2fcbea0073e) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Remove @wagmi/core from peer deps
+
 ## 0.2.6
 
 ### Patch Changes
