@@ -62,7 +62,6 @@
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "@vitejs/plugin-react": "^4.1.0",
-    "@wagmi/core": "^2.6.17",
     "copyfiles": "^2.4.1",
     "postcss": "^8.4.33",
     "postcss-cli": "^11.0.0",
@@ -80,8 +79,7 @@
     "react-dom": "^18.2.0",
     "typescript": ">=5.4.2",
     "viem": ">=2.9.23",
-    "wagmi": ">=2.5.20",
-    "@wagmi/core": "^2.6.17"
+    "wagmi": ">=2.5.20"
   },
   "license": "MIT",
   "authors": [
