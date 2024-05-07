@@ -1,5 +1,11 @@
 # @rmrk-team/rmrk-evm-utils
 
+## 0.2.0
+
+### Minor Changes
+
+- [`f64c25f`](https://github.com/rmrk-team/rmrk-js/commit/f64c25fc2433371a24ef27e7e242881f2f5dcaf0) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Fix: return image and animation_url with metadata fetch
+
 ## 0.1.2
 
 ### Patch Changes

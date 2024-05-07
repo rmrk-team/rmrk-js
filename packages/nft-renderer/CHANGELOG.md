@@ -1,5 +1,19 @@
 # @rmrk-team/nft-renderer
 
+## 0.3.0
+
+### Minor Changes
+
+- [`f64c25f`](https://github.com/rmrk-team/rmrk-js/commit/f64c25fc2433371a24ef27e7e242881f2f5dcaf0) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Fix: return image and animation_url with metadata fetch
+
+### Patch Changes
+
+- Updated dependencies [[`f64c25f`](https://github.com/rmrk-team/rmrk-js/commit/f64c25fc2433371a24ef27e7e242881f2f5dcaf0)]:
+  - @rmrk-team/ipfs-utils@0.2.0
+  - @rmrk-team/rmrk-evm-utils@0.2.0
+  - @rmrk-team/rmrk-hooks@0.3.0
+  - @rmrk-team/rmrk-2d-renderer@0.1.6
+
 ## 0.2.7
 
 ### Patch Changes
