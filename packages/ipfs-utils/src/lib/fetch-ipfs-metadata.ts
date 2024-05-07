@@ -40,6 +40,8 @@ export const fetchIpfsMetadata = async (
       if (provider) {
         return {
           ...restMetadata,
+          image,
+          animation_url,
           mediaUri: shouldSanitizeIpfsUrls
             ? sanitizeIpfsUrl((metadata as Metadata)?.mediaUri || '', provider)
             : (metadata as Metadata)?.mediaUri,

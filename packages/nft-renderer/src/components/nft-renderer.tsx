@@ -191,14 +191,14 @@ export function NFTRenderer({
           ...fixedPartsWithMetadatas.map((p) => ({
             z: p.z,
             src: sanitizeIpfsUrl(
-              p.metadata?.mediaUri || '',
+              p.metadata?.mediaUri || p.metadata?.image || '',
               rmrkConfig.ipfsGateway,
             ),
           })),
           ...slotPartsWithMetadatas.map((p) => ({
             z: p.z,
             src: sanitizeIpfsUrl(
-              p.metadata?.mediaUri || '',
+              p.metadata?.mediaUri || p.metadata?.image || '',
               rmrkConfig.ipfsGateway,
             ),
           })),
