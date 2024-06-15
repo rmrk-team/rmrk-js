@@ -1,5 +1,11 @@
 # @rmrk-team/rmrk-evm-utils
 
+## 0.2.1
+
+### Patch Changes
+
+- [`54eb745`](https://github.com/rmrk-team/rmrk-js/commit/54eb74519ccaa4a2bed7014fab5b94ea3526e9f1) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Updated deps and included bob chain
+
 ## 0.2.0
 
 ### Minor Changes
