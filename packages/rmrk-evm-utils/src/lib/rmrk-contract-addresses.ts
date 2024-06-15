@@ -1,5 +1,5 @@
 import type { Address, Chain } from 'viem';
-import { bsc } from 'viem/chains';
+import {bob, bsc} from 'viem/chains';
 import {
   astar,
   base,
@@ -126,6 +126,16 @@ export const EVM_RMRK_CONTRACTS = {
       '0x2D9eE1277F40606b5fC6C1984Cc3990dC63CeFFA',
     [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
       '0x6f2ebaDF4aA67Be1Ac57bFE6eBbC99D6C1fa25bF',
+  },
+  [bob.id]: {
+    [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]:
+        '0xA1908f1DbAa386a293Ee700F7934AE6aDB9C043D',
+    [NETWORK_CONTRACTS_PROPS.RMRKBulkWriter]:
+        '0x5B01637FD17c1ac79df13dFF4F7080Fdd4cfEC46',
+    [NETWORK_CONTRACTS_PROPS.RMRKCollectionUtils]:
+        '0x248ab178b3342bc843BE7Aacc88eCf3cbf2E25d3',
+    [NETWORK_CONTRACTS_PROPS.RMRKCatalogUtils]:
+        '0xCeecc3C73284CfB9d3AB87F8b653D14Bd3b65FeC',
   },
   [hardhat.id]: {
     [NETWORK_CONTRACTS_PROPS.RMRKEquipRenderUtils]:

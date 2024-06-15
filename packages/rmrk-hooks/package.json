@@ -54,7 +54,7 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.1",
-    "@tanstack/react-query": "^5.29.2",
+    "@tanstack/react-query": "^5.45.0",
     "@types/node": "18.16.9",
     "@types/ramda": "^0.29.10",
     "@types/react": "18.2.33",
@@ -63,10 +63,10 @@
     "abitype": "^1.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "^5.4.2",
-    "viem": "^2.9.23",
+    "typescript": "^5.4.5",
+    "viem": "^2.14.1",
     "vite": "^4.4.9",
-    "wagmi": "^2.5.20"
+    "wagmi": "^2.10.2"
   },
   "peerDependencies": {
     "@tanstack/react-query": ">=5.29.2",

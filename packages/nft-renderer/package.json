@@ -48,7 +48,7 @@
     "./dist/styles.css": "./dist/styles.css"
   },
   "dependencies": {
-    "@rainbow-me/rainbowkit": "^2.0.0-beta.0",
+    "@rainbow-me/rainbowkit": "^2.1.2",
     "@rmrk-team/rmrk-2d-renderer": "workspace:*",
     "@rmrk-team/rmrk-evm-utils": "workspace:*",
     "@rmrk-team/rmrk-hooks": "workspace:*",
@@ -68,10 +68,10 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tsc-alias": "^1.8.8",
-    "typescript": "^5.4.2",
-    "viem": "^2.9.23",
+    "typescript": "^5.4.5",
+    "viem": "^2.14.1",
     "vite": "^4.4.9",
-    "wagmi": "^2.5.20"
+    "wagmi": "^2.10.2"
   },
   "peerDependencies": {
     "@tanstack/react-query": ">=5.29.2",
