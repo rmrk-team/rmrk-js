@@ -20,9 +20,8 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        node-version: [22]
-    timeout-minutes: 5
-
+        node-version: [ 22 ]
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,17 +29,19 @@ jobs:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+
       - name: Install Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        with:
-          version: 9
-          run_install: true
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Create version pull request or publish to npm
         uses: changesets/action@v1
