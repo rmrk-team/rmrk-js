@@ -1,5 +1,19 @@
 # @rmrk-team/nft-renderer
 
+## 0.3.2
+
+### Patch Changes
+
+- [`1714b3c`](https://github.com/rmrk-team/rmrk-js/commit/1714b3cdee58e1284097bcfb00df37048fb803b6) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Udjust pnpm deps
+
+- [`5c01562`](https://github.com/rmrk-team/rmrk-js/commit/5c01562057733e4b5fa8c62afed33f7a93e49b5e) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Update deps
+
+- Updated dependencies [[`1714b3c`](https://github.com/rmrk-team/rmrk-js/commit/1714b3cdee58e1284097bcfb00df37048fb803b6), [`5c01562`](https://github.com/rmrk-team/rmrk-js/commit/5c01562057733e4b5fa8c62afed33f7a93e49b5e)]:
+  - @rmrk-team/ipfs-utils@0.2.2
+  - @rmrk-team/rmrk-2d-renderer@0.1.8
+  - @rmrk-team/rmrk-evm-utils@0.2.2
+  - @rmrk-team/rmrk-hooks@0.3.2
+
 ## 0.3.1
 
 ### Patch Changes

@@ -3,7 +3,7 @@
   "bugs": "https://github.com/rmrk-team/rmrk-js/issues",
   "homepage": "https://github.com/rmrk-team/rmrk-js",
   "description": "Types to be used in combination with other packages of the RMRK EVM monorepo",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "access": "public",
   "repository": {
@@ -46,5 +46,7 @@
     "@changesets/cli": "^2.27.1"
   },
   "license": "MIT",
-  "authors": ["yurinondual.eth <yuripetusko@gmail.com>"]
+  "authors": [
+    "yurinondual.eth <yuripetusko@gmail.com>"
+  ]
 }
