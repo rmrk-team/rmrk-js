@@ -1,5 +1,11 @@
 # @rmrk-team/types
 
+## 0.1.3
+
+### Patch Changes
+
+- [`5c01562`](https://github.com/rmrk-team/rmrk-js/commit/5c01562057733e4b5fa8c62afed33f7a93e49b5e) Thanks [@Yuripetusko](https://github.com/Yuripetusko)! - Update deps
+
 ## 0.1.2
 
 ### Patch Changes

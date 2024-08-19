@@ -3,7 +3,7 @@
   "description": "IPFS utils for RMRK NFTs",
   "bugs": "https://github.com/rmrk-team/rmrk-js/issues",
   "homepage": "https://github.com/rmrk-team/rmrk-js",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": false,
   "access": "public",
   "repository": {
@@ -55,5 +55,7 @@
     "@changesets/cli": "^2.27.1"
   },
   "license": "MIT",
-  "authors": ["yurinondual.eth <yuripetusko@gmail.com>"]
+  "authors": [
+    "yurinondual.eth <yuripetusko@gmail.com>"
+  ]
 }
