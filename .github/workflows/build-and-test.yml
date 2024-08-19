@@ -6,10 +6,10 @@ on:
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 22 ]
+        node-version: [ 20 ]
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -43,10 +43,10 @@ jobs:
   build:
     name: Build
     needs: lint
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 22 ]
+        node-version: [ 20 ]
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -71,10 +71,10 @@ jobs:
 
   test:
     name: Test
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [22]
+        node-version: [20]
     timeout-minutes: 10
     steps:
       - name: Checkout

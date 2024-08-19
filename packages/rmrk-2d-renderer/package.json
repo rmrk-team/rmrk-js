@@ -51,7 +51,7 @@
   "dependencies": {
     "@pixi/react": "^7.1.2",
     "@rmrk-team/ipfs-utils": "workspace:*",
-    "isomorphic-dompurify": "^2.2.0",
+    "isomorphic-dompurify": "^2.14.0",
     "lucide-react": "^0.303.0",
     "pixi.js": "^7.4.2",
     "use-image": "^1.1.1",

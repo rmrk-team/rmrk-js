@@ -45,7 +45,7 @@
     "@rmrk-team/rmrk-2d-renderer": "workspace:*",
     "@rmrk-team/rmrk-evm-utils": "workspace:*",
     "@rmrk-team/types": "workspace:*",
-    "isomorphic-dompurify": "^2.2.0",
+    "isomorphic-dompurify": "^2.14.0",
     "lucide-react": "^0.303.0",
     "pixi.js": "^7.4.2",
     "ramda": "^0.29.1",
