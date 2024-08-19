@@ -79,9 +79,7 @@
     "typescript": ">=5.4.2"
   },
   "license": "MIT",
-  "authors": [
-    "yurinondual.eth <yuripetusko@gmail.com>"
-  ],
+  "authors": ["yurinondual.eth <yuripetusko@gmail.com>"],
   "contributors": [
     {
       "name": "Ayuilos",

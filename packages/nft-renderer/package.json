@@ -82,7 +82,5 @@
     "wagmi": ">=2.12.5"
   },
   "license": "MIT",
-  "authors": [
-    "yurinondual.eth <yuripetusko@gmail.com>"
-  ]
+  "authors": ["yurinondual.eth <yuripetusko@gmail.com>"]
 }
