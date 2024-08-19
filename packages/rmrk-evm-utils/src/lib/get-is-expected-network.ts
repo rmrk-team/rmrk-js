@@ -1,4 +1,4 @@
-import { EVM_NETWORKS } from './chain-mapping.js';
+import type { EVM_NETWORKS } from './chain-mapping.js';
 
 /**
  * Tests a value against a list of expected networks.

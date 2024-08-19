@@ -1,4 +1,4 @@
-import { Application, ICanvas } from 'pixi.js';
+import type { Application, ICanvas } from 'pixi.js';
 
 declare global {
   interface Window {

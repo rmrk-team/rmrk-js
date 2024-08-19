@@ -30,10 +30,10 @@
     "typecheck": "pnpm run --r --parallel typecheck && tsc --noEmit"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.5.1",
+    "@biomejs/biome": "1.8.3",
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.1",
-    "@pandacss/dev": "^0.27.0",
+    "@pandacss/dev": "^0.45.1",
     "@preconstruct/cli": "^2.8.2",
     "@types/node": "18.16.9",
     "@viem/anvil": "^0.0.7",
@@ -45,24 +45,18 @@
     "prettier": "^2.8.8",
     "simple-git-hooks": "^2.9.0",
     "ts-node": "10.9.1",
-    "typescript": "^5.4.5",
+    "typescript": "^5.5.4",
     "vitest": "^1.2.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm format && pnpm lint:fix"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "preconstruct": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   },
   "license": "MIT",
-  "authors": [
-    "yurinondual.eth <yuripetusko@gmail.com>"
-  ],
+  "authors": ["yurinondual.eth <yuripetusko@gmail.com>"],
   "contributors": [
     {
       "name": "Ayuilos",

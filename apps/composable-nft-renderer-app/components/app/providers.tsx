@@ -2,12 +2,12 @@
 
 import {
   NETWORK_CONTRACTS_PROPS,
-  RMRKUtilityContracts,
+  type RMRKUtilityContracts,
 } from '@rmrk-team/rmrk-evm-utils';
 import { RMRKContextProvider } from '@rmrk-team/rmrk-hooks';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'components/app/wagmi-provider';
-import React from 'react';
+import type React from 'react';
 import { hardhat } from 'wagmi/chains';
 
 const queryClient = new QueryClient();
@@ -28,7 +28,7 @@ const customUtilityContracts = {
 
 const rmrkConfig = {
   utilityContracts: customUtilityContracts,
-  // ipfsGateway: 'https://ipfs.io'
+  ipfsGateway: 'https://ipfs.io',
 };
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {

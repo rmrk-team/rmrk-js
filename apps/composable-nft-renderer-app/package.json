@@ -10,32 +10,32 @@
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "@ark-ui/anatomy": "^1.2.0",
-    "@ark-ui/react": "^1.2.1",
+    "@ark-ui/anatomy": "^3.5.0",
+    "@ark-ui/react": "^3.8.0",
     "@rainbow-me/rainbowkit": "^2.1.2",
     "@rmrk-team/nft-renderer": "workspace:*",
     "@rmrk-team/rmrk-2d-renderer": "workspace:*",
     "@rmrk-team/rmrk-evm-utils": "workspace:*",
     "@rmrk-team/rmrk-hooks": "workspace:*",
-    "@tanstack/react-query": "^5.45.0",
+    "@tanstack/react-query": "^5.51.24",
     "canvas": "^2.11.2",
     "lucide-react": "^0.303.0",
     "next": "13.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "viem": "^2.14.1",
-    "wagmi": "^2.10.2"
+    "viem": "^2.19.7",
+    "wagmi": "^2.12.5"
   },
   "devDependencies": {
-    "@pandacss/dev": "^0.27.0",
-    "@park-ui/panda-preset": "^0.28.0",
+    "@pandacss/dev": "^0.45.1",
+    "@park-ui/panda-preset": "^0.42.0",
     "@types/node": "18.16.9",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "@typescript-eslint/eslint-plugin": "5.58.0",
     "@typescript-eslint/parser": "5.58.0",
-    "@zag-js/select": "^0.32.0",
-    "abitype": "^1.0.2",
+    "@zag-js/select": "^0.65.0",
+    "abitype": "^1.0.6",
     "eslint": "8.53.0",
     "eslint-config-next": "14.0.1",
     "eslint-config-prettier": "8.10.0",
@@ -44,6 +44,6 @@
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "prettier": "^3.0.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.4"
   }
 }

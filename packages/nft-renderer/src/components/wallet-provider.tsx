@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 // import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 // import '@rainbow-me/rainbowkit/styles.css';
 // import { chains } from '../lib/web3/wagmi-config';

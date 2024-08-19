@@ -11,7 +11,7 @@ import {
   SelectItemText,
   SelectLabel,
   SelectPositioner,
-  SelectProps,
+  type SelectProps,
   SelectTrigger,
   SelectValueText,
 } from 'components/park-ui/select';

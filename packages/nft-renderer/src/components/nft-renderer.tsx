@@ -8,7 +8,8 @@ import {
   useGetInterfaceSupport,
   useRMRKConfig,
 } from '@rmrk-team/rmrk-hooks';
-import React, { useEffect, useRef, useState } from 'react';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { isAddress } from 'viem';
 import type { Address } from 'viem';
 import { usePublicClient, useReadContract } from 'wagmi';

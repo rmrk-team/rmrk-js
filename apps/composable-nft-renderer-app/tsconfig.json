@@ -2,11 +2,7 @@
   "compilerOptions": {
     "module": "esnext",
     "target": "ES2019",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "preserve",
     "baseUrl": "./",
     "moduleResolution": "node",
@@ -26,9 +22,7 @@
       }
     ]
   },
-  "exclude": [
-    "node_modules"
-  ],
+  "exclude": ["node_modules"],
   "include": [
     "next-env.d.ts",
     "app/**/*.ts",

@@ -2,7 +2,14 @@
   "$schema": "https://biomejs.dev/schemas/1.5.1/schema.json",
   "files": {
     "ignoreUnknown": true,
-    "ignore": ["apps/**/styled-system/**", "packages/**/dist/**", "apps/**/.next/**", "packages/**/tsconfig.build.json", "biome.json", "styled-system"]
+    "ignore": [
+      "apps/**/styled-system/**",
+      "packages/**/dist/**",
+      "apps/**/.next/**",
+      "packages/**/tsconfig.build.json",
+      "biome.json",
+      "styled-system"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -24,7 +31,7 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
-      "trailingComma": "all",
+      "trailingCommas": "all",
       "semicolons": "always"
     }
   },

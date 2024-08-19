@@ -21,12 +21,9 @@ type CombineProps<T, U> = Omit<T, keyof U> & U;
 
 const cx = (...args: (string | undefined)[]) => args.filter(Boolean).join(' ');
 
-export interface ComponentVariants<
-  T extends ElementType,
-  R extends StyleRecipe,
-> {
-  (props: CombineProps<ComponentProps<T>, StyleVariantProps<R>>): JSX.Element;
-}
+export type ComponentVariants<T extends ElementType, R extends StyleRecipe> = (
+  props: CombineProps<ComponentProps<T>, StyleVariantProps<R>>,
+) => JSX.Element;
 
 export const createStyleContext = <R extends StyleRecipe>(recipe: R) => {
   const StyleContext = createContext<StyleSlotRecipe<R> | null>(null);

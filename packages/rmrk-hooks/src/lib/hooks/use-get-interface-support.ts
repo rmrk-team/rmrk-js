@@ -34,7 +34,7 @@ export const useGetInterfaceSupport = (args: Arguments, options?: Options) => {
     args: [contractAddress],
     query: {
       enabled: enabled && !!contractAddress,
-      staleTime: Infinity,
+      staleTime: Number.POSITIVE_INFINITY,
       gcTime: ONE_DAY,
     },
   });

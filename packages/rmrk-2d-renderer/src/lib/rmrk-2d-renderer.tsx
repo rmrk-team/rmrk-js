@@ -2,10 +2,11 @@ import { Container, Sprite, Stage, useApp } from '@pixi/react';
 import DOMPurify from 'isomorphic-dompurify';
 // import { Skeleton } from './ui/skeleton';
 import { Loader2 } from 'lucide-react';
-import { Application, Resource, Texture } from 'pixi.js';
+import { type Application, type Resource, Texture } from 'pixi.js';
 import type { ICanvas } from 'pixi.js';
 import { type CSSProperties, useRef } from 'react';
-import React, { useEffect, useMemo } from 'react';
+import type React from 'react';
+import { useEffect, useMemo } from 'react';
 import { useCallback, useState } from 'react';
 import useImage from 'use-image';
 import useResizeObserver from 'use-resize-observer';
@@ -71,12 +72,12 @@ const useBackdropImage = (
   }, [allRenderableResources]);
 
   // Get image from canvas to apply as a backdrop background
-  const extractImage = async (pixiApp: Application<ICanvas>) => {
+  const extractImage = useCallback(async (pixiApp: Application<ICanvas>) => {
     if (pixiApp.stage) {
       const blob = await pixiApp.renderer.extract.image(pixiApp.stage);
       setBgImage(blob.src);
     }
-  };
+  }, []);
 
   const extractImageTimeout = useRef<NodeJS.Timeout>();
 
@@ -382,7 +383,7 @@ function Layer({
   const childrenZIndex = Array.isArray(z) ? z[1] : null;
 
   const children = resources
-    ? resources.map((resource) => {
+    ? resources.map((resource, i) => {
         // If childrenZIndex is "INHERIT", it means that the children should be rendered in the same context as the parent.
         // So make sure the container position is also inherited.
         const inherit = childrenZIndex === INHERIT_RENDER_CONTEXT;
@@ -390,6 +391,7 @@ function Layer({
 
         return (
           <Layer
+            key={`${resource.src}-${i}`}
             {...resource}
             {...inheritedContainerPosition}
             onLoad={onLoad}

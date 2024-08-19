@@ -49,29 +49,29 @@
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^2.1.2",
+    "@rmrk-team/ipfs-utils": "workspace:*",
     "@rmrk-team/rmrk-2d-renderer": "workspace:*",
     "@rmrk-team/rmrk-evm-utils": "workspace:*",
-    "@rmrk-team/rmrk-hooks": "workspace:*",
-    "@rmrk-team/ipfs-utils": "workspace:*"
+    "@rmrk-team/rmrk-hooks": "workspace:*"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.1",
-    "@pandacss/dev": "^0.27.0",
+    "@pandacss/dev": "^0.45.1",
     "@types/node": "18.16.9",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "@vitejs/plugin-react": "^4.1.0",
     "copyfiles": "^2.4.1",
-    "postcss": "^8.4.33",
+    "postcss": "^8.4.41",
     "postcss-cli": "^11.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tsc-alias": "^1.8.8",
-    "typescript": "^5.4.5",
-    "viem": "^2.14.1",
+    "typescript": "^5.5.4",
+    "viem": "^2.19.7",
     "vite": "^4.4.9",
-    "wagmi": "^2.10.2"
+    "wagmi": "^2.12.5"
   },
   "peerDependencies": {
     "@tanstack/react-query": ">=5.29.2",
@@ -82,7 +82,5 @@
     "wagmi": ">=2.5.20"
   },
   "license": "MIT",
-  "authors": [
-    "yurinondual.eth <yuripetusko@gmail.com>"
-  ]
+  "authors": ["yurinondual.eth <yuripetusko@gmail.com>"]
 }

@@ -1,7 +1,7 @@
 'use client';
 import { EVM_RMRK_CONTRACTS } from '@rmrk-team/rmrk-evm-utils';
 import { mergeDeepRight } from 'ramda';
-import * as React from 'react';
+import type * as React from 'react';
 import type { RMRKConfig } from './RMRKContext.js';
 import { RMRKContext } from './RMRKContext.js';
 

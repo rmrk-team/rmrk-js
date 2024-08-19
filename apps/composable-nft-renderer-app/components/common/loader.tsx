@@ -1,4 +1,4 @@
-import { Loader2, LucideProps } from 'lucide-react';
+import { Loader2, type LucideProps } from 'lucide-react';
 import { css } from 'styled-system/css';
 
 export const Loader = (props: LucideProps) => {

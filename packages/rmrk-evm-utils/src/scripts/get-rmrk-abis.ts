@@ -1,9 +1,9 @@
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import { Abi } from 'abitype/zod';
 import 'dotenv/config';
 import type { Address } from 'viem';
 import { base } from 'wagmi/chains';
-import { EVM_RMRK_CONTRACTS, NETWORK_CONTRACTS_PROPS } from '../index.js';
+import { EVM_RMRK_CONTRACTS, type NETWORK_CONTRACTS_PROPS } from '../index.js';
 
 const BASESCAN_API_URL = 'https://api.basescan.org/api';
 

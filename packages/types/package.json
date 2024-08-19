@@ -46,7 +46,5 @@
     "@changesets/cli": "^2.27.1"
   },
   "license": "MIT",
-  "authors": [
-    "yurinondual.eth <yuripetusko@gmail.com>"
-  ]
+  "authors": ["yurinondual.eth <yuripetusko@gmail.com>"]
 }

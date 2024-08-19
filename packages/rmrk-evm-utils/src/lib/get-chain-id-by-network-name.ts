@@ -1,5 +1,5 @@
 import {
-  EVM_NETWORKS,
+  type EVM_NETWORKS,
   mapEvmNetworkToSupportedChain,
 } from './chain-mapping.js';
 

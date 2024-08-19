@@ -1,9 +1,9 @@
 'use client';
 
 // import { GitHubLogoIcon } from '@radix-ui/react-icons';
-import { CollectionItem } from '@ark-ui/react';
+import type { CollectionItem } from '@ark-ui/react';
 import { EVM_NETWORKS, assertIsEvmNetwork } from '@rmrk-team/rmrk-evm-utils';
-import { ValueChangeDetails } from '@zag-js/select';
+import type { ValueChangeDetails } from '@zag-js/select';
 import { InputSelect } from 'components/common/select';
 import { Button } from 'components/park-ui/button';
 import { Input } from 'components/park-ui/input';
