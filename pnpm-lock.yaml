@@ -200,7 +200,7 @@ importers:
         specifier: workspace:*
         version: link:../rmrk-hooks
       '@tanstack/react-query':
-        specifier: '>=5.29.2'
+        specifier: '>=5.51.24'
         version: 5.51.24(react@18.2.0)
     devDependencies:
       '@changesets/changelog-github':
@@ -11063,7 +11063,7 @@ snapshots:
 
   '@scure/bip32@1.4.0':
     dependencies:
-      '@noble/curves': 1.4.0
+      '@noble/curves': 1.4.2
       '@noble/hashes': 1.4.0
       '@scure/base': 1.1.7
 
@@ -11774,7 +11774,7 @@ snapshots:
       '@walletconnect/safe-json': 1.0.2
       '@walletconnect/time': 1.0.2
       tslib: 1.14.1
-      uint8arrays: 3.1.0
+      uint8arrays: 3.1.1
 
   '@walletconnect/safe-json@1.0.2':
     dependencies:
@@ -17719,7 +17719,7 @@ snapshots:
 
   webauthn-p256@0.0.5:
     dependencies:
-      '@noble/curves': 1.4.0
+      '@noble/curves': 1.4.2
       '@noble/hashes': 1.4.0
 
   webextension-polyfill@0.10.0: {}
